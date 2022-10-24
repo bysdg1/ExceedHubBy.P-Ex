@@ -1,3 +1,10 @@
+_G.Team = "Pirates" -- Marines , Pirates
+_G.Rejoin = true    -- ReJoin
+_G.KaiTun = false   -- Mode KaiTun
+_G.TestFunction = false -- ไว้เทสฟั่งชั่นนั้นๆ
+_G.FastAttack_Mode = "Super Fast" -- Smooth , Fast , Super Fast
+_G.Close_UI = false -- ปิด UI
+_G.Color = Color3.fromRGB(255,0,0)
 
 -- game:IsLoaded
     if not game:IsLoaded() then 
@@ -2389,7 +2396,7 @@
 
 -- EquipWeapon
     function weapon()
-        for i2,v2 in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do  
+        for i2,v2 in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
             if tostring(v2.ToolTip) == "Melee" then
                 _G.Weapon = v2.Name
             end
@@ -2435,11 +2442,6 @@
 -- CanCollide
 
 -- Function 
-    for i2,v2 in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do  
-        if tostring(v2.ToolTip) == "Melee" then
-            _G.Weapon = v2.Name
-        end
-    end
     function CheckBackPack(Backpack)
         return game.Players.LocalPlayer.Backpack:FindFirstChild(Backpack)
     end
@@ -3258,7 +3260,7 @@
     -- Attack Core Fruit
         spawn(function()
             while wait(1) do
-                if HopGoWorld3_Core and New_World then
+                if HopGoWorld3_Core and New_World and not Attack_Boss_Three_World then
                     local Lv = game:GetService("Players").LocalPlayer.Data.Level.Value
                     if Lv >= 700 then
                         if game.Workspace.Enemies:FindFirstChild("Core") or game.ReplicatedStorage:FindFirstChild("Core") then
@@ -3712,17 +3714,17 @@
                     if Attack_Death_Step and New_World then 
                         if game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyDeathStep", true) == 3 then
                             if game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyDeathStep") ~= 1 then
-                                if game.Players.LocalPlayer.Backpack:FindFirstChild("Library Key") or game.Players.LocalPlayer.Character:FindFirstChild("Library Key") and game:GetService("Workspace").Map.IceCastle.Hall.LibraryDoor:FindFirstChild("PhoeyuDoor") then
-                                    Attack_Boss_Death_Step = true
-                                    EquipWeapon("Library Key")
-                                    repeat wait(1)
-                                        TP(CFrame.new(6377.12549, 296.634735, -6843.76025))
-                                    until (CFrame.new(6377.12549, 296.634735, -6843.76025).Position-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude < 10 or not Attack_Boss_Death_Step 
-                                    wait(3)
-                                    Attack_Boss_Death_Step = false
-                                else
-                                    if game:GetService("ReplicatedStorage"):FindFirstChild("Awakened Ice Admiral [Lv. 1400] [Boss]") or game:GetService("Workspace").Enemies:FindFirstChild("Awakened Ice Admiral [Lv. 1400] [Boss]") then
-                                        if not Raid_Fruit_Fragments and not Attack_Boss_Shakman_Karate and not Farm_Item_Inventroy_Mystic_Droplet and not HopGoWorld3_Core_Attack then
+                                if not Attack_Boss_Shakman_Karate and not Farm_Item_Inventroy_Mystic_Droplet and not HopGoWorld3_Core_Attack then
+                                    if game.Players.LocalPlayer.Backpack:FindFirstChild("Library Key") or game.Players.LocalPlayer.Character:FindFirstChild("Library Key") and game:GetService("Workspace").Map.IceCastle.Hall.LibraryDoor:FindFirstChild("PhoeyuDoor") then
+                                        Attack_Boss_Death_Step = true
+                                        EquipWeapon("Library Key")
+                                        repeat wait(1)
+                                            TP(CFrame.new(6377.12549, 296.634735, -6843.76025))
+                                        until (CFrame.new(6377.12549, 296.634735, -6843.76025).Position-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude < 10 or not Attack_Boss_Death_Step 
+                                        wait(3)
+                                        Attack_Boss_Death_Step = false
+                                    else
+                                        if game:GetService("ReplicatedStorage"):FindFirstChild("Awakened Ice Admiral [Lv. 1400] [Boss]") or game:GetService("Workspace").Enemies:FindFirstChild("Awakened Ice Admiral [Lv. 1400] [Boss]") then
                                             Attack_Boss_Death_Step = true 
                                             if game:GetService("Workspace").Enemies:FindFirstChild("Awakened Ice Admiral [Lv. 1400] [Boss]") then
                                                 for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
@@ -3739,9 +3741,9 @@
                                             else
                                                 TP(CFrame.new(6421.53, 295.764, -6924.07)*CFrame.new(0,50,0))
                                             end
+                                        elseif not game:GetService("ReplicatedStorage"):FindFirstChild("Awakened Ice Admiral [Lv. 1400] [Boss]") and not game:GetService("Workspace").Enemies:FindFirstChild("Awakened Ice Admiral [Lv. 1400] [Boss]") then 
+                                            Attack_Boss_Death_Step = false
                                         end
-                                    elseif not game:GetService("ReplicatedStorage"):FindFirstChild("Awakened Ice Admiral [Lv. 1400] [Boss]") and not game:GetService("Workspace").Enemies:FindFirstChild("Awakened Ice Admiral [Lv. 1400] [Boss]") then 
-                                        Attack_Boss_Death_Step = false
                                     end
                                 end
                             end
@@ -3760,17 +3762,17 @@
                     wait(15)
                     if Attack_Shakman_Karate and New_World then 
                         if game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySharkmanKarate", true) ~= 0 and game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySharkmanKarate", true) ~= 1 then
-                            if game.Players.LocalPlayer.Character:FindFirstChild("Water Key") or game.Players.LocalPlayer.Backpack:FindFirstChild("Water Key") then
-                                Attack_Boss_Shakman_Karate = true 
-                                EquipWeapon("Water Key")
-                                wait(0.5)
-                                game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySharkmanKarate",true)
-                                wait(2)
-                                Attack_Boss_Shakman_Karate = false 
-                                Attack_Shakman_Karate = false
-                            else
-                                if game:GetService("ReplicatedStorage"):FindFirstChild("Tide Keeper [Lv. 1475] [Boss]") or game:GetService("Workspace").Enemies:FindFirstChild("Tide Keeper [Lv. 1475] [Boss]")  then
-                                    if not Attack_Boss_Death_Step and not Auto_Raid and not Raid_Fruit_Fragments and not Farm_Item_Inventroy_Mystic_Droplet and not HopGoWorld3_Core_Attack then
+                            if not Attack_Boss_Death_Step and not Farm_Item_Inventroy_Mystic_Droplet and not HopGoWorld3_Core_Attack then
+                                if game.Players.LocalPlayer.Character:FindFirstChild("Water Key") or game.Players.LocalPlayer.Backpack:FindFirstChild("Water Key") then
+                                    Attack_Boss_Shakman_Karate = true 
+                                    EquipWeapon("Water Key")
+                                    wait(0.5)
+                                    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySharkmanKarate",true)
+                                    wait(2)
+                                    Attack_Boss_Shakman_Karate = false 
+                                    Attack_Shakman_Karate = false
+                                else
+                                    if game:GetService("ReplicatedStorage"):FindFirstChild("Tide Keeper [Lv. 1475] [Boss]") or game:GetService("Workspace").Enemies:FindFirstChild("Tide Keeper [Lv. 1475] [Boss]")  then
                                         Attack_Boss_Shakman_Karate = true 
                                         if game:GetService("Workspace").Enemies:FindFirstChild("Tide Keeper [Lv. 1475] [Boss]") then
                                             for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
@@ -3787,9 +3789,9 @@
                                         else
                                             TP(CFrame.new(-3570.18652, 123.328949, -11555.9072)*CFrame.new(0,50,0))
                                         end
+                                    elseif not game:GetService("ReplicatedStorage"):FindFirstChild("Tide Keeper [Lv. 1475] [Boss]") or not game:GetService("Workspace").Enemies:FindFirstChild("Tide Keeper [Lv. 1475] [Boss]") then
+                                        Attack_Boss_Shakman_Karate = false 
                                     end
-                                elseif not game:GetService("ReplicatedStorage"):FindFirstChild("Tide Keeper [Lv. 1475] [Boss]") or not game:GetService("Workspace").Enemies:FindFirstChild("Tide Keeper [Lv. 1475] [Boss]") then
-                                    Attack_Boss_Shakman_Karate = false 
                                 end
                             end
                         elseif game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySharkmanKarate",true) == 1 or game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySharkmanKarate",true) == 0 then
@@ -3807,7 +3809,7 @@
                     wait(10)
                     if Attack_Electric_Claw and Three_World then
                         if game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyElectricClaw", true) ~= 0 and game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyElectricClaw", true) ~= 1 then
-                            if not Attack_Boss_Dragon_Talon and not Auto_Raid and not Raid_Fruit_Fragments and not Farm_Item_Inventroy_Dragon_Scale then
+                            if not Attack_Boss_Dragon_Talon and not Farm_Item_Inventroy_Dragon_Scale then
                                 Attack_Boss_Electric_Claw = true 
                                 repeat wait(1)
                                     TP(CFrame.new(-10363, 331.654, -10122.6))
@@ -3837,7 +3839,7 @@
                     if Attack_Dragon_Talon and Three_World then
                         if game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyElectricClaw", true) == 0 or game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyElectricClaw", true) == 1 then
                             if game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyDragonTalon", true) ~= 0 and game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyDragonTalon", true) ~= 1 then
-                                if not Attack_Boss_Electric_Claw and not Auto_Raid and not Raid_Fruit_Fragments then
+                                if not Attack_Boss_Electric_Claw then
                                     if game.Players.LocalPlayer.Backpack:FindFirstChild("Fire Essence") or game.Players.LocalPlayer.Character:FindFirstChild("Fire Essence") then
                                         print("Fire Essence")
                                         Attack_Boss_Dragon_Talon = true 
@@ -4470,7 +4472,7 @@
                         if Auto_Three_World and New_World then
                             local Lv = game:GetService("Players").LocalPlayer.Data.Level.Value
                             if game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("ZQuestProgress","Check") ~= 1 then
-                                if game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("TalkTrevor","1") == 0 and not Raid_Fruit_Fragments and not Auto_Raid and not Attack_Boss_Shakman_Karate and not Attack_Boss_Death_Step and not Farm_Item_Inventroy_Mystic_Droplet then
+                                if game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("TalkTrevor","1") == 0 and not Attack_Boss_Shakman_Karate and not Attack_Boss_Death_Step and not Farm_Item_Inventroy_Mystic_Droplet and not HopGoWorld3_Core_Attack then
                                     if Lv >= 1500 then
                                         if Auto_Farm then
                                             Attack_Boss_Three_World = true
@@ -5189,23 +5191,24 @@
 
     -- StatusRightCenter_Tab Sword  
         StatusRightCenter_Tab:Title("Status Sword")
-        local ST_CursedDualKatana = StatusRightCenter_Tab:Label("❌ : Cursed Dual Katana")
-        local ST_HallowScythe = StatusRightCenter_Tab:Label("❌ : Hallow Scythe")
-        local ST_Shisui = StatusRightCenter_Tab:Label("❌ : Shisui")
-        local ST_Saddi = StatusRightCenter_Tab:Label("❌ : Saddi")
-        local ST_Wando = StatusRightCenter_Tab:Label("❌ : Wando")
+        StatusRightCenter_Tab:Title("Sword 2nd")
+        local ST_Saber            = StatusRightCenter_Tab:Label("❌ : Saber")
+        local ST_Rengoku          = StatusRightCenter_Tab:Label("❌ : Rengoku")
+        local ST_MidnightBlade    = StatusRightCenter_Tab:Label("❌ : Midnight Blade")
+        local ST_Shisui           = StatusRightCenter_Tab:Label("❌ : Shisui")
+        local ST_Saddi            = StatusRightCenter_Tab:Label("❌ : Saddi")
+        local ST_Wando            = StatusRightCenter_Tab:Label("❌ : Wando")
+        local ST_PoleV1           = StatusRightCenter_Tab:Label("❌ : Pole (1st Form)")
+        local ST_PoleV2           = StatusRightCenter_Tab:Label("❌ : Pole (2nd Form)")
         local ST_TrueTripleKatana = StatusRightCenter_Tab:Label("❌ : True Triple Katana")
-        local ST_Yama = StatusRightCenter_Tab:Label("❌ : Yama")
-        local ST_BuddySword = StatusRightCenter_Tab:Label("❌ : Buddy Sword")
-        local ST_Canvander = StatusRightCenter_Tab:Label("❌ : Canvander")
-        local ST_PoleV1 = StatusRightCenter_Tab:Label("❌ : Pole (1st Form)")
-        local ST_PoleV2 = StatusRightCenter_Tab:Label("❌ : Pole (2nd Form)")
-        local ST_SpikeyTrident = StatusRightCenter_Tab:Label("❌ : Spikey Trident")
-        local ST_Tushita = StatusRightCenter_Tab:Label("❌ : Tushita")
-        local ST_Saber = StatusRightCenter_Tab:Label("❌ : Saber")
-        local ST_Rengoku = StatusRightCenter_Tab:Label("❌ : Rengoku")
-        local ST_Bisento = StatusRightCenter_Tab:Label("❌ : Bisento")
-        local ST_MidnightBlade = StatusRightCenter_Tab:Label("❌ : Midnight Blade")
+        StatusRightCenter_Tab:Title("Sword 3rd")
+        local ST_BuddySword       = StatusRightCenter_Tab:Label("❌ : Buddy Sword")    -- Cake Queen
+        local ST_Canvander        = StatusRightCenter_Tab:Label("❌ : Canvander")      -- Beautiful Pirate
+        local ST_SpikeyTrident    = StatusRightCenter_Tab:Label("❌ : Spikey Trident") -- Cake Prince
+        local ST_HallowScythe     = StatusRightCenter_Tab:Label("❌ : Hallow Scythe")  -- Soul Reaper
+        local ST_Yama             = StatusRightCenter_Tab:Label("❌ : Yama")           -- 
+        local ST_Tushita          = StatusRightCenter_Tab:Label("❌ : Tushita")
+        local ST_CursedDualKatana = StatusRightCenter_Tab:Label("❌ : Cursed Dual Katana")
     -- StatusRightCenter_Tab Sword
         
     -- StatusRightCenter_Tab Gun
@@ -5576,9 +5579,6 @@
                 end
                 if CheckSword("Rengoku") then
                     ST_Rengoku:Set("✅ : Rengoku | Lv : "..CheckLevelSword("Rengoku"))
-                end
-                if CheckSword("Bisento") then
-                    ST_Bisento:Set("✅ : Bisento | Lv : "..CheckLevelSword("Bisento"))
                 end
                 if CheckSword("Midnight Blade") then
                     ST_MidnightBlade:Set("✅ : Midnight Blade | Lv : "..CheckLevelSword("Midnight Blade"))
