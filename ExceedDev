@@ -2824,7 +2824,7 @@
                 if FarmItemInventroy then
                     pcall(function()
                         local Lv = game:GetService("Players").LocalPlayer.Data.Level.Value
-                        if game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyGodhuman", true) ~= 0 and game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyGodhuman", true) ~= 1 then
+                        if game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyGodhuman", true) > 1 then
                             -- Magma Ore
                                 if Lv >= 330 and not Check_Inventory_Item("Magma Ore", 20) and Old_World and not Farm_Item_Inventroy_Fish_Tail and not Farm_Sword_Saber then 
                                     Farm_Item_Inventroy_Magma_Ore = true
