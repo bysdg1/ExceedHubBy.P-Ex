@@ -2867,7 +2867,7 @@ end)
                 local Check_Fruit = game.Players.localPlayer.Data.DevilFruit.Value
                 local StatsFruit = game.Players.LocalPlayer.Data.Stats["Demon Fruit"].Level.Value
                 if Check_Level >= 1100 and Check_Fruit ~= "" then
-                    wait(5)
+                    wait(15)
                     if not CheckWeaponBC(Check_Fruit).AwakenedMoves:FindFirstChild("V") then
                         if Check_Fruit_CBI() then 
                             Auto_Raid = true
