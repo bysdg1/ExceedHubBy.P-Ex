@@ -3411,64 +3411,66 @@ end)
         spawn(function()
             while wait(1) do
                 if Attack_Auto_Farm_Mastery then
-                    if game.Players.LocalPlayer.PlayerGui.Main.Quest.Visible == false then
-                        UseSkillMasteryDevilFruit = false
-                        if SelectMonster ~= nil then
-                            StatrMagnet = false
-                            CheckLevel()
-                            repeat wait(1)
-                                TP(CFrameQ)
-                            until (CFrameQ.Position-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude < 10 or not Attack_Auto_Farm_Mastery
-                            game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("StartQuest", NameQuest, QuestLv)
-                            game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("SetSpawnPoint")
-                            SelectMonster = nil
-                        else
-                            StatrMagnet = false
-                            CheckLevel()
-                            repeat wait(1)
-                                TP(CFrameQ)
-                            until (CFrameQ.Position-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude < 10 or not Attack_Auto_Farm_Mastery
-                            game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("StartQuest", NameQuest, QuestLv)
-                            game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("SetSpawnPoint")
-                        end
-                    elseif game.Players.LocalPlayer.PlayerGui.Main.Quest.Visible == true then
-                        if game.Workspace.Enemies:FindFirstChild(Ms) then
-                            for i,v in pairs(game.Workspace.Enemies:GetChildren()) do
-                                if v.Name == Ms and v.Humanoid.Health > 0 then
-                                    StatrMagnet = true
-                                    if v.Humanoid:FindFirstChild("Animator") then
-                                        v.Humanoid.Animator:Destroy()
-                                    end
-                                    weapon()
-                                    _G.PosMon = v.HumanoidRootPart.CFrame
-                                    v.Humanoid:ChangeState(11)
-                                    v.Humanoid.JumpPower = 0
-                                    v.Humanoid.WalkSpeed = 0
-                                    v.HumanoidRootPart.CanCollide = false
-                                    repeat wait(_G.Fast_Delay)
-                                        TP(v.HumanoidRootPart.CFrame*CFrame.new(0,30,30))
-                                        local health = v.Humanoid.Health
-                                        local maxhealth = v.Humanoid.MaxHealth
-                                        local percent = (health / maxhealth) * 100
-                                        if percent > 11 and v.Humanoid.Health > 0 then
-                                            UseSkillMasteryDevilFruit = false
-                                            EquipWeapon(_G.Weapon)
-                                            game:GetService'VirtualUser':Button1Down(Vector2.new(1280,600))
-                                        else
-                                            UseSkillMasteryDevilFruit = true
-                                            EquipWeapon(game.Players.LocalPlayer.Data.DevilFruit.Value)
+                    pcall(function()
+                        if game.Players.LocalPlayer.PlayerGui.Main.Quest.Visible == false then
+                            UseSkillMasteryDevilFruit = false
+                            if SelectMonster ~= nil then
+                                StatrMagnet = false
+                                CheckLevel()
+                                repeat wait(1)
+                                    TP(CFrameQ)
+                                until (CFrameQ.Position-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude < 10 or not Attack_Auto_Farm_Mastery
+                                game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("StartQuest", NameQuest, QuestLv)
+                                game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("SetSpawnPoint")
+                                SelectMonster = nil
+                            else
+                                StatrMagnet = false
+                                CheckLevel()
+                                repeat wait(1)
+                                    TP(CFrameQ)
+                                until (CFrameQ.Position-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude < 10 or not Attack_Auto_Farm_Mastery
+                                game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("StartQuest", NameQuest, QuestLv)
+                                game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("SetSpawnPoint")
+                            end
+                        elseif game.Players.LocalPlayer.PlayerGui.Main.Quest.Visible == true then
+                            if game.Workspace.Enemies:FindFirstChild(Ms) then
+                                for i,v in pairs(game.Workspace.Enemies:GetChildren()) do
+                                    if v.Name == Ms and v.Humanoid.Health > 0 then
+                                        StatrMagnet = true
+                                        if v.Humanoid:FindFirstChild("Animator") then
+                                            v.Humanoid.Animator:Destroy()
                                         end
-                                    until game:GetService('Players').LocalPlayer.Character.Humanoid.Health <= 0 or game.Players.LocalPlayer.PlayerGui.Main.Quest.Visible == false or not string.find(game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text, NameMon) or not v.Parent or v.Humanoid.Health <= 0 or not Attack_Auto_Farm_Mastery
-                                    if not string.find(game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text, NameMon) then
-                                        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AbandonQuest")
+                                        weapon()
+                                        _G.PosMon = v.HumanoidRootPart.CFrame
+                                        v.Humanoid:ChangeState(11)
+                                        v.Humanoid.JumpPower = 0
+                                        v.Humanoid.WalkSpeed = 0
+                                        v.HumanoidRootPart.CanCollide = false
+                                        repeat wait(_G.Fast_Delay)
+                                            TP(v.HumanoidRootPart.CFrame*CFrame.new(0,30,30))
+                                            local health = v.Humanoid.Health
+                                            local maxhealth = v.Humanoid.MaxHealth
+                                            local percent = (health / maxhealth) * 100
+                                            if percent > 11 and v.Humanoid.Health > 0 then
+                                                UseSkillMasteryDevilFruit = false
+                                                EquipWeapon(_G.Weapon)
+                                                game:GetService'VirtualUser':Button1Down(Vector2.new(1280,600))
+                                            else
+                                                UseSkillMasteryDevilFruit = true
+                                                EquipWeapon(game.Players.LocalPlayer.Data.DevilFruit.Value)
+                                            end
+                                        until game:GetService('Players').LocalPlayer.Character.Humanoid.Health <= 0 or game.Players.LocalPlayer.PlayerGui.Main.Quest.Visible == false or not string.find(game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text, NameMon) or not v.Parent or v.Humanoid.Health <= 0 or not Attack_Auto_Farm_Mastery
+                                        if not string.find(game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text, NameMon) then
+                                            game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AbandonQuest")
+                                        end
                                     end
                                 end
+                            else
+                                UseSkillMasteryDevilFruit = false
+                                TP(CFrameMon*CFrame.new(0,30,10))
                             end
-                        else
-                            UseSkillMasteryDevilFruit = false
-                            TP(CFrameMon*CFrame.new(0,30,10))
                         end
-                    end
+                    end)
                 end
             end
         end)
