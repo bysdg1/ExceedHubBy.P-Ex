@@ -188,7 +188,7 @@
                     TextFPS = math.floor(1000/RenderAverage:GetValue())
                     FPS.Text = "FPS : "..TextFPS
                     if TextFPS < 5 then
-                        HopLowServer()
+                        -- HopLowServer()
                         FPS.TextColor3 = Color3.fromRGB(255, 0, 0)
                     else
                         FPS.TextColor3 = Color3.fromRGB(0, 255, 0)
