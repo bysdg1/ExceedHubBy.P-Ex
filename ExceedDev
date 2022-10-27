@@ -2459,6 +2459,18 @@
             end
         end
     end
+    function StopTween(target)
+        if not target then
+            _G.Stop_Tween = true
+            wait()
+            TP(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame)
+            wait()
+            if game:GetService("Players").LocalPlayer.Character.HumanoidRootPart:FindFirstChild("BodyClip") then
+                game:GetService("Players").LocalPlayer.Character.HumanoidRootPart:FindFirstChild("BodyClip"):Destroy()
+            end
+            _G.Stop_Tween = false
+        end
+    end
 -- TP
 
 -- EquipWeapon
@@ -3929,6 +3941,7 @@ end)
             while wait(2) do
                 if Raid_Fruit_Fragments and not Attack_Auto_Farm_Mastery and New_World or Three_World then
                     if game:GetService("Players")["LocalPlayer"].PlayerGui.Main.Timer.Visible == false and Check_Fruit_CBI() then 
+                        StopTween(true)
                         BuyChip()
                         repeat wait(1)
                         until game:GetService("Players")["LocalPlayer"].PlayerGui.Main.Timer.Visible == true
