@@ -3645,7 +3645,7 @@ end)
         end
     end)
 -- Open Haki
-game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyElectro")
+
 -- BuyWeapon 
     spawn(function()
         while wait(5) do
