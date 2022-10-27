@@ -2883,8 +2883,12 @@ end)
                     if not CheckWeaponBC(Check_Fruit).AwakenedMoves:FindFirstChild("V") then
                         if Check_Fruit_CBI() then 
                             Auto_Raid = true
-                        elseif game:GetService("Players")["LocalPlayer"].PlayerGui.Main.Timer.Visible == false and not Auto_Raid then
-                            HopServer()
+                        elseif game:GetService("Players")["LocalPlayer"].PlayerGui.Main.Timer.Visible == false and not Auto_Raid and not Check_Fruit_CBI() then
+                            if _G.Hop_Search_Item then
+                                HopServer()
+                            else
+                                Auto_Raid = false
+                            end
                         end
                     elseif CheckWeaponBC(Check_Fruit).AwakenedMoves:FindFirstChild("V") then 
                         Auto_Raid = false
@@ -3683,8 +3687,12 @@ end)
                         else
                             if Check_Fruit_CBI() then
                                 Raid_Fruit_Fragments = true
-                            elseif not Check_Fruit_CBI() and not Raid_Fruit_Fragments and not Auto_Raid  then
-                                HopServer()
+                            elseif not Check_Fruit_CBI() and not Raid_Fruit_Fragments and not Auto_Raid then
+                                if _G.Hop_Search_Item then
+                                    HopServer()
+                                else
+                                    Raid_Fruit_Fragments = false
+                                end
                             end
                         end
                     end
@@ -3697,7 +3705,7 @@ end)
                             end
                         end
                     end
-                    if CheckWeaponBC("Superhuman") and CheckWeaponBC("Superhuman").Level.Value >= 400 and game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyDeathStep",true) == 0 then
+                    if CheckWeaponBC("Superhuman") and CheckWeaponBC("Superhuman").Level.Value >= 400 and game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyDeathStep",true) <= 1 then
                         if Check_Beli >= 3000000 and Check_Fragments >= 5000 then 
                             game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyDeathStep")
                             CheckMelee_DeathStep = true
@@ -3708,11 +3716,15 @@ end)
                             if Check_Fruit_CBI() then
                                 Raid_Fruit_Fragments = true
                             elseif not Check_Fruit_CBI() and not Raid_Fruit_Fragments and not Auto_Raid  then
-                                HopServer()
+                                if _G.Hop_Search_Item then
+                                    HopServer()
+                                else
+                                    Raid_Fruit_Fragments = false
+                                end
                             end
                         end
                     end
-                    if CheckWeaponBC("Death Step") and CheckWeaponBC("Death Step").Level.Value >= 400 and game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySharkmanKarate",true) == 0 then
+                    if CheckWeaponBC("Death Step") and CheckWeaponBC("Death Step").Level.Value >= 400 and game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySharkmanKarate",true) <= 1 then
                         if Check_Beli >= 3000000 and Check_Fragments >= 5000 then 
                             game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySharkmanKarate", true)
                             game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySharkmanKarate")
@@ -3724,11 +3736,15 @@ end)
                             if Check_Fruit_CBI() then
                                 Raid_Fruit_Fragments = true
                             elseif not Check_Fruit_CBI() and not Raid_Fruit_Fragments and not Auto_Raid  then
-                                HopServer()
+                                if _G.Hop_Search_Item then
+                                    HopServer()
+                                else
+                                    Raid_Fruit_Fragments = false
+                                end
                             end
                         end
                     end
-                    if CheckWeaponBC("Sharkman Karate") and CheckWeaponBC("Sharkman Karate").Level.Value >= 400 and game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyElectricClaw",true) == 0 then
+                    if CheckWeaponBC("Sharkman Karate") and CheckWeaponBC("Sharkman Karate").Level.Value >= 400 and game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyElectricClaw",true) <= 1 then
                         if Check_Beli >= 3000000 and Check_Fragments >= 5000 then 
                             game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyElectricClaw")
                             CheckMelee_ElectricClaw = true
@@ -3739,11 +3755,15 @@ end)
                             if Check_Fruit_CBI() then
                                 Raid_Fruit_Fragments = true
                             elseif not Check_Fruit_CBI() and not Raid_Fruit_Fragments and not Auto_Raid  then
-                                HopServer()
+                                if _G.Hop_Search_Item then
+                                    HopServer()
+                                else
+                                    Raid_Fruit_Fragments = false
+                                end
                             end
                         end
                     end
-                    if CheckWeaponBC("Electric Claw") and CheckWeaponBC("Electric Claw").Level.Value >= 400 and game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyDragonTalon",true) == 0 then
+                    if CheckWeaponBC("Electric Claw") and CheckWeaponBC("Electric Claw").Level.Value >= 400 and game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyDragonTalon",true) <= 1 then
                         if Check_Beli >= 3000000 and Check_Fragments >= 5000 then 
                             game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyDragonTalon", true)
                             game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyDragonTalon")
@@ -3755,11 +3775,15 @@ end)
                             if Check_Fruit_CBI() then
                                 Raid_Fruit_Fragments = true
                             elseif not Check_Fruit_CBI() and not Raid_Fruit_Fragments and not Auto_Raid then
-                                HopServer()
+                                if _G.Hop_Search_Item then
+                                    HopServer()
+                                else
+                                    Raid_Fruit_Fragments = false
+                                end
                             end
                         end
                     end
-                    if CheckWeaponBC("Dragon Talon") and CheckWeaponBC("Dragon Talon").Level.Value >= 400 and game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyGodhuman",true) == 0 then
+                    if CheckWeaponBC("Dragon Talon") and CheckWeaponBC("Dragon Talon").Level.Value >= 400 and game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyGodhuman",true) <= 1 then
                         if Check_Beli >= 3000000 and Check_Fragments >= 5000 then 
                             game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyGodhuman", true)
                             game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyGodhuman")
@@ -3771,7 +3795,11 @@ end)
                             if Check_Fruit_CBI() then
                                 Raid_Fruit_Fragments = true
                             elseif not Check_Fruit_CBI() and not Raid_Fruit_Fragments and not Auto_Raid then
-                                HopServer()
+                                if _G.Hop_Search_Item then
+                                    HopServer()
+                                else
+                                    Raid_Fruit_Fragments = false
+                                end
                             end
                         end
                     end
