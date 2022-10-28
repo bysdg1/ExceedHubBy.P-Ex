@@ -2851,6 +2851,7 @@ Setting:Toggle("Farm Level Tun", _G.KaiTun,function(vu)
         HopGoWorld3_Core = vu
         Attack_Death_Step = vu
         Attack_Shakman_Karate = vu
+        Attack_Boss_Don_Swan = vu
     elseif Three_World then
         Attack_Electric_Claw = vu
         Attack_Dragon_Talon = vu
@@ -2907,7 +2908,7 @@ end)
 -- FarmLevel
     spawn(function()
         while wait(1) do 
-            pcall(function()
+            -- pcall(function()
                 if Auto_Farm and not Farm_Sword_Saber and not Farm_Item_Inventroy_Magma_Ore and not Farm_Item_Inventroy_Fish_Tail and not Farm_Item_Inventroy_Mystic_Droplet and 
                 not Farm_Item_Inventroy_Dragon_Scale and not HopGoWorld3_Core_Attack and not Attack_Boss_Death_Step and not Attack_Bartlio_Farm and not Attack_Boss_Three_World and not Raid_Fruit_Fragments and
                 not Auto_Raid and not Attack_Auto_Farm_Mastery and not Attack_Boss_Shakman_Karate and not Attack_Boss_Electric_Claw and not Attack_Boss_Dragon_Talon then 
@@ -3007,7 +3008,7 @@ end)
                         end
                     end
                 end
-            end)
+            -- end)
         end
     end)
 -- FarmLevel
@@ -3235,8 +3236,6 @@ end)
                                             TP(CFrame.new(6831.1171875, 441.76708984375, 446.58615112305))
                                         end
                                     end
-                                elseif Lv >= 1600 and not Three_World and not Check_Inventory_Item("Dragon Scale", 10) and Check_Inventory_Item("Mystic Droplet", 10) and Check_Inventory_Item("Magma Ore", 20) and Check_Inventory_Item("Fish Tail", 20) and game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("ZQuestProgress","Check") == 1 then
-                                    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("TravelZou")
                                 elseif Check_Inventory_Item("Dragon Scale", 10) and Farm_Item_Inventroy_Dragon_Scale then
                                     Farm_Item_Inventroy_Dragon_Scale = false
                                 end
@@ -3818,7 +3817,7 @@ end)
                 while true do 
                     wait(10)
                     if Attack_Death_Step and New_World and not Raid_Fruit_Fragments and not Attack_Auto_Farm_Mastery and not Auto_Raid then 
-                        if game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyDeathStep", true) > tonumber(1) then
+                        if game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyDeathStep", true) ~= 0 and game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyDeathStep", true) ~= 1 then
                             if not Attack_Boss_Shakman_Karate and not Farm_Item_Inventroy_Mystic_Droplet and not HopGoWorld3_Core_Attack  then
                                 if game.Players.LocalPlayer.Backpack:FindFirstChild("Library Key") or game.Players.LocalPlayer.Character:FindFirstChild("Library Key") and game:GetService("Workspace").Map.IceCastle.Hall.LibraryDoor:FindFirstChild("PhoeyuDoor") then
                                     Attack_Boss_Death_Step = true
@@ -3852,7 +3851,7 @@ end)
                                     end
                                 end
                             end
-                        elseif game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyDeathStep", true) <= tonumber(1) then
+                        elseif game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyDeathStep", true) == 0 or game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyDeathStep", true) == 1 then
                             Attack_Death_Step = false
                             Attack_Boss_Death_Step = false
                         end
@@ -3866,45 +3865,43 @@ end)
                 while true do 
                     wait(15)
                     if Attack_Shakman_Karate and New_World and not Raid_Fruit_Fragments and not Attack_Auto_Farm_Mastery and not Auto_Raid then 
-                        -- pcall(function()
-                            if game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySharkmanKarate", true) ~= 0 then
-                                if not Attack_Boss_Death_Step and not Farm_Item_Inventroy_Mystic_Droplet and not HopGoWorld3_Core_Attack then
-                                    if game.Players.LocalPlayer.Character:FindFirstChild("Water Key") or game.Players.LocalPlayer.Backpack:FindFirstChild("Water Key") then
+                        if game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySharkmanKarate", true) ~= 0 and game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySharkmanKarate", true) ~= 1 then
+                            if not Attack_Boss_Death_Step and not Farm_Item_Inventroy_Mystic_Droplet and not HopGoWorld3_Core_Attack then
+                                if game.Players.LocalPlayer.Character:FindFirstChild("Water Key") or game.Players.LocalPlayer.Backpack:FindFirstChild("Water Key") then
+                                    Attack_Boss_Shakman_Karate = true 
+                                    EquipWeapon("Water Key")
+                                    wait(0.5)
+                                    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySharkmanKarate",true)
+                                    wait(2)
+                                    Attack_Boss_Shakman_Karate = false 
+                                    Attack_Shakman_Karate = false
+                                else
+                                    if game:GetService("ReplicatedStorage"):FindFirstChild("Tide Keeper [Lv. 1475] [Boss]") or game:GetService("Workspace").Enemies:FindFirstChild("Tide Keeper [Lv. 1475] [Boss]")  then
                                         Attack_Boss_Shakman_Karate = true 
-                                        EquipWeapon("Water Key")
-                                        wait(0.5)
-                                        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySharkmanKarate",true)
-                                        wait(2)
-                                        Attack_Boss_Shakman_Karate = false 
-                                        Attack_Shakman_Karate = false
-                                    else
-                                        if game:GetService("ReplicatedStorage"):FindFirstChild("Tide Keeper [Lv. 1475] [Boss]") or game:GetService("Workspace").Enemies:FindFirstChild("Tide Keeper [Lv. 1475] [Boss]")  then
-                                            Attack_Boss_Shakman_Karate = true 
-                                            if game:GetService("Workspace").Enemies:FindFirstChild("Tide Keeper [Lv. 1475] [Boss]") then
-                                                for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
-                                                    if v.Name == "Tide Keeper [Lv. 1475] [Boss]" and game:GetService('Players').LocalPlayer.Character.Humanoid.Health > 0 then
-                                                        weapon()
-                                                        repeat wait(_G.Fast_Delay)
-                                                            EquipWeapon(_G.Weapon)
-                                                            TP(v.HumanoidRootPart.CFrame * CFrame.new(0,25,15))
-                                                            AttackNoCD()
-                                                        until game:GetService('Players').LocalPlayer.Character.Humanoid.Health <= 0 or not game:GetService("Workspace").Enemies:FindFirstChild("Tide Keeper [Lv. 1475] [Boss]") or game:GetService("Workspace").Enemies:FindFirstChild("Tide Keeper [Lv. 1475] [Boss]").Humanoid.Health <= 0
-                                                        Attack_Boss_Shakman_Karate = false 
-                                                    end
+                                        if game:GetService("Workspace").Enemies:FindFirstChild("Tide Keeper [Lv. 1475] [Boss]") then
+                                            for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+                                                if v.Name == "Tide Keeper [Lv. 1475] [Boss]" and game:GetService('Players').LocalPlayer.Character.Humanoid.Health > 0 then
+                                                    weapon()
+                                                    repeat wait(_G.Fast_Delay)
+                                                        EquipWeapon(_G.Weapon)
+                                                        TP(v.HumanoidRootPart.CFrame * CFrame.new(0,25,15))
+                                                        AttackNoCD()
+                                                    until game:GetService('Players').LocalPlayer.Character.Humanoid.Health <= 0 or not game:GetService("Workspace").Enemies:FindFirstChild("Tide Keeper [Lv. 1475] [Boss]") or game:GetService("Workspace").Enemies:FindFirstChild("Tide Keeper [Lv. 1475] [Boss]").Humanoid.Health <= 0
+                                                    Attack_Boss_Shakman_Karate = false 
                                                 end
-                                            else
-                                                TP(CFrame.new(-3570.18652, 123.328949, -11555.9072)*CFrame.new(0,50,0))
                                             end
-                                        elseif not game:GetService("ReplicatedStorage"):FindFirstChild("Tide Keeper [Lv. 1475] [Boss]") or not game:GetService("Workspace").Enemies:FindFirstChild("Tide Keeper [Lv. 1475] [Boss]") then
-                                            Attack_Boss_Shakman_Karate = false 
+                                        else
+                                            TP(CFrame.new(-3570.18652, 123.328949, -11555.9072)*CFrame.new(0,50,0))
                                         end
+                                    elseif not game:GetService("ReplicatedStorage"):FindFirstChild("Tide Keeper [Lv. 1475] [Boss]") or not game:GetService("Workspace").Enemies:FindFirstChild("Tide Keeper [Lv. 1475] [Boss]") then
+                                        Attack_Boss_Shakman_Karate = false 
                                     end
                                 end
-                            elseif game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySharkmanKarate",true) <= tonumber(1) then
-                                Attack_Shakman_Karate = false
-                                Attack_Boss_Shakman_Karate = false
                             end
-                        -- end)
+                        elseif game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySharkmanKarate", true) == 0 or game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySharkmanKarate", true) == 1 then
+                            Attack_Shakman_Karate = false
+                            Attack_Boss_Shakman_Karate = false
+                        end
                     end
                 end
             end)
@@ -3917,7 +3914,7 @@ end)
                 while true do 
                     wait(10)
                     if Attack_Electric_Claw and Three_World and not Raid_Fruit_Fragments then
-                        if game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyElectricClaw", true) > 1 then
+                        if game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyElectricClaw", true) ~= 1 and game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyElectricClaw", true) ~= 0 then
                             if not Attack_Boss_Dragon_Talon and not Farm_Item_Inventroy_Dragon_Scale then
                                 Attack_Boss_Electric_Claw = true 
                                 repeat wait(1)
@@ -3932,7 +3929,7 @@ end)
                                 wait(1)
                                 Attack_Boss_Electric_Claw = false 
                             end
-                        elseif game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyElectricClaw", true) <= 1 then
+                        elseif game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyElectricClaw", true) == 1 or game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyElectricClaw", true) == 0 then
                             Attack_Electric_Claw = false
                             Attack_Boss_Electric_Claw = false 
                         end
@@ -3946,22 +3943,20 @@ end)
                 while true do 
                     wait(1)
                     if Attack_Dragon_Talon and Three_World and not Raid_Fruit_Fragments then
-                        pcall(function() 
-                            if game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyDragonTalon", true) > tostring(1) then
-                                if not Attack_Boss_Electric_Claw then
-                                    if game.Players.LocalPlayer.Backpack:FindFirstChild("Fire Essence") or game.Players.LocalPlayer.Character:FindFirstChild("Fire Essence") then
-                                        print("Fire Essence")
-                                        Attack_Boss_Dragon_Talon = true 
-                                        game.ReplicatedStorage.Remotes.CommF_:InvokeServer("BuyDragonTalon",true)
-                                    end
-                                    wait(1)
-                                    Attack_Boss_Dragon_Talon = false 
+                        if game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyDragonTalon", true) ~= 1 and game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyDragonTalon", true) ~= 0 then
+                            if not Attack_Boss_Electric_Claw then
+                                if game.Players.LocalPlayer.Backpack:FindFirstChild("Fire Essence") or game.Players.LocalPlayer.Character:FindFirstChild("Fire Essence") then
+                                    print("Fire Essence")
+                                    Attack_Boss_Dragon_Talon = true 
+                                    game.ReplicatedStorage.Remotes.CommF_:InvokeServer("BuyDragonTalon",true)
                                 end
-                            elseif game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyDragonTalon", true) <= tostring(1) then
+                                wait(1)
                                 Attack_Boss_Dragon_Talon = false 
-                                Attack_Dragon_Talon = false
                             end
-                        end)
+                        elseif game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyDragonTalon", true) == 1 or game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyDragonTalon", true) == 0 then
+                            Attack_Boss_Dragon_Talon = false 
+                            Attack_Dragon_Talon = false
+                        end
                     end
                 end
             end)
@@ -3976,6 +3971,7 @@ end)
                 if Raid_Fruit_Fragments and not Attack_Auto_Farm_Mastery and New_World or Three_World then
                     if game:GetService("Players")["LocalPlayer"].PlayerGui.Main.Timer.Visible == false and Check_Fruit_CBI() then 
                         StopTween(true)
+                        print("Raid_Fruit_Fragments")
                         BuyChip()
                         repeat wait(1)
                         until game:GetService("Players")["LocalPlayer"].PlayerGui.Main.Timer.Visible == true
@@ -4002,6 +3998,7 @@ end)
                         Auto_Raid = false
                     elseif game:GetService("Players")["LocalPlayer"].PlayerGui.Main.Timer.Visible == false then 
                         BuyChip()
+                        print("Auto_Raid")
                         repeat wait(1)
                         until game:GetService("Players")["LocalPlayer"].PlayerGui.Main.Timer.Visible == true
                     elseif game:GetService("Players")["LocalPlayer"].PlayerGui.Main.Timer.Visible == true then 
@@ -4693,7 +4690,6 @@ end)
                                 if game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("TalkTrevor","1") == 0 then
                                     if Lv >= 1500 then
                                         Attack_Boss_Three_World = true
-                                        Attack_Boss_Don_Swan = true
                                         if Attack_Boss_Don_Swan then
                                             if game.Workspace.Enemies:FindFirstChild("Don Swan [Lv. 1000] [Boss]") or game.ReplicatedStorage:FindFirstChild("Don Swan [Lv. 1000] [Boss]") then
                                                 if game.Workspace.Enemies:FindFirstChild("Don Swan [Lv. 1000] [Boss]") then
