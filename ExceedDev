@@ -3866,7 +3866,7 @@ end)
                 while true do 
                     wait(15)
                     if Attack_Shakman_Karate and New_World and not Raid_Fruit_Fragments and not Attack_Auto_Farm_Mastery and not Auto_Raid then 
-                        if game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySharkmanKarate", true) > 1 then
+                        if game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySharkmanKarate", true) > tostring(1) then
                             if not Attack_Boss_Death_Step and not Farm_Item_Inventroy_Mystic_Droplet and not HopGoWorld3_Core_Attack then
                                 if game.Players.LocalPlayer.Character:FindFirstChild("Water Key") or game.Players.LocalPlayer.Backpack:FindFirstChild("Water Key") then
                                     Attack_Boss_Shakman_Karate = true 
