@@ -4759,14 +4759,16 @@ end)
             spawn(function()
                 while wait(60) do
                     if Auto_Three_World and New_World then
-                        local Lv = game:GetService("Players").LocalPlayer.Data.Level.Value
-                        if game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyDeathStep", true) <= 1 then
-                            if game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySharkmanKarate", true) <= 1 then
-                                if Lv >= 1500 and Check_Inventory_Item_Name("Mystic Droplet") >= 10 then
-                                    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("TravelZou")
+                        pcall(function()
+                            local Lv = game:GetService("Players").LocalPlayer.Data.Level.Value
+                            if game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyDeathStep", true) <= 1 then
+                                if game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySharkmanKarate", true) <= 1 then
+                                    if Lv >= 1500 and Check_Inventory_Item_Name("Mystic Droplet") >= 10 then
+                                        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("TravelZou")
+                                    end
                                 end
                             end
-                        end
+                        end)
                     end
                 end
             end)
