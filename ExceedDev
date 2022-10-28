@@ -2915,7 +2915,7 @@ end)
                     local CheckBones = game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Bones","Check")
                     local Lv = game:GetService("Players").LocalPlayer.Data.Level.Value
                     if game.Players.LocalPlayer.PlayerGui.Main.Quest.Visible == false then
-                        if Lv >= 1975 and tonumber(CheckBones) < 5000 then
+                        if Lv >= 1975 and tonumber(CheckBones) < 5000 and Three_World then
                             if SelectMonster ~= nil then
                                 StatrMagnet = false
                                 CheckLevelBones()
