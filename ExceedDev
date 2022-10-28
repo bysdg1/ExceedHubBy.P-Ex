@@ -2913,10 +2913,9 @@ end)
                 not Farm_Item_Inventroy_Dragon_Scale and not HopGoWorld3_Core_Attack and not Attack_Boss_Death_Step and not Attack_Bartlio_Farm and not Attack_Boss_Three_World and not Raid_Fruit_Fragments and
                 not Auto_Raid and not Attack_Auto_Farm_Mastery and not Attack_Boss_Shakman_Karate and not Attack_Boss_Electric_Claw and not Attack_Boss_Dragon_Talon then 
 
-                    local CheckBones = game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Bones","Check")
                     local Lv = game:GetService("Players").LocalPlayer.Data.Level.Value
                     if game.Players.LocalPlayer.PlayerGui.Main.Quest.Visible == false then
-                        if Lv >= 1975 and tonumber(CheckBones) < 5000 and Three_World then
+                        if Lv >= 1975 and Three_World then
                             if SelectMonster ~= nil then
                                 StatrMagnet = false
                                 CheckLevelBones()
