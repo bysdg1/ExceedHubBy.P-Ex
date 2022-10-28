@@ -2908,7 +2908,7 @@ end)
 -- FarmLevel
     spawn(function()
         while wait(1) do 
-            -- pcall(function()
+            pcall(function()
                 if Auto_Farm and not Farm_Sword_Saber and not Farm_Item_Inventroy_Magma_Ore and not Farm_Item_Inventroy_Fish_Tail and not Farm_Item_Inventroy_Mystic_Droplet and 
                 not Farm_Item_Inventroy_Dragon_Scale and not HopGoWorld3_Core_Attack and not Attack_Boss_Death_Step and not Attack_Bartlio_Farm and not Attack_Boss_Three_World and not Raid_Fruit_Fragments and
                 not Auto_Raid and not Attack_Auto_Farm_Mastery and not Attack_Boss_Shakman_Karate and not Attack_Boss_Electric_Claw and not Attack_Boss_Dragon_Talon then 
@@ -3007,7 +3007,7 @@ end)
                         end
                     end
                 end
-            -- end)
+            end)
         end
     end)
 -- FarmLevel
