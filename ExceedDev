@@ -3866,43 +3866,45 @@ end)
                 while true do 
                     wait(15)
                     if Attack_Shakman_Karate and New_World and not Raid_Fruit_Fragments and not Attack_Auto_Farm_Mastery and not Auto_Raid then 
-                        if game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySharkmanKarate", true) > tostring(1) then
-                            if not Attack_Boss_Death_Step and not Farm_Item_Inventroy_Mystic_Droplet and not HopGoWorld3_Core_Attack then
-                                if game.Players.LocalPlayer.Character:FindFirstChild("Water Key") or game.Players.LocalPlayer.Backpack:FindFirstChild("Water Key") then
-                                    Attack_Boss_Shakman_Karate = true 
-                                    EquipWeapon("Water Key")
-                                    wait(0.5)
-                                    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySharkmanKarate",true)
-                                    wait(2)
-                                    Attack_Boss_Shakman_Karate = false 
-                                    Attack_Shakman_Karate = false
-                                else
-                                    if game:GetService("ReplicatedStorage"):FindFirstChild("Tide Keeper [Lv. 1475] [Boss]") or game:GetService("Workspace").Enemies:FindFirstChild("Tide Keeper [Lv. 1475] [Boss]")  then
+                        pcall(function()
+                            if game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySharkmanKarate", true) > 1 then
+                                if not Attack_Boss_Death_Step and not Farm_Item_Inventroy_Mystic_Droplet and not HopGoWorld3_Core_Attack then
+                                    if game.Players.LocalPlayer.Character:FindFirstChild("Water Key") or game.Players.LocalPlayer.Backpack:FindFirstChild("Water Key") then
                                         Attack_Boss_Shakman_Karate = true 
-                                        if game:GetService("Workspace").Enemies:FindFirstChild("Tide Keeper [Lv. 1475] [Boss]") then
-                                            for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
-                                                if v.Name == "Tide Keeper [Lv. 1475] [Boss]" and game:GetService('Players').LocalPlayer.Character.Humanoid.Health > 0 then
-                                                    weapon()
-                                                    repeat wait(_G.Fast_Delay)
-                                                        EquipWeapon(_G.Weapon)
-                                                        TP(v.HumanoidRootPart.CFrame * CFrame.new(0,25,15))
-                                                        AttackNoCD()
-                                                    until game:GetService('Players').LocalPlayer.Character.Humanoid.Health <= 0 or not game:GetService("Workspace").Enemies:FindFirstChild("Tide Keeper [Lv. 1475] [Boss]") or game:GetService("Workspace").Enemies:FindFirstChild("Tide Keeper [Lv. 1475] [Boss]").Humanoid.Health <= 0
-                                                    Attack_Boss_Shakman_Karate = false 
-                                                end
-                                            end
-                                        else
-                                            TP(CFrame.new(-3570.18652, 123.328949, -11555.9072)*CFrame.new(0,50,0))
-                                        end
-                                    elseif not game:GetService("ReplicatedStorage"):FindFirstChild("Tide Keeper [Lv. 1475] [Boss]") or not game:GetService("Workspace").Enemies:FindFirstChild("Tide Keeper [Lv. 1475] [Boss]") then
+                                        EquipWeapon("Water Key")
+                                        wait(0.5)
+                                        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySharkmanKarate",true)
+                                        wait(2)
                                         Attack_Boss_Shakman_Karate = false 
+                                        Attack_Shakman_Karate = false
+                                    else
+                                        if game:GetService("ReplicatedStorage"):FindFirstChild("Tide Keeper [Lv. 1475] [Boss]") or game:GetService("Workspace").Enemies:FindFirstChild("Tide Keeper [Lv. 1475] [Boss]")  then
+                                            Attack_Boss_Shakman_Karate = true 
+                                            if game:GetService("Workspace").Enemies:FindFirstChild("Tide Keeper [Lv. 1475] [Boss]") then
+                                                for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+                                                    if v.Name == "Tide Keeper [Lv. 1475] [Boss]" and game:GetService('Players').LocalPlayer.Character.Humanoid.Health > 0 then
+                                                        weapon()
+                                                        repeat wait(_G.Fast_Delay)
+                                                            EquipWeapon(_G.Weapon)
+                                                            TP(v.HumanoidRootPart.CFrame * CFrame.new(0,25,15))
+                                                            AttackNoCD()
+                                                        until game:GetService('Players').LocalPlayer.Character.Humanoid.Health <= 0 or not game:GetService("Workspace").Enemies:FindFirstChild("Tide Keeper [Lv. 1475] [Boss]") or game:GetService("Workspace").Enemies:FindFirstChild("Tide Keeper [Lv. 1475] [Boss]").Humanoid.Health <= 0
+                                                        Attack_Boss_Shakman_Karate = false 
+                                                    end
+                                                end
+                                            else
+                                                TP(CFrame.new(-3570.18652, 123.328949, -11555.9072)*CFrame.new(0,50,0))
+                                            end
+                                        elseif not game:GetService("ReplicatedStorage"):FindFirstChild("Tide Keeper [Lv. 1475] [Boss]") or not game:GetService("Workspace").Enemies:FindFirstChild("Tide Keeper [Lv. 1475] [Boss]") then
+                                            Attack_Boss_Shakman_Karate = false 
+                                        end
                                     end
                                 end
+                            elseif game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySharkmanKarate",true) <= 1 then
+                                Attack_Shakman_Karate = false
+                                Attack_Boss_Shakman_Karate = false
                             end
-                        elseif game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySharkmanKarate",true) <= 1 then
-                            Attack_Shakman_Karate = false
-                            Attack_Boss_Shakman_Karate = false
-                        end
+                        end)
                     end
                 end
             end)
