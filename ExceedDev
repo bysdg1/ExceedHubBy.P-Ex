@@ -3946,7 +3946,7 @@ end)
                 while true do 
                     wait(1)
                     if Attack_Dragon_Talon and Three_World and not Raid_Fruit_Fragments then
-                        if game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyDragonTalon", true) > 1 then
+                        if game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyDragonTalon", true) > tonumber(1) then
                             if not Attack_Boss_Electric_Claw then
                                 if game.Players.LocalPlayer.Backpack:FindFirstChild("Fire Essence") or game.Players.LocalPlayer.Character:FindFirstChild("Fire Essence") then
                                     print("Fire Essence")
@@ -3956,7 +3956,7 @@ end)
                                 wait(1)
                                 Attack_Boss_Dragon_Talon = false 
                             end
-                        elseif game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyDragonTalon", true) <= 1 then
+                        elseif game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyDragonTalon", true) <= tonumber(1) then
                             Attack_Boss_Dragon_Talon = false 
                             Attack_Dragon_Talon = false
                         end
