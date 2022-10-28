@@ -2865,8 +2865,8 @@ end)
 -- end)
 
 -- Setting:Toggle("Test Function", _G.TestFunction,function(vu)
---     Attack_Auto_Farm_Mastery = vu
---     NoClip = vu
+    --     Attack_Auto_Farm_Mastery = vu
+    --     NoClip = vu
 -- end)
 
 -- Full Function Ton Chicken
@@ -3818,7 +3818,7 @@ end)
                 while true do 
                     wait(10)
                     if Attack_Death_Step and New_World and not Raid_Fruit_Fragments and not Attack_Auto_Farm_Mastery and not Auto_Raid then 
-                        if game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyDeathStep", true) > 1 then
+                        if game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyDeathStep", true) > tonumber(1) then
                             if not Attack_Boss_Shakman_Karate and not Farm_Item_Inventroy_Mystic_Droplet and not HopGoWorld3_Core_Attack  then
                                 if game.Players.LocalPlayer.Backpack:FindFirstChild("Library Key") or game.Players.LocalPlayer.Character:FindFirstChild("Library Key") and game:GetService("Workspace").Map.IceCastle.Hall.LibraryDoor:FindFirstChild("PhoeyuDoor") then
                                     Attack_Boss_Death_Step = true
@@ -3852,7 +3852,7 @@ end)
                                     end
                                 end
                             end
-                        elseif game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyDeathStep", true) <= 1 then
+                        elseif game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyDeathStep", true) <= tonumber(1) then
                             Attack_Death_Step = false
                             Attack_Boss_Death_Step = false
                         end
@@ -3866,8 +3866,8 @@ end)
                 while true do 
                     wait(15)
                     if Attack_Shakman_Karate and New_World and not Raid_Fruit_Fragments and not Attack_Auto_Farm_Mastery and not Auto_Raid then 
-                        pcall(function()
-                            if game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySharkmanKarate", true) > 1 then
+                        -- pcall(function()
+                            if game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySharkmanKarate", true) ~= 0 then
                                 if not Attack_Boss_Death_Step and not Farm_Item_Inventroy_Mystic_Droplet and not HopGoWorld3_Core_Attack then
                                     if game.Players.LocalPlayer.Character:FindFirstChild("Water Key") or game.Players.LocalPlayer.Backpack:FindFirstChild("Water Key") then
                                         Attack_Boss_Shakman_Karate = true 
@@ -3900,11 +3900,11 @@ end)
                                         end
                                     end
                                 end
-                            elseif game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySharkmanKarate",true) <= 1 then
+                            elseif game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySharkmanKarate",true) <= tonumber(1) then
                                 Attack_Shakman_Karate = false
                                 Attack_Boss_Shakman_Karate = false
                             end
-                        end)
+                        -- end)
                     end
                 end
             end)
@@ -4761,16 +4761,16 @@ end)
             spawn(function()
                 while wait(60) do
                     if Auto_Three_World and New_World then
-                        pcall(function()
+                        -- pcall(function()
                             local Lv = game:GetService("Players").LocalPlayer.Data.Level.Value
-                            if game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyDeathStep", true) <= tostring(1) then
-                                if game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySharkmanKarate", true) <= tostring(1) then
+                            if game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyDeathStep", true) == 1 or game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyDeathStep", true) == 0 then
+                                if game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySharkmanKarate", true) == 1 or game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySharkmanKarate", true) == 0 then
                                     if Lv >= 1500 and Check_Inventory_Item_Name("Mystic Droplet") >= 10 then
                                         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("TravelZou")
                                     end
                                 end
                             end
-                        end)
+                        -- end)
                     end
                 end
             end)
