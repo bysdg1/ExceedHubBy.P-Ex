@@ -3946,20 +3946,22 @@ end)
                 while true do 
                     wait(1)
                     if Attack_Dragon_Talon and Three_World and not Raid_Fruit_Fragments then
-                        if game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyDragonTalon", true) > tonumber(1) then
-                            if not Attack_Boss_Electric_Claw then
-                                if game.Players.LocalPlayer.Backpack:FindFirstChild("Fire Essence") or game.Players.LocalPlayer.Character:FindFirstChild("Fire Essence") then
-                                    print("Fire Essence")
-                                    Attack_Boss_Dragon_Talon = true 
-                                    game.ReplicatedStorage.Remotes.CommF_:InvokeServer("BuyDragonTalon",true)
+                        pcall(function() 
+                            if game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyDragonTalon", true) > tostring(1) then
+                                if not Attack_Boss_Electric_Claw then
+                                    if game.Players.LocalPlayer.Backpack:FindFirstChild("Fire Essence") or game.Players.LocalPlayer.Character:FindFirstChild("Fire Essence") then
+                                        print("Fire Essence")
+                                        Attack_Boss_Dragon_Talon = true 
+                                        game.ReplicatedStorage.Remotes.CommF_:InvokeServer("BuyDragonTalon",true)
+                                    end
+                                    wait(1)
+                                    Attack_Boss_Dragon_Talon = false 
                                 end
-                                wait(1)
+                            elseif game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyDragonTalon", true) <= tostring(1) then
                                 Attack_Boss_Dragon_Talon = false 
+                                Attack_Dragon_Talon = false
                             end
-                        elseif game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyDragonTalon", true) <= tonumber(1) then
-                            Attack_Boss_Dragon_Talon = false 
-                            Attack_Dragon_Talon = false
-                        end
+                        end)
                     end
                 end
             end)
@@ -4761,8 +4763,8 @@ end)
                     if Auto_Three_World and New_World then
                         pcall(function()
                             local Lv = game:GetService("Players").LocalPlayer.Data.Level.Value
-                            if game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyDeathStep", true) <= 1 then
-                                if game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySharkmanKarate", true) <= 1 then
+                            if game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyDeathStep", true) <= tostring(1) then
+                                if game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySharkmanKarate", true) <= tostring(1) then
                                     if Lv >= 1500 and Check_Inventory_Item_Name("Mystic Droplet") >= 10 then
                                         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("TravelZou")
                                     end
