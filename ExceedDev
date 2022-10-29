@@ -3018,7 +3018,7 @@ end)
             if FarmItemInventroy then
                 pcall(function()
                     local Lv = game:GetService("Players").LocalPlayer.Data.Level.Value
-                    if game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyGodhuman", true) > 1 then
+                    if game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyGodhuman", true) ~= 0 and game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyGodhuman", true) ~= 1 then
 
                         -- 1st
                             -- Magma Ore
@@ -3444,7 +3444,7 @@ end)
                                         v.Humanoid.JumpPower = 0
                                         v.Humanoid.WalkSpeed = 0
                                         v.HumanoidRootPart.CanCollide = false
-                                        repeat wait(_G.Fast_Delay)
+                                        repeat wait(.1)
                                             TP(v.HumanoidRootPart.CFrame*CFrame.new(0,30,30))
                                             local health = v.Humanoid.Health
                                             local maxhealth = v.Humanoid.MaxHealth
