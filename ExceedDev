@@ -3449,7 +3449,7 @@ end)
                                             local health = v.Humanoid.Health
                                             local maxhealth = v.Humanoid.MaxHealth
                                             local percent = (health / maxhealth) * 100
-                                            if percent > 11 and v.Humanoid.Health > 0 then
+                                            if percent > 15 and v.Humanoid.Health > 0 then
                                                 UseSkillMasteryDevilFruit = false
                                                 EquipWeapon(_G.Weapon)
                                                 game:GetService'VirtualUser':Button1Down(Vector2.new(1280,600))
@@ -3485,7 +3485,7 @@ end)
                                 local health = v.Humanoid.Health
                                 local maxhealth = v.Humanoid.MaxHealth
                                 local percent = (health / maxhealth) * 100
-                                if percent <= 11 then
+                                if percent <= 15 then
                                     wait(2)
                                     PositionSkillMasteryDevilFruit = v.HumanoidRootPart.Position
                                     if game:GetService("Players").LocalPlayer.Character:FindFirstChild("Dragon-Dragon") then      
