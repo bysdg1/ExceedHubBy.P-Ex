@@ -188,7 +188,7 @@
                     local RenderAverage = FrameRateManager and FrameRateManager:FindFirstChild("RenderAverage")
                     TextFPS = math.floor(1000/RenderAverage:GetValue())
                     FPS.Text = "FPS : "..TextFPS
-                    if TextFPS < 15 then
+                    if TextFPS < 13 then
                         FPS.TextColor3 = Color3.fromRGB(255, 0, 0)
                         if not Raid_Fruit_Fragments and not Auto_Raid then 
                             HopLowServer()
