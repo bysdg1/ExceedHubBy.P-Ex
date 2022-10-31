@@ -1,3 +1,4 @@
+
 -- game:IsLoaded
     if not game:IsLoaded() then 
         repeat game.Loaded:Wait(5)
@@ -187,9 +188,11 @@
                     local RenderAverage = FrameRateManager and FrameRateManager:FindFirstChild("RenderAverage")
                     TextFPS = math.floor(1000/RenderAverage:GetValue())
                     FPS.Text = "FPS : "..TextFPS
-                    if TextFPS < 8 then
-                        HopLowServer()
+                    if TextFPS < 15 then
                         FPS.TextColor3 = Color3.fromRGB(255, 0, 0)
+                        if not Raid_Fruit_Fragments and not Auto_Raid then 
+                            HopLowServer()
+                        end
                     else
                         FPS.TextColor3 = Color3.fromRGB(0, 255, 0)
                     end
@@ -2497,6 +2500,54 @@
             end   
         end
     end
+    function FarmSwordListLoad()
+        local MaxMastery = 350
+        local CheckInventory = game:GetService("ReplicatedStorage").Remotes["CommF_"]:InvokeServer("getInventory")
+        for _,v in pairs(CheckInventory) do
+            if v["Type"] == "Sword" then
+                if v["Name"] then
+                    if v["Mastery"] <= MaxMastery and v["Equipped"] then
+                        _G.Weapon = v["Name"]
+                    elseif v["Mastery"] > MaxMastery and v["Equipped"] then
+                        LoadSword()
+                    end
+                end
+            end
+        end
+    end
+    function LoadSword()
+        local SwordList = {
+            "Shisui",
+            "Saddi",
+            "Wando",
+            "Saber",
+            "Rengoku",
+            "Midnight Blade",
+            "Pole (1st Form)",
+            "Pole (2nd Form)",
+            "True Triple Katana",
+            "Buddy Sword",
+            "Canvander",
+            "Spikey Trident",
+            "Hallow Scythe",
+            "Yama",
+            "Tushita",
+            "Cursed Dual Katana"
+        }
+        local MaxMastery = 350
+        for i=1, #SwordList do
+            local CheckInventory = game:GetService("ReplicatedStorage").Remotes["CommF_"]:InvokeServer("getInventory")
+            for _,v1 in pairs(CheckInventory) do
+                if v1["Type"] == "Sword" then
+                    if v1["Name"] == SwordList[i] then
+                        if v1["Mastery"] <= MaxMastery and not v1["Equipped"] then
+                            game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("LoadItem", v1["Name"])
+                        end
+                    end
+                end
+            end
+        end
+    end
 -- EquipWeapon
 
 -- FastAttack_Mode
@@ -2705,6 +2756,9 @@
             return tonumber(Lpp)
         end
     end
+    function CheckWeapon_Remotes(name)
+        return game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(name, true)
+    end
 -- Function
 
 -- Attack
@@ -2881,17 +2935,18 @@ end)
                 local StatsFruit = game.Players.LocalPlayer.Data.Stats["Demon Fruit"].Level.Value
                 if Check_Level >= 1100 and Check_Fruit ~= "" then
                     wait(15)
-                    if not CheckWeaponBC(Check_Fruit).AwakenedMoves:FindFirstChild("V") then
+                    if not CheckWeaponBC(Check_Fruit).AwakenedMoves:FindFirstChild("V") and CheckWeaponBC(Check_Fruit).Level.Value <= 350 then
                         if Check_Fruit_CBI() then 
                             Auto_Raid = true
                         elseif game:GetService("Players")["LocalPlayer"].PlayerGui.Main.Timer.Visible == false and not Auto_Raid and not Check_Fruit_CBI() then
+                            wait(_G.Wait_Hop)
                             if _G.Hop_Search_Item then
                                 HopServer()
                             else
                                 Auto_Raid = false
                             end
                         end
-                    elseif CheckWeaponBC(Check_Fruit).AwakenedMoves:FindFirstChild("V") then 
+                    elseif CheckWeaponBC(Check_Fruit).AwakenedMoves:FindFirstChild("V") and CheckWeaponBC(Check_Fruit).Level.Value <= 350 and game:GetService("Players")["LocalPlayer"].PlayerGui.Main.Timer.Visible == false then 
                         Auto_Raid = false
                     end
                 end
@@ -2904,6 +2959,30 @@ end)
         end
     end)
 -- Full Function Ton Chicken
+
+-- Function Weapon
+    LevelSuperhuman = 0
+    LevelDeathStep = 0
+    LevelSharkmanKarate = 0
+    LevelElectricClaw = 0
+    LevelDragonTalon = 0
+    LevelGodhuman = 0
+    spawn(function()
+        while true do
+            if New_World and CheckWeapon_Remotes("BuySuperhuman") == 1 and LevelSuperhuman >= 400 and CheckWeapon_Remotes("BuyDeathStep") == 1 and LevelDeathStep >= 400 and 
+            CheckWeapon_Remotes("BuySharkmanKarate") == 1 and LevelSharkmanKarate >= 400 then  
+                FarmSwordListLoad()
+            elseif Three_World and CheckWeapon_Remotes("BuySuperhuman") == 1 and LevelSuperhuman >= 400 and CheckWeapon_Remotes("BuyDeathStep") == 1 and LevelDeathStep >= 400 and 
+            CheckWeapon_Remotes("BuySharkmanKarate") == 1 and LevelSharkmanKarate >= 400 and CheckWeapon_Remotes("BuyElectricClaw") == 1 and LevelElectricClaw >= 400 and 
+            CheckWeapon_Remotes("BuyDragonTalon") == 1 and LevelDragonTalon >= 400 and CheckWeapon_Remotes("BuyGodhuman") == 1 and LevelGodhuman >= 400 then
+                FarmSwordListLoad()
+            else
+                weapon()
+            end
+            wait(.5)
+        end
+    end)
+-- Function Weapon 
 
 -- FarmLevel
     spawn(function()
@@ -2982,7 +3061,6 @@ end)
                                     if v.Humanoid:FindFirstChild("Animator") then
                                         v.Humanoid.Animator:Destroy()
                                     end
-                                    weapon()
                                     repeat wait(_G.Fast_Delay)
                                         EquipWeapon(_G.Weapon)
                                         _G.PosMon = v.HumanoidRootPart.CFrame
@@ -3040,7 +3118,6 @@ end)
                                                     if v.Humanoid:FindFirstChild("Animator") then
                                                         v.Humanoid.Animator:Destroy()
                                                     end
-                                                    weapon()
                                                     Ms = "Military Spy [Lv. 325]"
                                                     _G.PosMon = v.HumanoidRootPart.CFrame
                                                     v.Humanoid:ChangeState(11)
@@ -3065,7 +3142,7 @@ end)
                                             TP(CFrame.new(-5984.0532226563, 82.14656829834, 8753.326171875))
                                         end
                                     end
-                                elseif Lv >= 330 and not Old_World and not Check_Inventory_Item("Magma Ore", 20) then
+                                elseif Lv >= 330 and not Old_World and not Check_Inventory_Item("Magma Ore", 20) and game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyGodhuman", true) ~= 0 and game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyGodhuman", true) ~= 1 then
                                     TP_World1()
                                 elseif Check_Inventory_Item("Magma Ore", 20) and Farm_Item_Inventroy_Magma_Ore then
                                     Farm_Item_Inventroy_Magma_Ore = false
@@ -3095,7 +3172,6 @@ end)
                                                     if v.Humanoid:FindFirstChild("Animator") then
                                                         v.Humanoid.Animator:Destroy()
                                                     end
-                                                    weapon()
                                                     Ms = "Fishman Warrior [Lv. 375]"
                                                     _G.PosMon = v.HumanoidRootPart.CFrame
                                                     v.Humanoid:ChangeState(11)
@@ -3124,7 +3200,7 @@ end)
                                             TP(CFrame.new(60844.10546875, 98.462875366211, 1298.3985595703))
                                         end
                                     end
-                                elseif Lv >= 400 and not Old_World and not Check_Inventory_Item("Fish Tail", 20) then
+                                elseif Lv >= 400 and not Old_World and not Check_Inventory_Item("Fish Tail", 20) and game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyGodhuman", true) ~= 0 and game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyGodhuman", true) ~= 1 then
                                     TP_World1()
                                 elseif Check_Inventory_Item("Fish Tail", 20) and Farm_Item_Inventroy_Fish_Tail then
                                     Farm_Item_Inventroy_Fish_Tail = false
@@ -3135,7 +3211,7 @@ end)
                         -- 2nd
                             -- Mystic Droplet
                                 if Lv >= 1450 and not Check_Inventory_Item("Mystic Droplet", 10) and New_World and Check_Inventory_Item("Magma Ore", 20) and Check_Inventory_Item("Fish Tail", 20) and not HopGoWorld3_Core_Attack and 
-                                not Attack_Boss_Death_Step and not Attack_Bartlio_Farm and not Attack_Boss_Three_World and not Raid_Fruit_Fragments and not Attack_Auto_Farm_Mastery then
+                                    not Attack_Boss_Death_Step and not Attack_Bartlio_Farm and not Attack_Boss_Three_World and not Raid_Fruit_Fragments and not Attack_Auto_Farm_Mastery then
                                     Farm_Item_Inventroy_Mystic_Droplet = true
                                     if game.Players.LocalPlayer.PlayerGui.Main.Quest.Visible == false then
                                         StatrMagnet = false
@@ -3155,7 +3231,6 @@ end)
                                                         v.Humanoid.Animator:Destroy()
                                                     end
                                                     
-                                                    weapon()
                                                     Ms = "Water Fighter [Lv. 1450]"
                                                     _G.PosMon = v.HumanoidRootPart.CFrame
                                                     v.Humanoid:ChangeState(11)
@@ -3180,7 +3255,7 @@ end)
                                             TP(CFrame.new(-3262.9301757813, 298.69036865234, -10552.529296875))
                                         end
                                     end
-                                elseif Lv >= 1450 and not New_World and not Check_Inventory_Item("Mystic Droplet", 10) and Check_Inventory_Item("Magma Ore", 20) and Check_Inventory_Item("Fish Tail", 20)  then
+                                elseif Lv >= 1450 and not New_World and not Check_Inventory_Item("Mystic Droplet", 10) and Check_Inventory_Item("Magma Ore", 20) and Check_Inventory_Item("Fish Tail", 20) and game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyGodhuman", true) ~= 0 and game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyGodhuman", true) ~= 1 then
                                     TP_World2()
                                 elseif Check_Inventory_Item("Mystic Droplet", 10) and Farm_Item_Inventroy_Mystic_Droplet then
                                     Farm_Item_Inventroy_Mystic_Droplet = false
@@ -3190,7 +3265,7 @@ end)
 
                         -- 3rd
                             -- Dragon Scale
-                                if Lv >= 1600 and not Check_Inventory_Item("Dragon Scale", 10) and Three_World and not Raid_Fruit_Fragments and not Attack_Boss_Electric_Claw then 
+                                if Lv >= 1600 and not Check_Inventory_Item("Dragon Scale", 10) and Three_World and not Raid_Fruit_Fragments and not Attack_Boss_Electric_Claw and game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyGodhuman", true) ~= 0 and game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyGodhuman", true) ~= 1 then 
                                     Farm_Item_Inventroy_Dragon_Scale = true
                                     if game.Players.LocalPlayer.PlayerGui.Main.Quest.Visible == false then
                                         StatrMagnet = false
@@ -3209,7 +3284,6 @@ end)
                                                         v.Humanoid.Animator:Destroy()
                                                     end
                                                     
-                                                    weapon()
                                                     Ms = "Dragon Crew Archer [Lv. 1600]"
                                                     _G.PosMon = v.HumanoidRootPart.CFrame
                                                     v.Humanoid:ChangeState(11)
@@ -3328,7 +3402,6 @@ end)
                                 if game.Workspace.Enemies:FindFirstChild("Captain Elephant [Lv. 1875] [Boss]") then
                                     for i,v in pairs(game.Workspace.Enemies:GetChildren()) do
                                         if v.Name == "Captain Elephant [Lv. 1875] [Boss]" and v.Humanoid.Health > 0 then
-                                            weapon()
                                             repeat wait(_G.Fast_Delay)
                                                 EquipWeapon(_G.Weapon)
                                                 TP(v.HumanoidRootPart.CFrame*CFrame.new(0,30,0))
@@ -3351,7 +3424,6 @@ end)
                                             if v.Humanoid:FindFirstChild("Animator") then
                                                 v.Humanoid.Animator:Destroy()
                                             end
-                                            weapon()
                                             StatrMagnet = true
                                             repeat wait(_G.Fast_Delay)
                                                 _G.PosMon = v.HumanoidRootPart.CFrame
@@ -3438,7 +3510,6 @@ end)
                                         if v.Humanoid:FindFirstChild("Animator") then
                                             v.Humanoid.Animator:Destroy()
                                         end
-                                        weapon()
                                         _G.PosMon = v.HumanoidRootPart.CFrame
                                         v.Humanoid:ChangeState(11)
                                         v.Humanoid.JumpPower = 0
@@ -3684,14 +3755,17 @@ end)
                             if CheckWeaponBC("Dragon Claw") then
                                 _G.Weapon = "Dragon Claw"
                             end
-                        else
+                        elseif Check_Fragments < 1500 then
+                            wait(_G.Wait_Hop)
                             if Check_Fruit_CBI() then
                                 Raid_Fruit_Fragments = true
+                                print("Raid_Fruit_Fragments : ", Raid_Fruit_Fragments, " | Dragon Claw")
                             elseif not Check_Fruit_CBI() and not Raid_Fruit_Fragments and not Auto_Raid then
                                 if _G.Hop_Search_Item then
                                     HopServer()
                                 else
                                     Raid_Fruit_Fragments = false
+                                    print("Raid_Fruit_Fragments : ", Raid_Fruit_Fragments, " | Dragon Claw")
                                 end
                             end
                         end
@@ -3713,13 +3787,16 @@ end)
                                     _G.Weapon = "Death Step"
                             end
                         elseif Check_Fragments < 5000 then 
+                            wait(_G.Wait_Hop)
                             if Check_Fruit_CBI() then
                                 Raid_Fruit_Fragments = true
+                                print("Raid_Fruit_Fragments : ", Raid_Fruit_Fragments, " | Death Step")
                             elseif not Check_Fruit_CBI() and not Raid_Fruit_Fragments and not Auto_Raid  then
                                 if _G.Hop_Search_Item then
                                     HopServer()
                                 else
                                     Raid_Fruit_Fragments = false
+                                    print("Raid_Fruit_Fragments : ", Raid_Fruit_Fragments, " | Death Step")
                                 end
                             end
                         end
@@ -3733,13 +3810,16 @@ end)
                                 _G.Weapon = "Sharkman Karate"
                             end
                         elseif Check_Fragments < 5000 then 
+                            wait(_G.Wait_Hop)
                             if Check_Fruit_CBI() then
                                 Raid_Fruit_Fragments = true
+                                print("Raid_Fruit_Fragments : ", Raid_Fruit_Fragments, " | Sharkman Karate")
                             elseif not Check_Fruit_CBI() and not Raid_Fruit_Fragments and not Auto_Raid  then
                                 if _G.Hop_Search_Item then
                                     HopServer()
                                 else
                                     Raid_Fruit_Fragments = false
+                                    print("Raid_Fruit_Fragments : ", Raid_Fruit_Fragments, " | Sharkman Karate")
                                 end
                             end
                         end
@@ -3752,13 +3832,16 @@ end)
                                 _G.Weapon = "Electric Claw"
                             end
                         elseif Check_Fragments < 5000 then 
+                            wait(_G.Wait_Hop)
                             if Check_Fruit_CBI() then
                                 Raid_Fruit_Fragments = true
+                                print("Raid_Fruit_Fragments : ", Raid_Fruit_Fragments, " | Electric Claw")
                             elseif not Check_Fruit_CBI() and not Raid_Fruit_Fragments and not Auto_Raid  then
                                 if _G.Hop_Search_Item then
                                     HopServer()
                                 else
                                     Raid_Fruit_Fragments = false
+                                    print("Raid_Fruit_Fragments : ", Raid_Fruit_Fragments, " | Electric Claw")
                                 end
                             end
                         end
@@ -3772,13 +3855,16 @@ end)
                                 _G.Weapon = "Dragon Talon"
                             end
                         elseif Check_Fragments < 5000 then 
+                            wait(_G.Wait_Hop)
                             if Check_Fruit_CBI() then
                                 Raid_Fruit_Fragments = true
+                                print("Raid_Fruit_Fragments : ", Raid_Fruit_Fragments, " | Dragon Talon")
                             elseif not Check_Fruit_CBI() and not Raid_Fruit_Fragments and not Auto_Raid then
                                 if _G.Hop_Search_Item then
                                     HopServer()
                                 else
                                     Raid_Fruit_Fragments = false
+                                    print("Raid_Fruit_Fragments : ", Raid_Fruit_Fragments, " | Dragon Talon")
                                 end
                             end
                         end
@@ -3792,13 +3878,16 @@ end)
                                 _G.Weapon = "Godhuman"
                             end
                         elseif Check_Fragments < 5000 then 
+                            wait(_G.Wait_Hop)
                             if Check_Fruit_CBI() then
                                 Raid_Fruit_Fragments = true
+                                print("Raid_Fruit_Fragments : ", Raid_Fruit_Fragments, " | Godhuman")
                             elseif not Check_Fruit_CBI() and not Raid_Fruit_Fragments and not Auto_Raid then
                                 if _G.Hop_Search_Item then
                                     HopServer()
                                 else
                                     Raid_Fruit_Fragments = false
+                                    print("Raid_Fruit_Fragments : ", Raid_Fruit_Fragments, " | Godhuman")
                                 end
                             end
                         end
@@ -3833,7 +3922,6 @@ end)
                                         if game:GetService("Workspace").Enemies:FindFirstChild("Awakened Ice Admiral [Lv. 1400] [Boss]") then
                                             for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
                                                 if v.Name == "Awakened Ice Admiral [Lv. 1400] [Boss]" and game:GetService('Players').LocalPlayer.Character.Humanoid.Health > 0  then
-                                                    weapon()
                                                     repeat wait(_G.Fast_Delay)
                                                         EquipWeapon(_G.Weapon)
                                                         TP(v.HumanoidRootPart.CFrame * CFrame.new(0,25,15))
@@ -3880,7 +3968,6 @@ end)
                                         if game:GetService("Workspace").Enemies:FindFirstChild("Tide Keeper [Lv. 1475] [Boss]") then
                                             for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
                                                 if v.Name == "Tide Keeper [Lv. 1475] [Boss]" and game:GetService('Players').LocalPlayer.Character.Humanoid.Health > 0 then
-                                                    weapon()
                                                     repeat wait(_G.Fast_Delay)
                                                         EquipWeapon(_G.Weapon)
                                                         TP(v.HumanoidRootPart.CFrame * CFrame.new(0,25,15))
@@ -3967,20 +4054,23 @@ end)
     -- Raid Fruit Fragments
         spawn(function()
             while wait(2) do
-                if Raid_Fruit_Fragments and not Attack_Auto_Farm_Mastery and New_World or Three_World then
-                    if game:GetService("Players")["LocalPlayer"].PlayerGui.Main.Timer.Visible == false and Check_Fruit_CBI() then 
-                        StopTween(true)
-                        print("Raid_Fruit_Fragments")
-                        BuyChip()
-                        repeat wait(1)
-                        until game:GetService("Players")["LocalPlayer"].PlayerGui.Main.Timer.Visible == true
-                    elseif game:GetService("Players")["LocalPlayer"].PlayerGui.Main.Timer.Visible == false and not Check_Fruit_CBI() then 
-                        wait(10)
-                        Inventory_Fruit = true
-                        Raid_Fruit_Fragments = false
-                    elseif game:GetService("Players")["LocalPlayer"].PlayerGui.Main.Timer.Visible == true then
-                        repeat wait(1)
-                        until game:GetService("Players")["LocalPlayer"].PlayerGui.Main.Timer.Visible == false
+                if New_World or Three_World then
+                    if Raid_Fruit_Fragments and not Attack_Auto_Farm_Mastery then
+                        if game:GetService("Players")["LocalPlayer"].PlayerGui.Main.Timer.Visible == false and Check_Fruit_CBI() then 
+                            StopTween(true)
+                            print("Raid_Fruit_Fragments")
+                            BuyChip()
+                            repeat wait(1)
+                            until game:GetService("Players")["LocalPlayer"].PlayerGui.Main.Timer.Visible == true
+                        elseif game:GetService("Players")["LocalPlayer"].PlayerGui.Main.Timer.Visible == false and not Check_Fruit_CBI() then 
+                            wait(10)
+                            Inventory_Fruit = true
+                            Raid_Fruit_Fragments = false
+                            print("Raid_Fruit_Fragments : ", Raid_Fruit_Fragments, " | Raid_Fruit_Fragments")
+                        elseif game:GetService("Players")["LocalPlayer"].PlayerGui.Main.Timer.Visible == true then
+                            repeat wait(1)
+                            until game:GetService("Players")["LocalPlayer"].PlayerGui.Main.Timer.Visible == false
+                        end
                     end
                 end
             end
@@ -4392,7 +4482,6 @@ end)
                         if game.Workspace.Enemies:FindFirstChild("Mob Leader [Lv. 120] [Boss]") then
                             for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
                                 if v.Name == "Mob Leader [Lv. 120] [Boss]" then
-                                    weapon()
                                     repeat wait(_G.Fast_Delay)
                                         EquipWeapon(_G.Weapon)
                                         v.HumanoidRootPart.Size = Vector3.new(50,50,50)
@@ -4420,7 +4509,6 @@ end)
                             for i,v in pairs(game.Workspace.Enemies:GetChildren()) do
                                 if v.Name == "Saber Expert [Lv. 200] [Boss]" then
                                     game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("SetSpawnPoint")
-                                    weapon()
                                     repeat wait()
                                         EquipWeapon(_G.Weapon)
                                         v.HumanoidRootPart.Size = Vector3.new(50,50,50)
@@ -4469,7 +4557,6 @@ end)
                                 for i,v in pairs(game.workspace.Enemies:GetChildren()) do
                                     if v.Name == "Ice Admiral [Lv. 700] [Boss]" then
                                         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("SetSpawnPoint")
-                                        weapon()
                                         repeat wait(_G.Fast_Delay)
                                             EquipWeapon(_G.Weapon)
                                             v.HumanoidRootPart.Size = Vector3.new(50,50,50)
@@ -4518,7 +4605,6 @@ end)
                             if game.Workspace.Enemies:FindFirstChild("Core") then
                                 for i,v in pairs(game.Workspace.Enemies:GetChildren()) do
                                     if v.Name == "Core" and v.Humanoid.Health > 0 then
-                                        weapon()
                                         repeat wait(_G.Fast_Delay)
                                             EquipWeapon(_G.Weapon)
                                             TP(CFrame.new(402.404296875, 182.53373718262, -414.73394775391))
@@ -4557,7 +4643,6 @@ end)
                                                 if v.Name == "Swan Pirate [Lv. 775]" then
                                                     _G.PosMon = v.HumanoidRootPart.CFrame
                                                     StatrMagnet = true
-                                                    weapon()
                                                     repeat wait(_G.Fast_Delay)
                                                         EquipWeapon(_G.Weapon)
                                                         TP(v.HumanoidRootPart.CFrame*CFrame.new(0,25,0))
@@ -4578,7 +4663,6 @@ end)
                                     if game.workspace.Enemies:FindFirstChild(_G.SelectBoss) or game:GetService("ReplicatedStorage"):FindFirstChild(_G.SelectBoss) then
                                         for i,v in pairs(game.workspace.Enemies:GetChildren()) do
                                             if v.Name == _G.SelectBoss then
-                                                weapon()
                                                 repeat wait(_G.Fast_Delay)
                                                     EquipWeapon(_G.Weapon)
                                                     v.HumanoidRootPart.Size = Vector3.new(50,50,50)
@@ -4694,7 +4778,6 @@ end)
                                                 if game.Workspace.Enemies:FindFirstChild("Don Swan [Lv. 1000] [Boss]") then
                                                     for i,v in pairs(game.Workspace.Enemies:GetChildren()) do
                                                         if v.Name == "Don Swan [Lv. 1000] [Boss]" and v.Humanoid.Health > 0 then
-                                                            weapon()
                                                             repeat wait(_G.Fast_Delay)
                                                                 EquipWeapon(_G.Weapon)
                                                                 TP(v.HumanoidRootPart.CFrame*CFrame.new(0,20,10))
@@ -4721,7 +4804,6 @@ end)
                                                         if v.Humanoid:FindFirstChild("Animator") then
                                                             v.Humanoid.Animator:Destroy()
                                                         end
-                                                        weapon()
                                                         repeat wait(_G.Fast_Delay)
                                                             EquipWeapon(_G.Weapon)
                                                             v.HumanoidRootPart.Size = Vector3.new(50,50,50)
@@ -4874,6 +4956,7 @@ end)
                                         if itemfruit == v.Name and Lv >= 1100 then
                                             
                                             Raid_Fruit_Fragments = true
+                                            print("Raid_Fruit_Fragments : ", Raid_Fruit_Fragments, " | Inventory_Fruit")
                                         elseif itemfruit ~= v.Name then
                                             game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("StoreFruit", itemfruit, game:GetService("Players").LocalPlayer.Backpack:FindFirstChild(y.Name))
                                         end
@@ -4914,31 +4997,24 @@ end)
     -- LegendarySword 3 and Rengoku
         spawn(function()
             while wait() do
-                local args = {
-                    [1] = "LegendarySwordDealer",
-                    [2] = "1"
-                }
-                game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
-                local args = {
-                    [1] = "LegendarySwordDealer",
-                    [2] = "2"
-                }
-                game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
-                local args = {
-                    [1] = "LegendarySwordDealer",
-                    [2] = "3"
-                }
-                game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
-                local args = {
-                    [1] = "OpenRengoku"
-                }
-                game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
-                local args = {
-                    [1] = "Ectoplasm",
-                    [2] = "Buy",
-                    [3] = 3
-                }
-                game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
+                -- LegendarySword
+                    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("LegendarySwordDealer", "1")
+                    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("LegendarySwordDealer", "2")
+                    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("LegendarySwordDealer", "3")
+                    -- แลกเป็นสามดาบ
+                    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("MysteriousMan","1")
+                    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("MysteriousMan","2")
+                -- LegendarySword
+
+                -- Rengoku
+                    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("OpenRengoku")
+                -- Rengoku
+
+                -- Ectoplasm
+                    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Ectoplasm", "Buy", 3)
+                -- Ectoplasm
+
+                
                 wait(5)
             end
         end)
@@ -5346,7 +5422,7 @@ end)
         StatusRightCenter_Tab:Title("Status Accessory")
         local ST_PaleScarf   = StatusRightCenter_Tab:Label("❌ : Pale Scarf")
     -- StatusRightCenter_Tab Gun
-    
+
     -- Status
         Status:Title("StatusBot")
         local Check_AutoFarm_UI             = Status:Label("❌ : Attack Auto  Farm")
@@ -5548,66 +5624,60 @@ end)
     spawn(function() -- CheckMelee
         while true do 
             -- CheckMelee
-                if CheckMelee_Superhuman and game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySuperhuman", true) == 1 then 
+                if CheckMelee_Superhuman and CheckWeapon_Remotes("BuySuperhuman") == 1 then 
                     game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySuperhuman")
                     wait(1)
                     if CheckWeaponBC("Superhuman") then
-                        CheckStatus_Superhuman:Set("✅ : Superhuman | Lv : "..CheckWeaponBC("Superhuman").Level.Value)
-                        _G.Weapon = "Superhuman"
-                        EquipWeapon(_G.Weapon)
+                        LevelSuperhuman = CheckWeaponBC("Superhuman").Level.Value
+                        CheckStatus_Superhuman:Set("✅ : Superhuman | Lv : "..LevelSuperhuman)
                         CheckMelee_Superhuman = false
                     end
                 end
-                if CheckMelee_DeathStep and game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyDeathStep", true) == 1 and CheckWeaponBC("Superhuman") and CheckWeaponBC("Superhuman").Level.Value >= 400 then 
+                if CheckMelee_DeathStep and CheckWeapon_Remotes("BuyDeathStep") == 1 and CheckWeaponBC("Superhuman") and CheckWeaponBC("Superhuman").Level.Value >= 400 then 
                     game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyDeathStep")
                     wait(1)
                     if CheckWeaponBC("Death Step") then
-                        CheckStatus_DeathStep:Set("✅ : Death Step | Lv : "..CheckWeaponBC("Death Step").Level.Value)
-                        _G.Weapon = "Death Step"
-                        EquipWeapon(_G.Weapon)
+                        LevelDeathStep = CheckWeaponBC("Death Step").Level.Value
+                        CheckStatus_DeathStep:Set("✅ : Death Step | Lv : "..LevelDeathStep)
                         CheckMelee_DeathStep = false
                     end
                 end
-                if CheckMelee_ShakmanKarate and game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySharkmanKarate", true) == 1 and CheckWeaponBC("Death Step") and CheckWeaponBC("Death Step").Level.Value >= 400  then 
+                if CheckMelee_ShakmanKarate and CheckWeapon_Remotes("BuySharkmanKarate") == 1 and CheckWeaponBC("Death Step") and CheckWeaponBC("Death Step").Level.Value >= 400  then 
                     game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySharkmanKarate", true)
                     game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySharkmanKarate")
                     wait(1)
                     if CheckWeaponBC("Sharkman Karate") then
-                        CheckStatus_ShakmanKarate:Set("✅ : Sharkman Karate | Lv : "..CheckWeaponBC("Sharkman Karate").Level.Value)
-                        _G.Weapon = "Sharkman Karate"
-                        EquipWeapon(_G.Weapon)
+                        LevelSharkmanKarate = CheckWeaponBC("Sharkman Karate").Level.Value
+                        CheckStatus_ShakmanKarate:Set("✅ : Sharkman Karate | Lv : "..LevelSharkmanKarate)
                         CheckMelee_ShakmanKarate = false
                     end
                 end
-                if CheckMelee_ElectricClaw and game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyElectricClaw", true) == 1 and CheckWeaponBC("Sharkman Karate") and CheckWeaponBC("Sharkman Karate").Level.Value >= 400 then 
+                if CheckMelee_ElectricClaw and CheckWeapon_Remotes("BuyElectricClaw") == 1 and CheckWeaponBC("Sharkman Karate") and CheckWeaponBC("Sharkman Karate").Level.Value >= 400 then 
                     game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyElectricClaw")
                     wait(1)
                     if CheckWeaponBC("Electric Claw") then
-                        CheckStatus_ElectricClaw:Set("✅ : Electric Claw | Lv : "..CheckWeaponBC("Electric Claw").Level.Value)
-                        _G.Weapon = "Electric Claw"
-                        EquipWeapon(_G.Weapon)
+                        LevelElectricClaw = CheckWeaponBC("Electric Claw").Level.Value
+                        CheckStatus_ElectricClaw:Set("✅ : Electric Claw | Lv : "..LevelElectricClaw)
                         CheckMelee_ElectricClaw = false
                     end
                 end
-                if CheckMelee_DragonTalon and game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyDragonTalon", true) == 1 and CheckWeaponBC("Electric Claw") and CheckWeaponBC("Electric Claw").Level.Value >= 400 then 
+                if CheckMelee_DragonTalon and CheckWeapon_Remotes("BuyDragonTalon") == 1 and CheckWeaponBC("Electric Claw") and CheckWeaponBC("Electric Claw").Level.Value >= 400 then 
                     game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyDragonTalon", true)
                     game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyDragonTalon")
                     wait(1)
                     if CheckWeaponBC("Dragon Talon") then
-                        CheckStatus_DragonTalon:Set("✅ : Dragon Talon | Lv : "..CheckWeaponBC("Dragon Talon").Level.Value)
-                        _G.Weapon = "Dragon Talon"
-                        EquipWeapon(_G.Weapon)
+                        LevelDragonTalon = CheckWeaponBC("Dragon Talon").Level.Value
+                        CheckStatus_DragonTalon:Set("✅ : Dragon Talon | Lv : "..LevelDragonTalon)
                         CheckMelee_DragonTalon = false
                     end
                 end
-                if CheckMelee_Godhuman and game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyGodhuman", true) == 1 and CheckWeaponBC("Dragon Talon") and CheckWeaponBC("Dragon Talon").Level.Value >= 400 then 
+                if CheckMelee_Godhuman and CheckWeapon_Remotes("BuyGodhuman") == 1 and CheckWeaponBC("Dragon Talon") and CheckWeaponBC("Dragon Talon").Level.Value >= 400 then 
                     game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyGodhuman", true)
                     game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyGodhuman")
                     wait(1)
                     if CheckWeaponBC("Godhuman") then
-                        CheckStatus_Godhuman:Set("✅ : Godhuman | Lv : "..CheckWeaponBC("Godhuman").Level.Value)
-                        _G.Weapon = "Godhuman"
-                        EquipWeapon(_G.Weapon)
+                        LevelGodhuman = CheckWeaponBC("Godhuman").Level.Value
+                        CheckStatus_Godhuman:Set("✅ : Godhuman | Lv : "..LevelGodhuman)
                         CheckMelee_Godhuman = false
                     end
                 end
