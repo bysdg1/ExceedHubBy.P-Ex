@@ -188,7 +188,7 @@
                     local RenderAverage = FrameRateManager and FrameRateManager:FindFirstChild("RenderAverage")
                     TextFPS = math.floor(1000/RenderAverage:GetValue())
                     FPS.Text = "FPS : "..TextFPS
-                    if TextFPS < 14 then
+                    if TextFPS < 15 then
                         FPS.TextColor3 = Color3.fromRGB(255, 0, 0)
                         if not Raid_Fruit_Fragments and not Auto_Raid then 
                             HopLowServer()
@@ -3723,6 +3723,7 @@ end)
                     local Check_Level = game.Players.LocalPlayer.Data.Level.Value
                     local Check_Beli = game.Players.LocalPlayer.Data.Beli.Value 
                     local Check_Fragments = game.Players.LocalPlayer.Data.Fragments.Value  
+                    local Check_Fruit = game.Players.localPlayer.Data.DevilFruit.Value
                     if CheckWeaponBC("Combat") then
                         if Check_Beli >= 150000 then 
                             game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyBlackLeg")
@@ -3779,7 +3780,7 @@ end)
                             end
                         end
                     end
-                    if CheckWeaponBC("Superhuman") and CheckWeaponBC("Superhuman").Level.Value >= 400 and game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyDeathStep",true) == 0 then
+                    if CheckWeaponBC("Superhuman") and CheckWeaponBC("Superhuman").Level.Value >= 400 and game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyDeathStep",true) == 0 and CheckWeaponBC(Check_Fruit).AwakenedMoves:FindFirstChild("V") then
                         if Check_Beli >= 3000000 and Check_Fragments >= 5000 then 
                             game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyDeathStep")
                             CheckMelee_DeathStep = true
@@ -3801,7 +3802,7 @@ end)
                             end
                         end
                     end
-                    if CheckWeaponBC("Death Step") and CheckWeaponBC("Death Step").Level.Value >= 400 and game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySharkmanKarate",true) == 0 then
+                    if CheckWeaponBC("Death Step") and CheckWeaponBC("Death Step").Level.Value >= 400 and game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySharkmanKarate",true) == 0 and CheckWeaponBC(Check_Fruit).AwakenedMoves:FindFirstChild("V") then
                         if Check_Beli >= 3000000 and Check_Fragments >= 5000 then 
                             game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySharkmanKarate", true)
                             game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySharkmanKarate")
@@ -3824,7 +3825,7 @@ end)
                             end
                         end
                     end
-                    if CheckWeaponBC("Sharkman Karate") and CheckWeaponBC("Sharkman Karate").Level.Value >= 400 and game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyElectricClaw",true) == 0 then
+                    if CheckWeaponBC("Sharkman Karate") and CheckWeaponBC("Sharkman Karate").Level.Value >= 400 and game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyElectricClaw",true) == 0 and CheckWeaponBC(Check_Fruit).AwakenedMoves:FindFirstChild("V") then
                         if Check_Beli >= 3000000 and Check_Fragments >= 5000 then 
                             game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyElectricClaw")
                             CheckMelee_ElectricClaw = true
@@ -3846,7 +3847,7 @@ end)
                             end
                         end
                     end
-                    if CheckWeaponBC("Electric Claw") and CheckWeaponBC("Electric Claw").Level.Value >= 400 and game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyDragonTalon",true) == 0 then
+                    if CheckWeaponBC("Electric Claw") and CheckWeaponBC("Electric Claw").Level.Value >= 400 and game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyDragonTalon",true) == 0 and CheckWeaponBC(Check_Fruit).AwakenedMoves:FindFirstChild("V") then
                         if Check_Beli >= 3000000 and Check_Fragments >= 5000 then 
                             game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyDragonTalon", true)
                             game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyDragonTalon")
@@ -3869,7 +3870,7 @@ end)
                             end
                         end
                     end
-                    if CheckWeaponBC("Dragon Talon") and CheckWeaponBC("Dragon Talon").Level.Value >= 400 and game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyGodhuman",true) == 0 then
+                    if CheckWeaponBC("Dragon Talon") and CheckWeaponBC("Dragon Talon").Level.Value >= 400 and game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyGodhuman",true) == 0 and CheckWeaponBC(Check_Fruit).AwakenedMoves:FindFirstChild("V") then
                         if Check_Beli >= 3000000 and Check_Fragments >= 5000 then 
                             game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyGodhuman", true)
                             game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyGodhuman")
