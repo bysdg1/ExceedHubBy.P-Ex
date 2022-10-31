@@ -3515,7 +3515,7 @@ end)
                                         v.Humanoid.JumpPower = 0
                                         v.Humanoid.WalkSpeed = 0
                                         v.HumanoidRootPart.CanCollide = false
-                                        repeat wait(.1)
+                                        repeat wait(.2)
                                             TP(v.HumanoidRootPart.CFrame*CFrame.new(0,30,30))
                                             local health = v.Humanoid.Health
                                             local maxhealth = v.Humanoid.MaxHealth
