@@ -1,13 +1,3 @@
-_G.Team = "Pirates" -- Marines , Pirates
-_G.Rejoin = true    -- ReJoin
-_G.KaiTun = false   -- Mode KaiTun
-_G.TestFunction = false -- ไว้เทสฟั่งชั่นนั้นๆ
-_G.FastAttack_Mode = "Super Fast" -- Smooth , Fast , Super Fast
-_G.Wait_Hop = 10
-_G.Hop_Search_Item = false
-_G.Close_UI = false -- ปิด UI
-_G.Color = Color3.fromRGB(255,0,0)
-
 -- game:IsLoaded
     if not game:IsLoaded() then 
         repeat game.Loaded:Wait(5)
