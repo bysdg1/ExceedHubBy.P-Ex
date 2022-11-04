@@ -3005,6 +3005,7 @@ end)
                     wait(15)
                     if not CheckWeaponBC(Check_Fruit).AwakenedMoves:FindFirstChild("V") then
                         if Check_Fruit_CBI() and not CheckWeaponBC(Check_Fruit).AwakenedMoves:FindFirstChild("V") then 
+                            print('Check_Fruit_CBI() and not CheckWeaponBC(Check_Fruit).AwakenedMoves:FindFirstChild("V")')
                             Auto_Raid = true
                         elseif game:GetService("Players")["LocalPlayer"].PlayerGui.Main.Timer.Visible == false and not Auto_Raid and not Check_Fruit_CBI() then
                             wait(_G.Wait_Hop)
@@ -4159,10 +4160,7 @@ end)
             while wait() do 
                 wait(20)
                 if Auto_Raid and New_World or Three_World then 
-                    if game:GetService("Players")["LocalPlayer"].PlayerGui.Main.Timer.Visible == false and not Check_Fruit_CBI() then 
-                        wait(10)
-                        Auto_Raid = false
-                    elseif game:GetService("Players")["LocalPlayer"].PlayerGui.Main.Timer.Visible == false then 
+                    if game:GetService("Players")["LocalPlayer"].PlayerGui.Main.Timer.Visible == false then 
                         BuyChip()
                         print("Auto_Raid")
                         repeat wait(1)
