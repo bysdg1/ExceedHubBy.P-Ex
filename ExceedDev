@@ -3003,8 +3003,8 @@ end)
                 local StatsFruit = game.Players.LocalPlayer.Data.Stats["Demon Fruit"].Level.Value
                 if Check_Level >= 1100 and Check_Fruit ~= "" then
                     wait(15)
-                    if not CheckWeaponBC(Check_Fruit).AwakenedMoves:FindFirstChild("V") and CheckWeaponBC(Check_Fruit).Level.Value <= 350 then
-                        if Check_Fruit_CBI() then 
+                    if not CheckWeaponBC(Check_Fruit).AwakenedMoves:FindFirstChild("V") then
+                        if Check_Fruit_CBI() and not CheckWeaponBC(Check_Fruit).AwakenedMoves:FindFirstChild("V") then 
                             Auto_Raid = true
                         elseif game:GetService("Players")["LocalPlayer"].PlayerGui.Main.Timer.Visible == false and not Auto_Raid and not Check_Fruit_CBI() then
                             wait(_G.Wait_Hop)
@@ -3014,7 +3014,7 @@ end)
                                 Auto_Raid = false
                             end
                         end
-                    elseif CheckWeaponBC(Check_Fruit).AwakenedMoves:FindFirstChild("V") and CheckWeaponBC(Check_Fruit).Level.Value <= 350 and game:GetService("Players")["LocalPlayer"].PlayerGui.Main.Timer.Visible == false then 
+                    elseif CheckWeaponBC(Check_Fruit).AwakenedMoves:FindFirstChild("V") and game:GetService("Players")["LocalPlayer"].PlayerGui.Main.Timer.Visible == false then 
                         Auto_Raid = false
                     end
                 end
