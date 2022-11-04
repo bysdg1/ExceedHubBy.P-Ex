@@ -134,11 +134,11 @@
         Main.ClipsDescendants = true
         Main.AnchorPoint = Vector2.new(0.5,0.5)
         Main.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
-        Main.BackgroundTransparency = 1.000
+        Main.BackgroundTransparency = 1
         Main.Position = UDim2.new(0.5, 0, 0.47, 0)
         Main.Size = UDim2.new(0, 0, 0, 0)
         
-        Main:TweenSize(UDim2.new(0, 803, 0, 590),"Out","Quad",0.4,true)
+        Main:TweenSize(UDim2.new(0, 803, 0, 595),"Out","Quad",0.4,true)
 
         local MCNR = Instance.new("UICorner")
         MCNR.Name = "MCNR"
@@ -148,7 +148,9 @@
         Top.Name = "Top"
         Top.Parent = Main
         Top.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
-        Top.Size = UDim2.new(0, 803, 0, 27)
+        Top.BackgroundTransparency = 0.3
+        Top.Size = UDim2.new(0, 200, 0, 27)
+        Top.Position = UDim2.new(0.751, 0, 0.748, 0)
 
         local TCNR = Instance.new("UICorner")
         TCNR.Name = "TCNR"
@@ -156,44 +158,98 @@
 
         local Name = Instance.new("TextLabel")
         Name.Name = "Name"
-        Name.Parent = Top
-        Name.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-        Name.BackgroundTransparency = 1
+        Name.Parent = Main
+        Name.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
+        Name.BackgroundTransparency = 0.3
         Name.TextXAlignment = Enum.TextXAlignment.Center
-        Name.Size = UDim2.new(0, 803, 0, 27)
+        Name.Size = UDim2.new(0, 200, 0, 27)
+        Name.Position = UDim2.new(0.751, 0, 0.795, 0)
         Name.Font = Enum.Font.GothamSemibold
         Name.Text = text
         Name.TextColor3 = Color3.fromRGB(225, 225, 225)
         Name.TextSize = 17.000
+
+        local NameI = Instance.new("UICorner")
+        NameI.Name = "NameI"
+        NameI.Parent = Name
+
+        local ShowLevel = Instance.new("TextLabel")
+        ShowLevel.Name = "ShowLevel"
+        ShowLevel.Parent = Main
+        ShowLevel.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
+        ShowLevel.BackgroundTransparency = 0.3
+        ShowLevel.TextXAlignment = Enum.TextXAlignment.Center
+        ShowLevel.Size = UDim2.new(0, 200, 0, 50)
+        ShowLevel.Position = UDim2.new(0.751, 0, 0.843, 0)
+        ShowLevel.Font = Enum.Font.GothamSemibold
+        ShowLevel.Text = "LV:nil"
+        ShowLevel.TextColor3 = _G.Color
+        ShowLevel.TextSize = 50
+
+        local ShowLevelI = Instance.new("UICorner")
+        ShowLevelI.Name = "ShowLevelI"
+        ShowLevelI.Parent = ShowLevel
+
+        local ShowFragments = Instance.new("TextLabel")
+        ShowFragments.Name = "ShowFragments"
+        ShowFragments.Parent = Main
+        ShowFragments.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
+        ShowFragments.BackgroundTransparency = 0.3
+        ShowFragments.TextXAlignment = Enum.TextXAlignment.Center
+        ShowFragments.Size = UDim2.new(0, 200, 0, 38)
+        ShowFragments.Position = UDim2.new(0.751, 0, 0.930, 0)
+        ShowFragments.Font = Enum.Font.GothamSemibold
+        ShowFragments.Text = "FG : nil"
+        ShowFragments.TextColor3 = Color3.fromRGB(255, 255, 255)
+        ShowFragments.TextSize = 30.000
+
+        local ShowFragmentsI = Instance.new("UICorner")
+        ShowFragmentsI.Name = "ShowFragmentsI"
+        ShowFragmentsI.Parent = ShowFragments
 
         local FPS = Instance.new("TextLabel")
         FPS.Name = "FPS"
         FPS.Parent = Top
         FPS.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
         FPS.BackgroundTransparency = 1
-        FPS.TextXAlignment = Enum.TextXAlignment.Center
+        FPS.TextXAlignment = Enum.TextXAlignment.Left
         FPS.Size = UDim2.new(0, 100, 0, 27)
-        FPS.Position = UDim2.new(0.7, 0, 0, 0)
+        FPS.Position = UDim2.new(0.05, 0, 0, 0)
         FPS.Font = Enum.Font.GothamSemibold
         FPS.Text = "FPS : N/A"
         FPS.TextColor3 = Color3.fromRGB(225, 225, 225)
         FPS.TextSize = 17.000
 
         spawn(function()
-            while wait() do
+            while wait(.5) do
                 pcall(function()
                     local Stats = game:GetService("Stats")
                     local FrameRateManager = Stats and Stats:FindFirstChild("FrameRateManager")
                     local RenderAverage = FrameRateManager and FrameRateManager:FindFirstChild("RenderAverage")
                     TextFPS = math.floor(1000/RenderAverage:GetValue())
                     FPS.Text = "FPS : "..TextFPS
-                    if TextFPS < 13 then
+                    if TextFPS < 10 then
                         FPS.TextColor3 = Color3.fromRGB(255, 0, 0)
-                        if not Raid_Fruit_Fragments and not Auto_Raid then 
-                            HopLowServer()
-                        end
+                        HopServer()
                     else
                         FPS.TextColor3 = Color3.fromRGB(0, 255, 0)
+                    end
+                end)
+            end
+        end)
+
+        spawn(function()
+            while wait(.5) do
+                pcall(function()
+                    local LVCheckUI = game.Players.LocalPlayer.Data.Level.Value
+                    local FGCheckUI = game.Players.LocalPlayer.Data.Fragments.Value  
+                    ShowFragments.Text = "FG : "..FGCheckUI
+                    if LVCheckUI < 2400 then
+                        ShowLevel.Text = "Lv:"..LVCheckUI
+                        ShowLevel.TextColor3 = Color3.fromRGB(255, 255, 255)
+                    else
+                        ShowLevel.Text = "Lv:Max"
+                        ShowLevel.TextColor3 = Color3.fromRGB(255, 0, 0)
                     end
                 end)
             end
@@ -203,12 +259,12 @@
         BindButton.Name = "BindButton"
         BindButton.Parent = Top
         BindButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-        BindButton.BackgroundTransparency = 1.000
-        BindButton.Position = UDim2.new(0.847561002, 0, 0, 0)
+        BindButton.BackgroundTransparency = 1
+        BindButton.Position = UDim2.new(0.5, 0, 0, 0)
         BindButton.Size = UDim2.new(0, 100, 0, 27)
         BindButton.Font = Enum.Font.GothamSemibold
         BindButton.Text = "[ "..string.gsub(tostring(keybind),"Enum.KeyCode.","").." ]"
-        BindButton.TextColor3 = Color3.fromRGB(100, 100, 100)
+        BindButton.TextColor3 = Color3.fromRGB(255, 255, 255)
         BindButton.TextSize = 11.000
         
         BindButton.MouseButton1Click:Connect(function ()
@@ -226,9 +282,9 @@
         Tab.Name = "Tab"
         Tab.Parent = Main
         Tab.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
-        Tab.BackgroundTransparency = 1
-        Tab.Position = UDim2.new(0, 5, 0, 4)
-        Tab.Size = UDim2.new(0, 250, 0, 20)
+        Tab.BackgroundTransparency = 0.3
+        Tab.Position = UDim2.new(0.751, 0, 0.7, 0)
+        Tab.Size = UDim2.new(0, 200, 0, 27)
 
         local TCNR = Instance.new("UICorner")
         TCNR.Name = "TCNR"
@@ -240,7 +296,7 @@
         ScrollTab.Active = true
         ScrollTab.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
         ScrollTab.BackgroundTransparency = 1
-        ScrollTab.Size = UDim2.new(0, 350, 0, 20)
+        ScrollTab.Size = UDim2.new(0, 200, 0, 27)
         ScrollTab.ScrollingDirection = Enum.ScrollingDirection.X
         ScrollTab.CanvasSize = UDim2.new(0, 0, 0, 0)
         ScrollTab.ScrollBarThickness = 1
@@ -264,8 +320,8 @@
         Page.Parent = Main
         Page.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
         Page.BackgroundTransparency = 0.3
-        Page.Position = UDim2.new(0.0, 0, 0.055000003, 0)
-        Page.Size = UDim2.new(0, 200, 0, 554)
+        Page.Position = UDim2.new(0.0, 0, 0.0, 0)
+        Page.Size = UDim2.new(0, 200, 0, 595)
 
         local PCNR = Instance.new("UICorner")
         PCNR.Name = "PCNR"
@@ -276,8 +332,8 @@
         Page1.Parent = Main
         Page1.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
         Page1.BackgroundTransparency = 0.3
-        Page1.Position = UDim2.new(0.251, 0, 0.055000003, 0)
-        Page1.Size = UDim2.new(0, 200, 0, 554)
+        Page1.Position = UDim2.new(0.251, 0, 0.0, 0)
+        Page1.Size = UDim2.new(0, 200, 0, 595)
 
         local PCNR1 = Instance.new("UICorner")
         PCNR1.Name = "PCNR1"
@@ -288,8 +344,8 @@
         Page2.Parent = Main
         Page2.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
         Page2.BackgroundTransparency = 0.3
-        Page2.Position = UDim2.new(0.501, 0, 0.055000003, 0)
-        Page2.Size = UDim2.new(0, 200, 0, 554)
+        Page2.Position = UDim2.new(0.501, 0, 0.0, 0)
+        Page2.Size = UDim2.new(0, 200, 0, 595)
 
         local PCNR2 = Instance.new("UICorner")
         PCNR2.Name = "PCNR2"
@@ -300,8 +356,8 @@
         Page3.Parent = Main
         Page3.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
         Page3.BackgroundTransparency = 0.3
-        Page3.Position = UDim2.new(0.751, 0, 0.055000003, 0)
-        Page3.Size = UDim2.new(0, 200, 0, 554)
+        Page3.Position = UDim2.new(0.751, 0, 0.0, 0)
+        Page3.Size = UDim2.new(0, 200, 0, 415)
 
         local PCNR3 = Instance.new("UICorner")
         PCNR3.Name = "PCNR3"
@@ -313,7 +369,7 @@
         MainPage.ClipsDescendants = true
         MainPage.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
         MainPage.BackgroundTransparency = 1.000
-        MainPage.Size = UDim2.new(0, 200, 0, 554)
+        MainPage.Size = UDim2.new(0, 200, 0, 595)
 
         local PageList = Instance.new("Folder")
         PageList.Name = "PageList"
@@ -325,7 +381,7 @@
         MainPage1.ClipsDescendants = true
         MainPage1.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
         MainPage1.BackgroundTransparency = 1.000
-        MainPage1.Size = UDim2.new(0, 200, 0, 554)
+        MainPage1.Size = UDim2.new(0, 200, 0, 595)
 
         local PageList1 = Instance.new("Folder")
         PageList1.Name = "PageList1"
@@ -337,7 +393,7 @@
         MainPage2.ClipsDescendants = true
         MainPage2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
         MainPage2.BackgroundTransparency = 1.000
-        MainPage2.Size = UDim2.new(0, 200, 0, 554)
+        MainPage2.Size = UDim2.new(0, 200, 0, 595)
 
         local PageList2 = Instance.new("Folder")
         PageList2.Name = "PageList2"
@@ -349,7 +405,7 @@
         MainPage3.ClipsDescendants = true
         MainPage3.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
         MainPage3.BackgroundTransparency = 1.000
-        MainPage3.Size = UDim2.new(0, 200, 0, 554)
+        MainPage3.Size = UDim2.new(0, 200, 0, 415)
 
         local PageList3 = Instance.new("Folder")
         PageList3.Name = "PageList3"
@@ -416,7 +472,7 @@
                     Main:TweenSize(UDim2.new(0, 0, 0, 0),"In","Quad",0.4,true)
                 else
                     uihide = false
-                    Main:TweenSize(UDim2.new(0, 803, 0, 590),"Out","Quad",0.4,true)
+                    Main:TweenSize(UDim2.new(0, 803, 0, 595),"Out","Quad",0.4,true)
                 end
             end
         end)
@@ -430,11 +486,11 @@
             TabButton.Text = text
             TabButton.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
             TabButton.BackgroundTransparency = 1
-            TabButton.Size = UDim2.new(0, 50, 0, 23)
+            TabButton.Size = UDim2.new(0, 50, 0, 28)
             TabButton.Font = Enum.Font.GothamSemibold
             TabButton.TextColor3 = Color3.fromRGB(225, 225, 225)
-            TabButton.TextSize = 11.000
-            TabButton.TextTransparency = 0.500
+            TabButton.TextSize = 13.000
+            TabButton.TextTransparency = 0.8
 
             local MainFramePage = Instance.new("ScrollingFrame")
             MainFramePage.Name = text.."_Page"
@@ -443,7 +499,7 @@
             MainFramePage.BackgroundColor3 = Color3.fromRGB(150, 150, 150)
             MainFramePage.BackgroundTransparency = 1.000
             MainFramePage.BorderSizePixel = 0
-            MainFramePage.Size = UDim2.new(0, 200, 0, 554)
+            MainFramePage.Size = UDim2.new(0, 200, 0, 415)
             MainFramePage.CanvasSize = UDim2.new(0, 0, 0, 0)
             MainFramePage.ScrollBarThickness = 0
             
@@ -1264,7 +1320,7 @@
             MainFramePage.BackgroundColor3 = Color3.fromRGB(150, 150, 150)
             MainFramePage.BackgroundTransparency = 1.000
             MainFramePage.BorderSizePixel = 0
-            MainFramePage.Size = UDim2.new(0, 200, 0, 554)
+            MainFramePage.Size = UDim2.new(0, 200, 0, 595)
             MainFramePage.CanvasSize = UDim2.new(0, 0, 0, 0)
             MainFramePage.ScrollBarThickness = 0
             
@@ -1389,7 +1445,7 @@
             MainFramePage.BackgroundColor3 = Color3.fromRGB(150, 150, 150)
             MainFramePage.BackgroundTransparency = 1.000
             MainFramePage.BorderSizePixel = 0
-            MainFramePage.Size = UDim2.new(0, 200, 0, 554)
+            MainFramePage.Size = UDim2.new(0, 200, 0, 595)
             MainFramePage.CanvasSize = UDim2.new(0, 0, 0, 0)
             MainFramePage.ScrollBarThickness = 0
             
@@ -1514,7 +1570,7 @@
             MainFramePage.BackgroundColor3 = Color3.fromRGB(150, 150, 150)
             MainFramePage.BackgroundTransparency = 1.000
             MainFramePage.BorderSizePixel = 0
-            MainFramePage.Size = UDim2.new(0, 200, 0, 554)
+            MainFramePage.Size = UDim2.new(0, 200, 0, 595)
             MainFramePage.CanvasSize = UDim2.new(0, 0, 0, 0)
             MainFramePage.ScrollBarThickness = 0
             
@@ -1679,17 +1735,18 @@
 -- Exceed Hub
 
 -- ปิด UI 
-
     spawn(function()
-        while wait(3) do
+        while true do
             pcall(function()
                 game:GetService("Players").LocalPlayer.PlayerGui.Main.MenuButton.Visible = false
                 game:GetService("Players").LocalPlayer.PlayerGui.Main.Beli.Visible = false
+                game:GetService("Players").LocalPlayer.PlayerGui.Main.Level.Visible = false
                 game:GetService("Players").LocalPlayer.PlayerGui.Main.Fragments.Visible = false
                 game:GetService("Players").LocalPlayer.PlayerGui.Main.Level.Bar.Visible = false
                 game:GetService("Players").LocalPlayer.PlayerGui.Main.Level.Black.Visible = false
                 game:GetService("Players").LocalPlayer.PlayerGui.Main.Level.Exp.Visible = false
                 game:GetService("Players").LocalPlayer.PlayerGui.Main.HP.Visible = false
+                game:GetService("Players").LocalPlayer.PlayerGui.Chat.Enabled = false
                 game:GetService("Players").LocalPlayer.PlayerGui.Main.Energy.Visible = false
                 game:GetService("Players").LocalPlayer.PlayerGui.Main.AlliesButton.Visible = false
                 game:GetService("Players").LocalPlayer.PlayerGui.Main.Code.Visible = false
@@ -1710,6 +1767,7 @@
                 game:GetService("Players").LocalPlayer.PlayerGui.Notifications.Enabled = false
                 game:GetService("Players").LocalPlayer.PlayerGui.Main.Compass.Visible = false
             end)
+            wait(3)
         end
     end)
 -- ปิด UI 
@@ -2554,11 +2612,11 @@
 
 -- FastAttack_Mode
     if _G.FastAttack_Mode == "Fast" then
-        _G.Fast_Delay = 0.1
+        _G.Fast_Delay = 0.15
     elseif _G.FastAttack_Mode == "Smooth" then
         _G.Fast_Delay = 0.2
     elseif _G.FastAttack_Mode == "Super Fast" then
-        _G.Fast_Delay = 0.05
+        _G.Fast_Delay = 0.1
     end
 -- FastAttack_Mode
 
@@ -2977,17 +3035,20 @@ end)
     LevelElectricClaw = 0
     LevelDragonTalon = 0
     LevelGodhuman = 0
+    CheckMeleeShowUI = false
     spawn(function()
         while true do
-            if New_World and CheckWeapon_Remotes("BuySuperhuman") == 1 and LevelSuperhuman >= 400 and CheckWeapon_Remotes("BuyDeathStep") == 1 and LevelDeathStep >= 400 and 
-            CheckWeapon_Remotes("BuySharkmanKarate") == 1 and LevelSharkmanKarate >= 400 then  
-                FarmSwordListLoad()
-            elseif Three_World and CheckWeapon_Remotes("BuySuperhuman") == 1 and LevelSuperhuman >= 400 and CheckWeapon_Remotes("BuyDeathStep") == 1 and LevelDeathStep >= 400 and 
-            CheckWeapon_Remotes("BuySharkmanKarate") == 1 and LevelSharkmanKarate >= 400 and CheckWeapon_Remotes("BuyElectricClaw") == 1 and LevelElectricClaw >= 400 and 
-            CheckWeapon_Remotes("BuyDragonTalon") == 1 and LevelDragonTalon >= 400 and CheckWeapon_Remotes("BuyGodhuman") == 1 and LevelGodhuman >= 400 then
-                FarmSwordListLoad()
-            else
-                weapon()
+            if CheckMeleeShowUI then 
+                if New_World and CheckWeapon_Remotes("BuySuperhuman") == 1 and LevelSuperhuman >= 400 and CheckWeapon_Remotes("BuyDeathStep") == 1 and LevelDeathStep >= 400 and 
+                CheckWeapon_Remotes("BuySharkmanKarate") == 1 and LevelSharkmanKarate >= 400 then  
+                    FarmSwordListLoad()
+                elseif Three_World and CheckWeapon_Remotes("BuySuperhuman") == 1 and LevelSuperhuman >= 400 and CheckWeapon_Remotes("BuyDeathStep") == 1 and LevelDeathStep >= 400 and 
+                CheckWeapon_Remotes("BuySharkmanKarate") == 1 and LevelSharkmanKarate >= 400 and CheckWeapon_Remotes("BuyElectricClaw") == 1 and LevelElectricClaw >= 400 and 
+                CheckWeapon_Remotes("BuyDragonTalon") == 1 and LevelDragonTalon >= 400 and CheckWeapon_Remotes("BuyGodhuman") == 1 and LevelGodhuman >= 400 then
+                    FarmSwordListLoad()
+                else
+                    weapon()
+                end
             end
             wait(.5)
         end
@@ -5836,6 +5897,7 @@ end)
                         CheckMelee_Godhuman = false
                     end
                 end
+                CheckMeleeShowUI = true
             -- CheckMelee
             wait(30)
         end
