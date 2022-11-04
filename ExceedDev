@@ -3040,16 +3040,17 @@ end)
     spawn(function()
         while true do
             if CheckMeleeShowUI then 
-                if New_World and CheckWeapon_Remotes("BuySuperhuman") == 1 and LevelSuperhuman >= 400 and CheckWeapon_Remotes("BuyDeathStep") == 1 and LevelDeathStep >= 400 and 
-                CheckWeapon_Remotes("BuySharkmanKarate") == 1 and LevelSharkmanKarate >= 400 then  
-                    FarmSwordListLoad()
-                elseif Three_World and CheckWeapon_Remotes("BuySuperhuman") == 1 and LevelSuperhuman >= 400 and CheckWeapon_Remotes("BuyDeathStep") == 1 and LevelDeathStep >= 400 and 
-                CheckWeapon_Remotes("BuySharkmanKarate") == 1 and LevelSharkmanKarate >= 400 and CheckWeapon_Remotes("BuyElectricClaw") == 1 and LevelElectricClaw >= 400 and 
-                CheckWeapon_Remotes("BuyDragonTalon") == 1 and LevelDragonTalon >= 400 and CheckWeapon_Remotes("BuyGodhuman") == 1 and LevelGodhuman >= 400 then
-                    FarmSwordListLoad()
-                else
-                    weapon()
-                end
+                weapon()
+                -- if New_World and CheckWeapon_Remotes("BuySuperhuman") == 1 and LevelSuperhuman >= 400 and CheckWeapon_Remotes("BuyDeathStep") == 1 and LevelDeathStep >= 400 and 
+                -- CheckWeapon_Remotes("BuySharkmanKarate") == 1 and LevelSharkmanKarate >= 400 then  
+                --     FarmSwordListLoad()
+                -- elseif Three_World and CheckWeapon_Remotes("BuySuperhuman") == 1 and LevelSuperhuman >= 400 and CheckWeapon_Remotes("BuyDeathStep") == 1 and LevelDeathStep >= 400 and 
+                -- CheckWeapon_Remotes("BuySharkmanKarate") == 1 and LevelSharkmanKarate >= 400 and CheckWeapon_Remotes("BuyElectricClaw") == 1 and LevelElectricClaw >= 400 and 
+                -- CheckWeapon_Remotes("BuyDragonTalon") == 1 and LevelDragonTalon >= 400 and CheckWeapon_Remotes("BuyGodhuman") == 1 and LevelGodhuman >= 400 then
+                --     FarmSwordListLoad()
+                -- else
+                --     weapon()
+                -- end
             end
             wait(.5)
         end
