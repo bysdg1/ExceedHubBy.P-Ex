@@ -5842,7 +5842,7 @@ end)
             -- CheckMelee
                 if CheckMelee_Superhuman and CheckWeapon_Remotes("BuySuperhuman") == 1 then 
                     game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySuperhuman")
-                    wait(1)
+                    wait(.1)
                     if CheckWeaponBC("Superhuman") then
                         LevelSuperhuman = CheckWeaponBC("Superhuman").Level.Value
                         CheckStatus_Superhuman:Set("✅ : Superhuman | Lv : "..LevelSuperhuman)
@@ -5851,7 +5851,7 @@ end)
                 end
                 if CheckMelee_DeathStep and CheckWeapon_Remotes("BuyDeathStep") == 1 and CheckWeaponBC("Superhuman") and CheckWeaponBC("Superhuman").Level.Value >= 400 then 
                     game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyDeathStep")
-                    wait(1)
+                    wait(.1)
                     if CheckWeaponBC("Death Step") then
                         LevelDeathStep = CheckWeaponBC("Death Step").Level.Value
                         CheckStatus_DeathStep:Set("✅ : Death Step | Lv : "..LevelDeathStep)
@@ -5861,7 +5861,7 @@ end)
                 if CheckMelee_ShakmanKarate and CheckWeapon_Remotes("BuySharkmanKarate") == 1 and CheckWeaponBC("Death Step") and CheckWeaponBC("Death Step").Level.Value >= 400  then 
                     game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySharkmanKarate", true)
                     game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySharkmanKarate")
-                    wait(1)
+                    wait(.1)
                     if CheckWeaponBC("Sharkman Karate") then
                         LevelSharkmanKarate = CheckWeaponBC("Sharkman Karate").Level.Value
                         CheckStatus_ShakmanKarate:Set("✅ : Sharkman Karate | Lv : "..LevelSharkmanKarate)
@@ -5870,7 +5870,7 @@ end)
                 end
                 if CheckMelee_ElectricClaw and CheckWeapon_Remotes("BuyElectricClaw") == 1 and CheckWeaponBC("Sharkman Karate") and CheckWeaponBC("Sharkman Karate").Level.Value >= 400 then 
                     game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyElectricClaw")
-                    wait(1)
+                    wait(.1)
                     if CheckWeaponBC("Electric Claw") then
                         LevelElectricClaw = CheckWeaponBC("Electric Claw").Level.Value
                         CheckStatus_ElectricClaw:Set("✅ : Electric Claw | Lv : "..LevelElectricClaw)
@@ -5880,7 +5880,7 @@ end)
                 if CheckMelee_DragonTalon and CheckWeapon_Remotes("BuyDragonTalon") == 1 and CheckWeaponBC("Electric Claw") and CheckWeaponBC("Electric Claw").Level.Value >= 400 then 
                     game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyDragonTalon", true)
                     game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyDragonTalon")
-                    wait(1)
+                    wait(.1)
                     if CheckWeaponBC("Dragon Talon") then
                         LevelDragonTalon = CheckWeaponBC("Dragon Talon").Level.Value
                         CheckStatus_DragonTalon:Set("✅ : Dragon Talon | Lv : "..LevelDragonTalon)
@@ -5890,7 +5890,7 @@ end)
                 if CheckMelee_Godhuman and CheckWeapon_Remotes("BuyGodhuman") == 1 and CheckWeaponBC("Dragon Talon") and CheckWeaponBC("Dragon Talon").Level.Value >= 400 then 
                     game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyGodhuman", true)
                     game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyGodhuman")
-                    wait(1)
+                    wait(.1)
                     if CheckWeaponBC("Godhuman") then
                         LevelGodhuman = CheckWeaponBC("Godhuman").Level.Value
                         CheckStatus_Godhuman:Set("✅ : Godhuman | Lv : "..LevelGodhuman)
