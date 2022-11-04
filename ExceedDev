@@ -2608,7 +2608,6 @@
             end
         end
     end
-    LoadSword()
 -- EquipWeapon
 
 -- FastAttack_Mode
@@ -6145,3 +6144,5 @@ end)
         end
     end)
 -- CheckStatus
+
+LoadSword()
