@@ -4159,20 +4159,22 @@ end)
         spawn(function()
             while wait() do 
                 wait(20)
-                if Auto_Raid and New_World or Three_World then 
-                    if game:GetService("Players")["LocalPlayer"].PlayerGui.Main.Timer.Visible == false then 
-                        BuyChip()
-                        print("Auto_Raid")
-                        repeat wait(1)
-                        until game:GetService("Players")["LocalPlayer"].PlayerGui.Main.Timer.Visible == true
-                    elseif game:GetService("Players")["LocalPlayer"].PlayerGui.Main.Timer.Visible == true then 
-                        repeat wait(1)
-                        until game:GetService("Players")["LocalPlayer"].PlayerGui.Main.Timer.Visible == false
-                        wait(3)
-                        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Awakener","Check")
-                        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Awakener","Awaken")
-                    end
-                end 
+                if New_World or Three_World then
+                    if Auto_Raid then 
+                        if game:GetService("Players")["LocalPlayer"].PlayerGui.Main.Timer.Visible == false then 
+                            BuyChip()
+                            print("Auto_Raid")
+                            repeat wait(1)
+                            until game:GetService("Players")["LocalPlayer"].PlayerGui.Main.Timer.Visible == true
+                        elseif game:GetService("Players")["LocalPlayer"].PlayerGui.Main.Timer.Visible == true then 
+                            repeat wait(1)
+                            until game:GetService("Players")["LocalPlayer"].PlayerGui.Main.Timer.Visible == false
+                            wait(3)
+                            game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Awakener","Check")
+                            game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Awakener","Awaken")
+                        end
+                    end 
+                end
             end
         end)
     -- Raid
