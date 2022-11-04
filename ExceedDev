@@ -4613,7 +4613,8 @@ end)
     -- Pole
         spawn(function()
             while wait(5) do
-                if Farm_Boss_Pole and Old_World and not Farm_Sword_Saber and not CheckSword("Pole (1st Form)") then 
+                local Lv = game:GetService("Players").LocalPlayer.Data.Level.Value
+                if Lv >= 100 and Farm_Boss_Pole and Old_World and not Farm_Sword_Saber and not CheckSword("Pole (1st Form)") then 
                     pcall(function()
                         local Name_Boss_Pole = "Thunder God [Lv. 575] [Boss]"
                         if game.Workspace.Enemies:FindFirstChild(Name_Boss_Pole) or game.ReplicatedStorage:FindFirstChild(Name_Boss_Pole) then
