@@ -4161,8 +4161,11 @@ end)
             while wait() do 
                 wait(20)
                 if New_World or Three_World then
-                    if Auto_Raid then 
-                        if game:GetService("Players")["LocalPlayer"].PlayerGui.Main.Timer.Visible == false then 
+                    if Auto_Raid and not Attack_Auto_Farm_Mastery then
+                        if game:GetService("Players")["LocalPlayer"].PlayerGui.Main.Timer.Visible == false and not Check_Fruit_CBI() then 
+                            Auto_Raid = false
+                            print("Auto_Raid : ", Auto_Raid, " | Auto_Raid")
+                        elseif game:GetService("Players")["LocalPlayer"].PlayerGui.Main.Timer.Visible == false and Check_Fruit_CBI()  then 
                             BuyChip()
                             print("Auto_Raid")
                             repeat wait(1)
