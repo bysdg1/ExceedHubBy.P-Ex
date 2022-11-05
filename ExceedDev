@@ -4723,13 +4723,13 @@ end)
                                     if v.Name == "Core" and v.Humanoid.Health > 0 then
                                         repeat wait(_G.Fast_Delay)
                                             EquipWeapon(_G.Weapon)
-                                            TP(CFrame.new(402.404296875, 182.53373718262, -414.73394775391))
+                                            TP(CFrame.new(448.46756, 199.356781, -441.389252))
                                             AttackNoCD()
                                         until game:GetService('Players').LocalPlayer.Character.Humanoid.Health <= 0 or v.Humanoid.Health <= 0 or not game.Workspace.Enemies:FindFirstChild("Core") or not game.ReplicatedStorage:FindFirstChild("Core") or not HopGoWorld3_Core or not HopGoWorld3_Core_Attack
                                     end
                                 end
                             else
-                                TP(CFrame.new(402.404296875, 182.53373718262, -414.73394775391))
+                                TP(CFrame.new(448.46756, 199.356781, -441.389252))
                             end
                         elseif not game.Workspace.Enemies:FindFirstChild("Core") and not game.ReplicatedStorage:FindFirstChild("Core") then
                             HopGoWorld3_Core_Attack = false
