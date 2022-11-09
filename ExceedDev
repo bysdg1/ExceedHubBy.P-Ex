@@ -4862,68 +4862,72 @@ end)
     -- RandomBones
 
     -- SpikeyTridentSword
-        if Farm_Boss_Spikey_Trident_Sword and Three_World and not Auto_Raid and not Raid_Fruit_Fragments and not Attack_Auto_Farm_Mastery and not Attack_Boss_Electric_Claw and 
-        not Farm_Item_Inventroy_Dragon_Scale then
-            if game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyDragonTalon", true) == 0 or game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyDragonTalon", true) == 1 then
-                pcall(function()
-                    local Name_Boss_Spikey_Trident = "Cake Prince [Lv. 2300] [Raid Boss]"
-                    local Lv = game:GetService("Players").LocalPlayer.Data.Level.Value
-                    if CheckCakeMonster() == nil and Lv >= 2400 then
-                        if game.Workspace.Enemies:FindFirstChild(Name_Boss_Spikey_Trident) or game.ReplicatedStorage:FindFirstChild(Name_Boss_Spikey_Trident) then
-                            Attack_Farm_Spikey_Trident_Sword = false
-                            Attack_Boss_Spikey_Trident_Sword = true
-                            if game.Workspace.Enemies:FindFirstChild(Name_Boss_Spikey_Trident) then
-                                for i,v in pairs(game.Workspace.Enemies:GetChildren()) do
-                                    if v.Name == Name_Boss_Spikey_Trident and v.Humanoid.Health > 0 then
-                                        if v.Humanoid:FindFirstChild("Animator") then
-                                            v.Humanoid.Animator:Destroy()
+        spawn(function()
+            while wait(1) do
+                if Farm_Boss_Spikey_Trident_Sword and Three_World and not Auto_Raid and not Raid_Fruit_Fragments and not Attack_Auto_Farm_Mastery and not Attack_Boss_Electric_Claw and 
+                not Farm_Item_Inventroy_Dragon_Scale then
+                    if game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyDragonTalon", true) == 0 or game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyDragonTalon", true) == 1 then
+                        pcall(function()
+                            local Name_Boss_Spikey_Trident = "Cake Prince [Lv. 2300] [Raid Boss]"
+                            local Lv = game:GetService("Players").LocalPlayer.Data.Level.Value
+                            if CheckCakeMonster() == nil and Lv >= 2400 then
+                                if game.Workspace.Enemies:FindFirstChild(Name_Boss_Spikey_Trident) or game.ReplicatedStorage:FindFirstChild(Name_Boss_Spikey_Trident) then
+                                    Attack_Farm_Spikey_Trident_Sword = false
+                                    Attack_Boss_Spikey_Trident_Sword = true
+                                    if game.Workspace.Enemies:FindFirstChild(Name_Boss_Spikey_Trident) then
+                                        for i,v in pairs(game.Workspace.Enemies:GetChildren()) do
+                                            if v.Name == Name_Boss_Spikey_Trident and v.Humanoid.Health > 0 then
+                                                if v.Humanoid:FindFirstChild("Animator") then
+                                                    v.Humanoid.Animator:Destroy()
+                                                end
+                                                repeat wait(_G.Fast_Delay)
+                                                    TP(v.HumanoidRootPart.CFrame*CFrame.new(0,-30,0))
+                                                    EquipWeapon(_G.Weapon)
+                                                    AttackNoCD()
+                                                until v.Humanoid.Health <= 0 or not v.Parent or not Farm_Boss_Spikey_Trident_Sword
+                                                Attack_Boss_Spikey_Trident_Sword = false
+                                            end
                                         end
-                                        repeat wait(_G.Fast_Delay)
-                                            TP(v.HumanoidRootPart.CFrame*CFrame.new(0,-30,0))
-                                            EquipWeapon(_G.Weapon)
-                                            AttackNoCD()
-                                        until v.Humanoid.Health <= 0 or not v.Parent or not Farm_Boss_Spikey_Trident_Sword
-                                        Attack_Boss_Spikey_Trident_Sword = false
+                                    else
+                                        TP(CFrame.new(-2078.88, 4532.24, -14797.4) * CFrame.new(0,30,0))
                                     end
+                                elseif not game.Workspace.Enemies:FindFirstChild(Name_Boss_Spikey_Trident) and not game.ReplicatedStorage:FindFirstChild(Name_Boss_Spikey_Trident) then
+                                    Attack_Boss_Spikey_Trident_Sword = false
                                 end
-                            else
-                                TP(CFrame.new(-2078.88, 4532.24, -14797.4) * CFrame.new(0,30,0))
-                            end
-                        elseif not game.Workspace.Enemies:FindFirstChild(Name_Boss_Spikey_Trident) and not game.ReplicatedStorage:FindFirstChild(Name_Boss_Spikey_Trident) then
-                            Attack_Boss_Spikey_Trident_Sword = false
-                        end
-                    elseif CheckCakeMonster() ~= 0 and Lv >= 2400 then
-                        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("SetSpawnPoint")
-                        if (Vector3.new(-2017.4874267578125, 36.85276412963867, -12027.53515625)-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 1200 then
-                            CFrameMon = CFrame.new(-2017.4874267578125, 36.85276412963867, -12027.53515625)
-                            Attack_Farm_Spikey_Trident_Sword = true
-                            for i,v in pairs(game.Workspace.Enemies:GetChildren()) do
-                                if not string.find(v.Name,"Boss") and v.Humanoid.Health > 0 and (v.HumanoidRootPart.Position-CFrameMon.Position).Magnitude <= 1000 then
-                                    if v.Humanoid:FindFirstChild("Animator") then
-                                        v.Humanoid.Animator:Destroy()
-                                    end
-                                    _G.PosMon = v.HumanoidRootPart.CFrame
-                                    StatrMagnet1 = true
-                                    repeat wait(_G.Fast_Delay)
-                                        if not game.Players.LocalPlayer.Character:FindFirstChild("Highlight") then 
-                                            TP(v.HumanoidRootPart.CFrame*CFrame.new(0,30,10))
-                                        elseif game.Players.LocalPlayer.Character:FindFirstChild("Highlight") then 
-                                            TP(v.HumanoidRootPart.CFrame*CFrame.new(0,0,-5))
+                            elseif CheckCakeMonster() ~= 0 and Lv >= 2400 then
+                                game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("SetSpawnPoint")
+                                if (Vector3.new(-2017.4874267578125, 36.85276412963867, -12027.53515625)-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 1200 then
+                                    CFrameMon = CFrame.new(-2017.4874267578125, 36.85276412963867, -12027.53515625)
+                                    Attack_Farm_Spikey_Trident_Sword = true
+                                    for i,v in pairs(game.Workspace.Enemies:GetChildren()) do
+                                        if not string.find(v.Name,"Boss") and v.Humanoid.Health > 0 and (v.HumanoidRootPart.Position-CFrameMon.Position).Magnitude <= 1000 then
+                                            if v.Humanoid:FindFirstChild("Animator") then
+                                                v.Humanoid.Animator:Destroy()
+                                            end
+                                            _G.PosMon = v.HumanoidRootPart.CFrame
+                                            StatrMagnet1 = true
+                                            repeat wait(_G.Fast_Delay)
+                                                if not game.Players.LocalPlayer.Character:FindFirstChild("Highlight") then 
+                                                    TP(v.HumanoidRootPart.CFrame*CFrame.new(0,30,10))
+                                                elseif game.Players.LocalPlayer.Character:FindFirstChild("Highlight") then 
+                                                    TP(v.HumanoidRootPart.CFrame*CFrame.new(0,0,-5))
+                                                end
+                                                EquipWeapon(_G.Weapon)
+                                                AttackNoCD()
+                                            until v.Humanoid.Health <= 0 or not v.Parent or not Farm_Boss_Spikey_Trident_Sword
+                                            StatrMagnet1 = false
                                         end
-                                        EquipWeapon(_G.Weapon)
-                                        AttackNoCD()
-                                    until v.Humanoid.Health <= 0 or not v.Parent or not Farm_Boss_Spikey_Trident_Sword
-                                    StatrMagnet1 = false
+                                    end
+                                else
+                                    Attack_Farm_Spikey_Trident_Sword = true
+                                    TP(CFrame.new(-2017.4874267578125, 36.85276412963867, -12027.53515625))
                                 end
                             end
-                        else
-                            Attack_Farm_Spikey_Trident_Sword = true
-                            TP(CFrame.new(-2017.4874267578125, 36.85276412963867, -12027.53515625))
-                        end
+                        end)
                     end
-                end)
+                end
             end
-        end
+        end)
     -- SpikeyTridentSword
 -- world 3rd
 
