@@ -1725,14 +1725,14 @@
     until game.Players.localPlayer.Neutral == false
 -- _G.Team
 
--- Exceed Hub
-    local win = Update:Window("Exceed Hub","6023426909",Enum.KeyCode.RightControl);
+-- Exceed KaiTan
+    local win = Update:Window("Exceed KaiTan","6023426909",Enum.KeyCode.RightControl);
     StatusLeft_Tab        = win:TabLeft("StatusLeft","9613645002")
     StatusLeftCenter_Tab  = win:TabLeftCenter("StatusLeftCenter","9613645002")
     StatusRightCenter_Tab = win:TabRightCenter("StatusRightCenter","9613645002")
     Status                = win:TabRight("Status","9608089732")
     Setting               = win:TabRight("Setting","9608089732")
--- Exceed Hub
+-- Exceed KaiTan
 
 -- ปิด UI 
     spawn(function()
@@ -2977,20 +2977,10 @@ Setting:Toggle("Farm Level Tun", _G.KaiTun,function(vu)
     elseif Three_World then
         Attack_Electric_Claw = vu
         Attack_Dragon_Talon = vu
+        Farm_Boss_Spikey_Trident_Sword = vu
         Farm_Bones = vu
     end
 end)
-
--- Setting:Toggle("AutoRaid", false,function(vu)
-    --     NoClip = vu
-    --     BringFruit = vu
-    --     Auto_Raid = vu
--- end)
-
--- Setting:Toggle("Test Function", _G.TestFunction,function(vu)
-    --     Attack_Auto_Farm_Mastery = vu
-    --     NoClip = vu
--- end)
 
 -- Full Function Ton Chicken
     spawn(function()
@@ -3064,98 +3054,97 @@ end)
                 if Auto_Farm and not Farm_Sword_Saber and not Farm_Item_Inventroy_Magma_Ore and not Farm_Item_Inventroy_Fish_Tail and not Farm_Item_Inventroy_Mystic_Droplet and 
                 not Farm_Item_Inventroy_Dragon_Scale and not HopGoWorld3_Core_Attack and not Attack_Boss_Death_Step and not Attack_Bartlio_Farm and not Attack_Boss_Three_World and not Raid_Fruit_Fragments and
                 not Auto_Raid and not Attack_Auto_Farm_Mastery and not Attack_Boss_Shakman_Karate and not Attack_Boss_Electric_Claw and not Attack_Boss_Dragon_Talon and not Attack_Boss_Pole and 
-                not Attack_Boss_Buddy_Sword and not Attack_Boss_Canvander_Sword then 
+                not Attack_Boss_Spikey_Trident_Sword and not Attack_Farm_Spikey_Trident_Sword then 
 
                     local Lv = game:GetService("Players").LocalPlayer.Data.Level.Value
-                    if game.Players.LocalPlayer.PlayerGui.Main.Quest.Visible == false then
-                        if Lv >= 1975 and Three_World then
-                            if SelectMonster ~= nil then
-                                StatrMagnet = false
-                                CheckLevelBones()
-                                repeat wait(1)
-                                    TP(CFrameQ)
-                                until (CFrameQ.Position-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude < 10 or not Auto_Farm or Farm_Sword_Saber or Farm_Item_Inventroy_Magma_Ore or 
-                                Farm_Item_Inventroy_Fish_Tail or Farm_Item_Inventroy_Mystic_Droplet or Farm_Item_Inventroy_Dragon_Scale or HopGoWorld3_Core_Attack or Attack_Boss_Death_Step or 
-                                Attack_Bartlio_Farm or Attack_Boss_Three_World or Raid_Fruit_Fragments or Auto_Raid or Attack_Auto_Farm_Mastery or Attack_Boss_Shakman_Karate or Attack_Boss_Electric_Claw or
-                                Attack_Boss_Dragon_Talon or Attack_Boss_Pole or Attack_Boss_Buddy_Sword or Attack_Boss_Canvander_Sword
-
-
-                                game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("StartQuest", NameQuest, QuestLv)
-                                game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("SetSpawnPoint")
-                                SelectMonster = nil
-                            else
-                                StatrMagnet = false
-                                CheckLevelBones()
-                                repeat wait(1)
-                                    TP(CFrameQ)
-                                until (CFrameQ.Position-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude < 10 or not Auto_Farm or Farm_Sword_Saber or Farm_Item_Inventroy_Magma_Ore or 
-                                Farm_Item_Inventroy_Fish_Tail or Farm_Item_Inventroy_Mystic_Droplet or Farm_Item_Inventroy_Dragon_Scale or HopGoWorld3_Core_Attack or Attack_Boss_Death_Step or 
-                                Attack_Bartlio_Farm or Attack_Boss_Three_World or Raid_Fruit_Fragments or Auto_Raid or Attack_Auto_Farm_Mastery or Attack_Boss_Shakman_Karate or Attack_Boss_Electric_Claw or 
-                                Attack_Boss_Dragon_Talon or Attack_Boss_Pole or Attack_Boss_Buddy_Sword or Attack_Boss_Canvander_Sword
-
-
-                                game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("StartQuest", NameQuest, QuestLv)
-                                game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("SetSpawnPoint")
-                            end
-                        else
-                            if SelectMonster ~= nil then
-                                StatrMagnet = false
-                                CheckLevel()
-                                repeat wait(1)
-                                    TP(CFrameQ)
-                                until (CFrameQ.Position-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude < 10 or not Auto_Farm or Farm_Sword_Saber or Farm_Item_Inventroy_Magma_Ore or 
-                                Farm_Item_Inventroy_Fish_Tail or Farm_Item_Inventroy_Mystic_Droplet or Farm_Item_Inventroy_Dragon_Scale or HopGoWorld3_Core_Attack or Attack_Boss_Death_Step or 
-                                Attack_Bartlio_Farm or Attack_Boss_Three_World or Raid_Fruit_Fragments or Auto_Raid or Attack_Auto_Farm_Mastery or Attack_Boss_Shakman_Karate or Attack_Boss_Electric_Claw or 
-                                Attack_Boss_Dragon_Talon or Attack_Boss_Pole or Attack_Boss_Buddy_Sword or Attack_Boss_Canvander_Sword
-
-
-                                game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("StartQuest", NameQuest, QuestLv)
-                                game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("SetSpawnPoint")
-                                SelectMonster = nil
-                            else
-                                StatrMagnet = false
-                                CheckLevel()
-                                repeat wait(1)
-                                    TP(CFrameQ)
-                                until (CFrameQ.Position-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude < 10 or not Auto_Farm or Farm_Sword_Saber or Farm_Item_Inventroy_Magma_Ore or 
-                                Farm_Item_Inventroy_Fish_Tail or Farm_Item_Inventroy_Mystic_Droplet or Farm_Item_Inventroy_Dragon_Scale or HopGoWorld3_Core_Attack or Attack_Boss_Death_Step or 
-                                Attack_Bartlio_Farm or Attack_Boss_Three_World or Raid_Fruit_Fragments or Auto_Raid or Attack_Auto_Farm_Mastery or Attack_Boss_Shakman_Karate or Attack_Boss_Electric_Claw or 
-                                Attack_Boss_Dragon_Talon or Attack_Boss_Pole or Attack_Boss_Buddy_Sword or Attack_Boss_Canvander_Sword
- 
-                                game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("StartQuest", NameQuest, QuestLv)
-                                game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("SetSpawnPoint")
-                            end
-                        end
-                    elseif game.Players.LocalPlayer.PlayerGui.Main.Quest.Visible == true then
-                        if game.Workspace.Enemies:FindFirstChild(Ms) then
-                            local Lv = game:GetService("Players").LocalPlayer.Data.Level.Value
+                    if Lv >= 1950 and Three_World and not Farm_Bones_NoQ then 
+                        if (Vector3.new(-9480.80762, 142.130661, 5566.37305)-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 1200 then
+                            CFrameMon = CFrame.new(-9480.80762, 142.130661, 5566.37305)
                             for i,v in pairs(game.Workspace.Enemies:GetChildren()) do
-                                if v.Name == Ms and v.Humanoid.Health > 0 then
-                                    StatrMagnet = true
+                                if not string.find(v.Name,"Boss") and v.Humanoid.Health > 0 and (v.HumanoidRootPart.Position-CFrameMon.Position).Magnitude <= 1000 then
                                     if v.Humanoid:FindFirstChild("Animator") then
                                         v.Humanoid.Animator:Destroy()
                                     end
+                                    _G.PosMon = v.HumanoidRootPart.CFrame
+                                    StatrMagnet1 = true
                                     repeat wait(_G.Fast_Delay)
-                                        EquipWeapon(_G.Weapon)
-                                        _G.PosMon = v.HumanoidRootPart.CFrame
-                                        v.Humanoid:ChangeState(11)
-                                        v.Humanoid.JumpPower = 0
-                                        v.Humanoid.WalkSpeed = 0
-                                        v.HumanoidRootPart.CanCollide = false
                                         if not game.Players.LocalPlayer.Character:FindFirstChild("Highlight") then 
                                             TP(v.HumanoidRootPart.CFrame*CFrame.new(0,30,10))
                                         elseif game.Players.LocalPlayer.Character:FindFirstChild("Highlight") then 
                                             TP(v.HumanoidRootPart.CFrame*CFrame.new(0,0,-5))
                                         end
+                                        EquipWeapon(_G.Weapon)
                                         AttackNoCD()
-                                    until game.Players.LocalPlayer.PlayerGui.Main.Quest.Visible == false or not string.find(game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text, NameMon) or not v.Parent or v.Humanoid.Health <= 0 or not Auto_Farm
-                                    if Lv >= 100 and not string.find(game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text, NameMon) then
-                                        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AbandonQuest")
-                                    end
+                                    until v.Humanoid.Health <= 0 or not v.Parent or not Auto_Farm
+                                    StatrMagnet1 = false
                                 end
                             end
+                        elseif CheckWeapon_Remotes("BuyDragonTalon") == 1 or CheckWeapon_Remotes("BuyDragonTalon") == 0 then 
+                            print("Off Farm Bones")
+                            Farm_Bones_NoQ = true
                         else
-                            TP(CFrameMon)
+                            TP(CFrame.new(-9480.80762, 142.130661, 5566.37305))
+                        end
+                    else
+                        if game.Players.LocalPlayer.PlayerGui.Main.Quest.Visible == false then
+                            if SelectMonster ~= nil then
+                                StatrMagnet = false
+                                CheckLevel()
+                                repeat wait(1)
+                                    TP(CFrameQ)
+                                until (CFrameQ.Position-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude < 10 or not Auto_Farm or Farm_Sword_Saber or Farm_Item_Inventroy_Magma_Ore or 
+                                Farm_Item_Inventroy_Fish_Tail or Farm_Item_Inventroy_Mystic_Droplet or Farm_Item_Inventroy_Dragon_Scale or HopGoWorld3_Core_Attack or Attack_Boss_Death_Step or 
+                                Attack_Bartlio_Farm or Attack_Boss_Three_World or Raid_Fruit_Fragments or Auto_Raid or Attack_Auto_Farm_Mastery or Attack_Boss_Shakman_Karate or Attack_Boss_Electric_Claw or 
+                                Attack_Boss_Dragon_Talon or Attack_Boss_Pole or Attack_Boss_Spikey_Trident_Sword or Attack_Farm_Spikey_Trident_Sword
+
+
+                                game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("StartQuest", NameQuest, QuestLv)
+                                game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("SetSpawnPoint")
+                                SelectMonster = nil
+                            else
+                                StatrMagnet = false
+                                CheckLevel()
+                                repeat wait(1)
+                                    TP(CFrameQ)
+                                until (CFrameQ.Position-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude < 10 or not Auto_Farm or Farm_Sword_Saber or Farm_Item_Inventroy_Magma_Ore or 
+                                Farm_Item_Inventroy_Fish_Tail or Farm_Item_Inventroy_Mystic_Droplet or Farm_Item_Inventroy_Dragon_Scale or HopGoWorld3_Core_Attack or Attack_Boss_Death_Step or 
+                                Attack_Bartlio_Farm or Attack_Boss_Three_World or Raid_Fruit_Fragments or Auto_Raid or Attack_Auto_Farm_Mastery or Attack_Boss_Shakman_Karate or Attack_Boss_Electric_Claw or 
+                                Attack_Boss_Dragon_Talon or Attack_Boss_Pole or Attack_Boss_Spikey_Trident_Sword or Attack_Farm_Spikey_Trident_Sword
+
+                                game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("StartQuest", NameQuest, QuestLv)
+                                game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("SetSpawnPoint")
+                            end
+                        elseif game.Players.LocalPlayer.PlayerGui.Main.Quest.Visible == true then
+                            if game.Workspace.Enemies:FindFirstChild(Ms) then
+                                local Lv = game:GetService("Players").LocalPlayer.Data.Level.Value
+                                for i,v in pairs(game.Workspace.Enemies:GetChildren()) do
+                                    if v.Name == Ms and v.Humanoid.Health > 0 then
+                                        StatrMagnet = true
+                                        if v.Humanoid:FindFirstChild("Animator") then
+                                            v.Humanoid.Animator:Destroy()
+                                        end
+                                        repeat wait(_G.Fast_Delay)
+                                            EquipWeapon(_G.Weapon)
+                                            _G.PosMon = v.HumanoidRootPart.CFrame
+                                            v.Humanoid:ChangeState(11)
+                                            v.Humanoid.JumpPower = 0
+                                            v.Humanoid.WalkSpeed = 0
+                                            v.HumanoidRootPart.CanCollide = false
+                                            if not game.Players.LocalPlayer.Character:FindFirstChild("Highlight") then 
+                                                TP(v.HumanoidRootPart.CFrame*CFrame.new(0,30,10))
+                                            elseif game.Players.LocalPlayer.Character:FindFirstChild("Highlight") then 
+                                                TP(v.HumanoidRootPart.CFrame*CFrame.new(0,0,-5))
+                                            end
+                                            AttackNoCD()
+                                        until game.Players.LocalPlayer.PlayerGui.Main.Quest.Visible == false or not string.find(game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text, NameMon) or not v.Parent or v.Humanoid.Health <= 0 or not Auto_Farm
+                                        if Lv >= 100 and not string.find(game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text, NameMon) then
+                                            game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AbandonQuest")
+                                        end
+                                    end
+                                end
+                            else
+                                TP(CFrameMon)
+                            end
                         end
                     end
                 end
@@ -3339,8 +3328,8 @@ end)
 
                         -- 3rd
                             -- Dragon Scale
-                                if Lv >= 1600 and not Check_Inventory_Item("Dragon Scale", 10) and Three_World and not Raid_Fruit_Fragments and not Attack_Boss_Electric_Claw and not Attack_Boss_Buddy_Sword and
-                                not Attack_Boss_Canvander_Sword and 
+                                if Lv >= 1600 and not Check_Inventory_Item("Dragon Scale", 10) and Three_World and not Raid_Fruit_Fragments and not Attack_Boss_Electric_Claw and 
+                                not Attack_Boss_Spikey_Trident_Sword and 
                                 game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyGodhuman", true) ~= 0 and game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyGodhuman", true) ~= 1 then 
                                     Farm_Item_Inventroy_Dragon_Scale = true
                                     if game.Players.LocalPlayer.PlayerGui.Main.Quest.Visible == false then
@@ -3398,138 +3387,6 @@ end)
         end
     end)
 -- FarmItemInventroy
-
--- FarmHakiV2
-    -- Farm Haki    
-        spawn(function()
-            while wait(2) do
-                if Farm_Haki_Max5K and Three_World then
-                    if CheckHaki() < 5000 then
-                        if game.Workspace.Enemies:FindFirstChild("Pirate Millionaire [Lv. 1500]") then
-                            for i,v in pairs(game.Workspace.Enemies:GetChildren()) do
-                                if v.Name == "Pirate Millionaire [Lv. 1500]" and v.Humanoid.Health > 0 then
-                                    if v.Humanoid:FindFirstChild("Animator") then
-                                        v.Humanoid.Animator:Destroy()
-                                    end
-                                    repeat wait(_G.Fast_Delay)
-                                        
-                                        TP(v.HumanoidRootPart.CFrame*CFrame.new(0,0,-2))
-                                    until not v.Parent or v.Humanoid.Health <= 0 or not Farm_Haki_Max5K or not game.Players.LocalPlayer.Character:FindFirstChild("Highlight")
-                                    if not game.Players.LocalPlayer.Character:FindFirstChild("Highlight") then 
-                                        HopServer()
-                                    end
-                                end
-                            end
-                        else
-                            TP(CFrame.new(-435.68109130859, 189.69866943359, 5551.0756835938))
-                        end
-                    elseif CheckHaki() >= 5000 then
-                        Auto_Quest_HakiV2 = true
-                        Farm_Haki_Max5K = false
-                    end
-                end
-            end
-        end)
-    -- Farm Haki
-
-    -- Quest Haki V2
-        spawn(function()
-            while wait(1) do
-                if Auto_Quest_HakiV2 and Three_World then
-                    local Lv = game:GetService("Players").LocalPlayer.Data.Level.Value
-                    if Lv >= 1800 then
-                        if game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("KenTalk2","Start") ~= 0 then
-                            if game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("CitizenQuestProgress","Citizen") == 3 then
-                                if not game.Players.LocalPlayer.Backpack:FindFirstChild("Pineapple") and not game.Players.LocalPlayer.Character:FindFirstChild("Pineapple") then
-                                    for i,v in pairs(game.Workspace.PineappleSpawner:GetChildren()) do
-                                        if v.Name == "Pineapple" then
-                                            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.Handle.CFrame
-                                            wait(1)
-                                        end
-                                    end
-                                elseif not game.Players.LocalPlayer.Backpack:FindFirstChild("Banana") and not game.Players.LocalPlayer.Character:FindFirstChild("Banana") then
-                                    for i,v in pairs(game.Workspace.BananaSpawner:GetChildren()) do
-                                        if v.Name == "Banana" then
-                                            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.Handle.CFrame
-                                            wait(1)
-                                        end
-                                    end
-                                elseif not game.Players.LocalPlayer.Backpack:FindFirstChild("Apple") and not game.Players.LocalPlayer.Character:FindFirstChild("Apple") then
-                                    for i,v in pairs(game.Workspace.AppleSpawner:GetChildren()) do
-                                        if v.Name == "Apple" then
-                                            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.Handle.CFrame
-                                            wait(1)
-                                        end
-                                    end
-                                end
-                                
-                                if not game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Fruit Bowl") and not game:GetService("Players").LocalPlayer.Character:FindFirstChild("Fruit Bowl") then
-                                    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("KenTalk2","Start")
-                                    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("KenTalk2","Buy")
-                                end
-
-                                if game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Fruit Bowl") or game:GetService("Players").LocalPlayer.Character:FindFirstChild("Fruit Bowl") then
-                                    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("KenTalk2","Start")
-                                    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("KenTalk2","Buy")
-                                end  
-                            elseif game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("CitizenQuestProgress","Citizen") == 2 then
-                                print(game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("CitizenQuestProgress","Citizen"))
-                                TP(CFrame.new(-12512.6533203125, 336.21612548828125, -9872.841796875))
-                            elseif game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("CitizenQuestProgress","Citizen") == 1 then
-                                print(game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("CitizenQuestProgress","Citizen"), " Captain Elephant [Lv. 1875] [Boss]")
-                                if game.Workspace.Enemies:FindFirstChild("Captain Elephant [Lv. 1875] [Boss]") then
-                                    for i,v in pairs(game.Workspace.Enemies:GetChildren()) do
-                                        if v.Name == "Captain Elephant [Lv. 1875] [Boss]" and v.Humanoid.Health > 0 then
-                                            repeat wait(_G.Fast_Delay)
-                                                EquipWeapon(_G.Weapon)
-                                                TP(v.HumanoidRootPart.CFrame*CFrame.new(0,30,0))
-                                                AttackNoCD()
-                                            until v.Humanoid.Health <= 0 or not v.Parent or Auto_Quest_HakiV2 == false
-                                        end
-                                    end
-                                else
-                                    TP(CFrame.new(-13400.6103515625, 317.9277648925781, -8409.9853515625)*CFrame.new(0,200,0))
-                                end
-                            elseif game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("CitizenQuestProgress","Citizen") == 0 then
-                                print(game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("CitizenQuestProgress","Citizen"))
-                                if LIPO == nil then
-                                    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("StartQuest","CitizenQuest",1)
-                                    LIPO = true
-                                end
-                                if game.Workspace.Enemies:FindFirstChild("Forest Pirate [Lv. 1825]") then
-                                    for i,v in pairs(game.Workspace.Enemies:GetChildren()) do
-                                        if v.Name == "Forest Pirate [Lv. 1825]" and v.Humanoid.Health > 0 then
-                                            if v.Humanoid:FindFirstChild("Animator") then
-                                                v.Humanoid.Animator:Destroy()
-                                            end
-                                            StatrMagnet = true
-                                            repeat wait(_G.Fast_Delay)
-                                                _G.PosMon = v.HumanoidRootPart.CFrame
-                                                EquipWeapon(_G.Weapon)
-                                                v.Humanoid:ChangeState(11)
-                                                v.Humanoid.JumpPower = 0
-                                                v.Humanoid.WalkSpeed = 0
-                                                v.HumanoidRootPart.CanCollide = false
-                                                
-                                                TP(v.HumanoidRootPart.CFrame*CFrame.new(0,30,0))
-                                                AttackNoCD()
-                                            until v.Humanoid.Health <= 0 or not v.Parent or Auto_Quest_HakiV2 == false
-                                            StatrMagnet = false
-                                        end
-                                    end
-                                else
-                                    TP(CFrame.new(-13351.8, 332.378, -7784.83)*CFrame.new(0,30,0))
-                                end
-                            end
-                        elseif game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("KenTalk2","Start") == 0 then
-                            Auto_Quest_HakiV2 = false
-                        end
-                    end
-                end
-            end
-        end)
-    -- Quest Haki V2
--- FarmHakiV2
 
 -- FarmMastery
     -- ตัวแปลสำคัญ Mastery
@@ -3741,6 +3598,22 @@ end)
                             sethiddenproperty(game.Players.LocalPlayer, "SimulationRadius",  math.huge)
                             -- sethiddenproperty(game.Players.LocalPlayer, "MaximumSimulationRadius",  math.huge)
                             -- sethiddenproperty(game.Players.LocalPlayer, "SimulationRadius",  9e20)
+                        end
+                    end
+                elseif StatrMagnet1 then
+                    for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+                        if (v.HumanoidRootPart.Position-_G.PosMon.Position).Magnitude <= 350 then
+                            if v.Humanoid:FindFirstChild("Animator") then
+                                v.Humanoid.Animator:Destroy()
+                            end
+                            v.Humanoid:ChangeState(11)
+                            v.Humanoid.JumpPower = 0
+                            v.Humanoid.WalkSpeed = 0
+                            v.HumanoidRootPart.CanCollide = false
+                            v.HumanoidRootPart.Size = Vector3.new(5,5,5)
+                            v.HumanoidRootPart.CFrame = _G.PosMon
+                            sethiddenproperty(game.Players.LocalPlayer, "MaximumSimulationRadius",  math.huge)
+                            sethiddenproperty(game.Players.LocalPlayer, "SimulationRadius",  9e20)
                         end
                     end
                 end
@@ -4078,7 +3951,7 @@ end)
             spawn(function()
                 while true do 
                     wait(10)
-                    if Attack_Electric_Claw and Three_World and not Raid_Fruit_Fragments and not Attack_Boss_Buddy_Sword and not Attack_Boss_Canvander_Sword then
+                    if Attack_Electric_Claw and Three_World and not Raid_Fruit_Fragments and not Attack_Boss_Spikey_Trident_Sword then
                         if game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyElectricClaw", true) ~= 1 and game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyElectricClaw", true) ~= 0 then
                             if not Attack_Boss_Dragon_Talon and not Farm_Item_Inventroy_Dragon_Scale then
                                 Attack_Boss_Electric_Claw = true 
@@ -4988,103 +4861,70 @@ end)
         end)
     -- RandomBones
 
-    -- BuddySword 
-        spawn(function()
-            while wait(3) do
-                if Farm_Boss_Buddy_Sword and Three_World and not Auto_Raid and not Raid_Fruit_Fragments and not Attack_Auto_Farm_Mastery and not Attack_Boss_Electric_Claw and 
-                not Attack_Boss_Canvander_Sword and not CheckSword("Buddy Sword") then 
-                    pcall(function()
-                        local Name_Boss_Buddy = "Cake Queen [Lv. 2175] [Boss]"
-                        if game.Workspace.Enemies:FindFirstChild(Name_Boss_Buddy) or game.ReplicatedStorage:FindFirstChild(Name_Boss_Buddy) then
-                            Attack_Boss_Buddy_Sword = true
-                            if game.Workspace.Enemies:FindFirstChild(Name_Boss_Buddy) then
-                                for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
-                                    if v.Name == Name_Boss_Buddy then
-                                        if v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
-                                            v.HumanoidRootPart.CanCollide = false
-                                            v.Humanoid.WalkSpeed = 0
-                                            repeat wait(_G.Fast_Delay)
-                                                TP(v.HumanoidRootPart.CFrame*CFrame.new(0,30,15))
-                                                EquipWeapon(_G.Weapon)
-                                                AttackNoCD()
-                                            until not Farm_Boss_Buddy_Sword or not v.Parent or v.Humanoid.Health <= 0
-                                            Attack_Boss_Buddy_Sword = false
+    -- SpikeyTridentSword
+        if Farm_Boss_Spikey_Trident_Sword and Three_World and not Auto_Raid and not Raid_Fruit_Fragments and not Attack_Auto_Farm_Mastery and not Attack_Boss_Electric_Claw and 
+        not Farm_Item_Inventroy_Dragon_Scale then
+            if game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyDragonTalon", true) == 0 or game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyDragonTalon", true) == 1 then
+                pcall(function()
+                    local Name_Boss_Spikey_Trident = "Cake Prince [Lv. 2300] [Raid Boss]"
+                    local Lv = game:GetService("Players").LocalPlayer.Data.Level.Value
+                    if CheckCakeMonster() == nil and Lv >= 2400 then
+                        if game.Workspace.Enemies:FindFirstChild(Name_Boss_Spikey_Trident) or game.ReplicatedStorage:FindFirstChild(Name_Boss_Spikey_Trident) then
+                            Attack_Farm_Spikey_Trident_Sword = false
+                            Attack_Boss_Spikey_Trident_Sword = true
+                            if game.Workspace.Enemies:FindFirstChild(Name_Boss_Spikey_Trident) then
+                                for i,v in pairs(game.Workspace.Enemies:GetChildren()) do
+                                    if v.Name == Name_Boss_Spikey_Trident and v.Humanoid.Health > 0 then
+                                        if v.Humanoid:FindFirstChild("Animator") then
+                                            v.Humanoid.Animator:Destroy()
                                         end
+                                        repeat wait(_G.Fast_Delay)
+                                            TP(v.HumanoidRootPart.CFrame*CFrame.new(0,-30,0))
+                                            EquipWeapon(_G.Weapon)
+                                            AttackNoCD()
+                                        until v.Humanoid.Health <= 0 or not v.Parent or not Farm_Boss_Spikey_Trident_Sword
+                                        Attack_Boss_Spikey_Trident_Sword = false
                                     end
                                 end
                             else
-                                TP(CFrame.new(-715.467102, 381.69104, -11019.8896) * CFrame.new(0,30,15))
+                                TP(CFrame.new(-2078.88, 4532.24, -14797.4) * CFrame.new(0,30,0))
                             end
-                        elseif not game.Workspace.Enemies:FindFirstChild(Name_Boss_Buddy) and not game.ReplicatedStorage:FindFirstChild(Name_Boss_Buddy) then
-                            Attack_Boss_Buddy_Sword = false
-                        elseif CheckSword("Buddy Sword") then
-                            Attack_Boss_Buddy_Sword = false
-                            Farm_Boss_Buddy_Sword = false
+                        elseif not game.Workspace.Enemies:FindFirstChild(Name_Boss_Spikey_Trident) and not game.ReplicatedStorage:FindFirstChild(Name_Boss_Spikey_Trident) then
+                            Attack_Boss_Spikey_Trident_Sword = false
                         end
-                    end)
-                end
-            end
-        end)
-    -- BuddySword
-
-    -- CanvanderSword
-        spawn(function()
-            while wait(6) do
-                if Farm_Boss_Canvander_Sword and Three_World and not Auto_Raid and not Raid_Fruit_Fragments and not Attack_Auto_Farm_Mastery and not Attack_Boss_Electric_Claw and 
-                not Attack_Boss_Buddy_Sword and not CheckSword("Canvander") then 
-                    pcall(function()
-                        local Name_Boss_Canvander = "Beautiful Pirate [Lv. 1950] [Boss]"
-                        if game.Workspace.Enemies:FindFirstChild(Name_Boss_Canvander) or game.ReplicatedStorage:FindFirstChild(Name_Boss_Canvander) then
-                            Attack_Boss_Canvander_Sword = true
-                            if game.Workspace.Enemies:FindFirstChild(Name_Boss_Canvander) then
-                                for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
-                                    if v.Name == Name_Boss_Canvander then
-                                        if v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
-                                            v.HumanoidRootPart.CanCollide = false
-                                            v.Humanoid.WalkSpeed = 0
-                                            repeat wait(_G.Fast_Delay)
-                                                TP(v.HumanoidRootPart.CFrame*CFrame.new(0,30,15))
-                                                EquipWeapon(_G.Weapon)
-                                                AttackNoCD()
-                                            until not Farm_Boss_Canvander_Sword or not v.Parent or v.Humanoid.Health <= 0
-                                            Attack_Boss_Canvander_Sword = false
-                                        end
+                    elseif CheckCakeMonster() ~= 0 and Lv >= 2400 then
+                        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("SetSpawnPoint")
+                        if (Vector3.new(-2017.4874267578125, 36.85276412963867, -12027.53515625)-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 1200 then
+                            CFrameMon = CFrame.new(-2017.4874267578125, 36.85276412963867, -12027.53515625)
+                            Attack_Farm_Spikey_Trident_Sword = true
+                            for i,v in pairs(game.Workspace.Enemies:GetChildren()) do
+                                if not string.find(v.Name,"Boss") and v.Humanoid.Health > 0 and (v.HumanoidRootPart.Position-CFrameMon.Position).Magnitude <= 1000 then
+                                    if v.Humanoid:FindFirstChild("Animator") then
+                                        v.Humanoid.Animator:Destroy()
                                     end
+                                    _G.PosMon = v.HumanoidRootPart.CFrame
+                                    StatrMagnet1 = true
+                                    repeat wait(_G.Fast_Delay)
+                                        if not game.Players.LocalPlayer.Character:FindFirstChild("Highlight") then 
+                                            TP(v.HumanoidRootPart.CFrame*CFrame.new(0,30,10))
+                                        elseif game.Players.LocalPlayer.Character:FindFirstChild("Highlight") then 
+                                            TP(v.HumanoidRootPart.CFrame*CFrame.new(0,0,-5))
+                                        end
+                                        EquipWeapon(_G.Weapon)
+                                        AttackNoCD()
+                                    until v.Humanoid.Health <= 0 or not v.Parent or not Farm_Boss_Spikey_Trident_Sword
+                                    StatrMagnet1 = false
                                 end
-                            else
-                                TP(CFrame.new(5182.00, 23.00, -20.00) * CFrame.new(0,30,15))
                             end
-                        elseif not game.Workspace.Enemies:FindFirstChild(Name_Boss_Canvander) and not game.ReplicatedStorage:FindFirstChild(Name_Boss_Canvander) then
-                            Attack_Boss_Canvander_Sword = false
-                        elseif CheckSword("Canvander") then
-                            Attack_Boss_Canvander_Sword = false
-                            Farm_Boss_Canvander_Sword = false
+                        else
+                            Attack_Farm_Spikey_Trident_Sword = true
+                            TP(CFrame.new(-2017.4874267578125, 36.85276412963867, -12027.53515625))
                         end
-                    end)
-                end
+                    end
+                end)
             end
-        end)
-    -- CanvanderSword
-
+        end
     -- SpikeyTridentSword
-        spawn(function()
-            while wait(9) do
-                if Farm_Boss_Spikey_Trident_Sword and Three_World then
-
-                end
-            end
-        end)
-    -- SpikeyTridentSword
-
-    -- HallowScryteSword
-        spawn(function()
-            while wait(12) do
-                if Farm_Boss_Hallow_Scryte_Sword and Three_World then
-
-                end
-            end
-        end)
-    -- HallowScryteSword
 -- world 3rd
 
 -- BuyFruit
