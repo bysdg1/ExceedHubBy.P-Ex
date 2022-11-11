@@ -4837,35 +4837,47 @@ end)
         -- Auto_Three_World Go 
             spawn(function()
                 while wait(60) do
+                    -- if Auto_Three_World and New_World then
+                    --     local Lv = game:GetService("Players").LocalPlayer.Data.Level.Value
+                    --     local Check_Fragments = game.Players.LocalPlayer.Data.Fragments.Value  
+                    --     local Check_Fruit = game.Players.localPlayer.Data.DevilFruit.Value
+                    --     if game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyDeathStep", true) == 1 then
+                    --         if game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySharkmanKarate", true) == 1 then
+                    --             if Check_Fragments >= 10000 and Lv >= 1500 and Check_Inventory_Item_Name("Mystic Droplet") >= 10 then 
+                    --                 game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("TravelZou")
+                    --             elseif Check_Fruit_CBI() and CheckWeaponBC(Check_Fruit).AwakenedMoves:FindFirstChild("V") then
+                    --                 Raid_Fruit_Fragments = true
+                    --             end
+                    --         end
+                    --     elseif game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyDeathStep", true) == 1 then
+                    --         if game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySharkmanKarate", true) == 0 then
+                    --             if Check_Fragments >= 15000 and Lv >= 1500 and Check_Inventory_Item_Name("Mystic Droplet") >= 10 then 
+                    --                 game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("TravelZou")
+                    --             elseif Check_Fruit_CBI() and CheckWeaponBC(Check_Fruit).AwakenedMoves:FindFirstChild("V") then
+                    --                 Raid_Fruit_Fragments = true
+                    --             end
+                    --         end
+                    --     elseif game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyDeathStep", true) == 0 then
+                    --         if game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySharkmanKarate", true) == 0 then
+                    --             if Check_Fragments >= 20000 and Lv >= 1500 and Check_Inventory_Item_Name("Mystic Droplet") >= 10 then 
+                    --                 game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("TravelZou")
+                    --             elseif Check_Fruit_CBI() and CheckWeaponBC(Check_Fruit).AwakenedMoves:FindFirstChild("V") then
+                    --                 Raid_Fruit_Fragments = true
+                    --             end
+                    --         end
+                    --     end
+                    -- end
                     if Auto_Three_World and New_World then
-                        local Lv = game:GetService("Players").LocalPlayer.Data.Level.Value
-                        local Check_Fragments = game.Players.LocalPlayer.Data.Fragments.Value  
-                        local Check_Fruit = game.Players.localPlayer.Data.DevilFruit.Value
-                        if game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyDeathStep", true) == 1 then
-                            if game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySharkmanKarate", true) == 1 then
-                                if Check_Fragments >= 10000 and Lv >= 1500 and Check_Inventory_Item_Name("Mystic Droplet") >= 10 then 
-                                    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("TravelZou")
-                                elseif Check_Fruit_CBI() and CheckWeaponBC(Check_Fruit).AwakenedMoves:FindFirstChild("V") then
-                                    Raid_Fruit_Fragments = true
+                        -- pcall(function()
+                            local Lv = game:GetService("Players").LocalPlayer.Data.Level.Value
+                            if game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyDeathStep", true) == 1 or game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyDeathStep", true) == 0 then
+                                if game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySharkmanKarate", true) == 1 or game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySharkmanKarate", true) == 0 then
+                                    if Lv >= 1500 and Check_Inventory_Item_Name("Mystic Droplet") >= 10 then
+                                        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("TravelZou")
+                                    end
                                 end
                             end
-                        elseif game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyDeathStep", true) == 1 then
-                            if game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySharkmanKarate", true) == 0 then
-                                if Check_Fragments >= 15000 and Lv >= 1500 and Check_Inventory_Item_Name("Mystic Droplet") >= 10 then 
-                                    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("TravelZou")
-                                elseif Check_Fruit_CBI() and CheckWeaponBC(Check_Fruit).AwakenedMoves:FindFirstChild("V") then
-                                    Raid_Fruit_Fragments = true
-                                end
-                            end
-                        elseif game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyDeathStep", true) == 0 then
-                            if game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySharkmanKarate", true) == 0 then
-                                if Check_Fragments >= 20000 and Lv >= 1500 and Check_Inventory_Item_Name("Mystic Droplet") >= 10 then 
-                                    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("TravelZou")
-                                elseif Check_Fruit_CBI() and CheckWeaponBC(Check_Fruit).AwakenedMoves:FindFirstChild("V") then
-                                    Raid_Fruit_Fragments = true
-                                end
-                            end
-                        end
+                        -- end)
                     end
                 end
             end)
