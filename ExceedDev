@@ -223,19 +223,17 @@
 
         spawn(function()
             while wait(.5) do
-                pcall(function()
-                    local Stats = game:GetService("Stats")
-                    local FrameRateManager = Stats and Stats:FindFirstChild("FrameRateManager")
-                    local RenderAverage = FrameRateManager and FrameRateManager:FindFirstChild("RenderAverage")
-                    TextFPS = math.floor(1000/RenderAverage:GetValue())
-                    FPS.Text = "FPS : "..TextFPS
-                    if TextFPS < _G.LockFPSHop then
-                        FPS.TextColor3 = Color3.fromRGB(255, 0, 0)
-                        HopServer()
-                    else
-                        FPS.TextColor3 = Color3.fromRGB(0, 255, 0)
-                    end
-                end)
+                local Stats = game:GetService("Stats")
+                local FrameRateManager = Stats and Stats:FindFirstChild("FrameRateManager")
+                local RenderAverage = FrameRateManager and FrameRateManager:FindFirstChild("RenderAverage")
+                TextFPS = math.floor(1000/RenderAverage:GetValue())
+                FPS.Text = "FPS : "..TextFPS
+                if TextFPS < _G.LockFPSHop then
+                    FPS.TextColor3 = Color3.fromRGB(255, 0, 0)
+                    HopServer()
+                else
+                    FPS.TextColor3 = Color3.fromRGB(0, 255, 0)
+                end
             end
         end)
 
