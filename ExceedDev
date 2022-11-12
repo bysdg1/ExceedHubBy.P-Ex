@@ -7,23 +7,17 @@
 
 -- ReJoin
     spawn(function()
-        while true do wait()
-            getgenv().Rejoin = game:GetService("CoreGui").RobloxPromptGui.promptOverlay.ChildAdded:Connect(function(Kick)
-                if not _G.TP_Ser and _G.Rejoin then
-                    if Kick.Name == 'ErrorPrompt' and Kick:FindFirstChild('MessageArea') and Kick.MessageArea:FindFirstChild("ErrorFrame") then
+        while true do wait(5)
+            if not _G.TP_Ser then
+                for i,v in pairs(game:GetService("CoreGui").RobloxPromptGui.promptOverlay:GetChildren()) do
+                    if v.Name == 'ErrorPrompt' and v:FindFirstChild('MessageArea') and v.MessageArea:FindFirstChild("ErrorFrame") then
                         game:GetService("TeleportService"):Teleport(game.PlaceId)
-                        wait(50)
                     end
                 end
-            end)
+            end
         end
     end)
     print("Anti AFK Dev.ExC Kaitan")
-    local VirtualUser=game:service'VirtualUser'
-    game:service'Players'.LocalPlayer.Idled:connect(function()
-        VirtualUser:CaptureController()
-        VirtualUser:ClickButton2(Vector2.new())
-    end)
     spawn(function()
         while wait(3) do
             game:GetService'VirtualUser':CaptureController()
