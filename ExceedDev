@@ -1699,45 +1699,43 @@
         end
     end
     function StatusFruitAwakened()
-        -- pcall(function()
-            Check_Fruit = game:GetService("Players").LocalPlayer.Data.DevilFruit.Value
-            if Check_Fruit == "" then
-                return "❌"
-            elseif CheckWeaponBC(Check_Fruit):FindFirstChild("AwakenedMoves") then
-                if CheckWeaponBC(Check_Fruit).AwakenedMoves:FindFirstChild("Z") and CheckWeaponBC(Check_Fruit).AwakenedMoves:FindFirstChild("X") and CheckWeaponBC(Check_Fruit).AwakenedMoves:FindFirstChild("F") and
-                    CheckWeaponBC(Check_Fruit).AwakenedMoves:FindFirstChild("C") and CheckWeaponBC(Check_Fruit).AwakenedMoves:FindFirstChild("V") then 
-                    return "✅"
-                elseif CheckWeaponBC(Check_Fruit).AwakenedMoves:FindFirstChild("Z") and CheckWeaponBC(Check_Fruit).AwakenedMoves:FindFirstChild("X") and not CheckWeaponBC(Check_Fruit).AwakenedMoves:FindFirstChild("F") and
-                    CheckWeaponBC(Check_Fruit).AwakenedMoves:FindFirstChild("C") and CheckWeaponBC(Check_Fruit).AwakenedMoves:FindFirstChild("V") then 
-                    return "✅" 
-                elseif CheckWeaponBC(Check_Fruit).AwakenedMoves:FindFirstChild("Z") and CheckWeaponBC(Check_Fruit).AwakenedMoves:FindFirstChild("X") and CheckWeaponBC(Check_Fruit).AwakenedMoves:FindFirstChild("F") and
-                    CheckWeaponBC(Check_Fruit).AwakenedMoves:FindFirstChild("C") and not CheckWeaponBC(Check_Fruit).AwakenedMoves:FindFirstChild("V") then 
-                    return "🔁"
-                elseif CheckWeaponBC(Check_Fruit).AwakenedMoves:FindFirstChild("Z") and CheckWeaponBC(Check_Fruit).AwakenedMoves:FindFirstChild("X") and not CheckWeaponBC(Check_Fruit).AwakenedMoves:FindFirstChild("F") and
-                    CheckWeaponBC(Check_Fruit).AwakenedMoves:FindFirstChild("C") and not CheckWeaponBC(Check_Fruit).AwakenedMoves:FindFirstChild("V") then 
-                    return "🔁"
-                elseif CheckWeaponBC(Check_Fruit).AwakenedMoves:FindFirstChild("Z") and CheckWeaponBC(Check_Fruit).AwakenedMoves:FindFirstChild("X") and CheckWeaponBC(Check_Fruit).AwakenedMoves:FindFirstChild("F") and
-                    not CheckWeaponBC(Check_Fruit).AwakenedMoves:FindFirstChild("C") and not CheckWeaponBC(Check_Fruit).AwakenedMoves:FindFirstChild("V") then 
-                    return "🔁"
-                elseif CheckWeaponBC(Check_Fruit).AwakenedMoves:FindFirstChild("Z") and CheckWeaponBC(Check_Fruit).AwakenedMoves:FindFirstChild("X") and not CheckWeaponBC(Check_Fruit).AwakenedMoves:FindFirstChild("F") and
-                    not CheckWeaponBC(Check_Fruit).AwakenedMoves:FindFirstChild("C") and not CheckWeaponBC(Check_Fruit).AwakenedMoves:FindFirstChild("V") then 
-                    return "🔁"
-                elseif CheckWeaponBC(Check_Fruit).AwakenedMoves:FindFirstChild("Z") and not CheckWeaponBC(Check_Fruit).AwakenedMoves:FindFirstChild("X") and CheckWeaponBC(Check_Fruit).AwakenedMoves:FindFirstChild("F") and
-                    not CheckWeaponBC(Check_Fruit).AwakenedMoves:FindFirstChild("C") and not CheckWeaponBC(Check_Fruit).AwakenedMoves:FindFirstChild("V") then 
-                    return "🔁"
-                elseif CheckWeaponBC(Check_Fruit).AwakenedMoves:FindFirstChild("Z") and not CheckWeaponBC(Check_Fruit).AwakenedMoves:FindFirstChild("X") and not CheckWeaponBC(Check_Fruit).AwakenedMoves:FindFirstChild("F") and
-                    not CheckWeaponBC(Check_Fruit).AwakenedMoves:FindFirstChild("C") and not CheckWeaponBC(Check_Fruit).AwakenedMoves:FindFirstChild("V") then 
-                    return "🔁"
-                elseif not CheckWeaponBC(Check_Fruit).AwakenedMoves:FindFirstChild("Z") and not CheckWeaponBC(Check_Fruit).AwakenedMoves:FindFirstChild("X") and not CheckWeaponBC(Check_Fruit).AwakenedMoves:FindFirstChild("F") and
-                    not CheckWeaponBC(Check_Fruit).AwakenedMoves:FindFirstChild("C") and not CheckWeaponBC(Check_Fruit).AwakenedMoves:FindFirstChild("V") then 
-                    return "❌"
-                else
-                    return "❌"
-                end
-            elseif not CheckWeaponBC(Check_Fruit):FindFirstChild("AwakenedMoves") then
-                return "❌"
+        Check_Fruit = game:GetService("Players").LocalPlayer.Data.DevilFruit.Value
+        if Check_Fruit == "" then
+            return "❌ Not Fruit"
+        elseif CheckWeaponBC(Check_Fruit):FindFirstChild("AwakenedMoves") then
+            if CheckWeaponBC(Check_Fruit).AwakenedMoves:FindFirstChild("Z") and CheckWeaponBC(Check_Fruit).AwakenedMoves:FindFirstChild("X") and CheckWeaponBC(Check_Fruit).AwakenedMoves:FindFirstChild("F") and
+                CheckWeaponBC(Check_Fruit).AwakenedMoves:FindFirstChild("C") and CheckWeaponBC(Check_Fruit).AwakenedMoves:FindFirstChild("V") then 
+                return "✅ Z, X, C, V, F"
+            elseif CheckWeaponBC(Check_Fruit).AwakenedMoves:FindFirstChild("Z") and CheckWeaponBC(Check_Fruit).AwakenedMoves:FindFirstChild("X") and not CheckWeaponBC(Check_Fruit).AwakenedMoves:FindFirstChild("F") and
+                CheckWeaponBC(Check_Fruit).AwakenedMoves:FindFirstChild("C") and CheckWeaponBC(Check_Fruit).AwakenedMoves:FindFirstChild("V") then 
+                return "✅ Z, X, C, V" 
+            elseif CheckWeaponBC(Check_Fruit).AwakenedMoves:FindFirstChild("Z") and CheckWeaponBC(Check_Fruit).AwakenedMoves:FindFirstChild("X") and CheckWeaponBC(Check_Fruit).AwakenedMoves:FindFirstChild("F") and
+                CheckWeaponBC(Check_Fruit).AwakenedMoves:FindFirstChild("C") and not CheckWeaponBC(Check_Fruit).AwakenedMoves:FindFirstChild("V") then 
+                return "🔁 Z, X, C, F"
+            elseif CheckWeaponBC(Check_Fruit).AwakenedMoves:FindFirstChild("Z") and CheckWeaponBC(Check_Fruit).AwakenedMoves:FindFirstChild("X") and not CheckWeaponBC(Check_Fruit).AwakenedMoves:FindFirstChild("F") and
+                CheckWeaponBC(Check_Fruit).AwakenedMoves:FindFirstChild("C") and not CheckWeaponBC(Check_Fruit).AwakenedMoves:FindFirstChild("V") then 
+                return "🔁 Z, X, C"
+            elseif CheckWeaponBC(Check_Fruit).AwakenedMoves:FindFirstChild("Z") and CheckWeaponBC(Check_Fruit).AwakenedMoves:FindFirstChild("X") and CheckWeaponBC(Check_Fruit).AwakenedMoves:FindFirstChild("F") and
+                not CheckWeaponBC(Check_Fruit).AwakenedMoves:FindFirstChild("C") and not CheckWeaponBC(Check_Fruit).AwakenedMoves:FindFirstChild("V") then 
+                return "🔁 Z, X, F"
+            elseif CheckWeaponBC(Check_Fruit).AwakenedMoves:FindFirstChild("Z") and CheckWeaponBC(Check_Fruit).AwakenedMoves:FindFirstChild("X") and not CheckWeaponBC(Check_Fruit).AwakenedMoves:FindFirstChild("F") and
+                not CheckWeaponBC(Check_Fruit).AwakenedMoves:FindFirstChild("C") and not CheckWeaponBC(Check_Fruit).AwakenedMoves:FindFirstChild("V") then 
+                return "🔁 Z, X"
+            elseif CheckWeaponBC(Check_Fruit).AwakenedMoves:FindFirstChild("Z") and not CheckWeaponBC(Check_Fruit).AwakenedMoves:FindFirstChild("X") and CheckWeaponBC(Check_Fruit).AwakenedMoves:FindFirstChild("F") and
+                not CheckWeaponBC(Check_Fruit).AwakenedMoves:FindFirstChild("C") and not CheckWeaponBC(Check_Fruit).AwakenedMoves:FindFirstChild("V") then 
+                return "🔁 Z, F"
+            elseif CheckWeaponBC(Check_Fruit).AwakenedMoves:FindFirstChild("Z") and not CheckWeaponBC(Check_Fruit).AwakenedMoves:FindFirstChild("X") and not CheckWeaponBC(Check_Fruit).AwakenedMoves:FindFirstChild("F") and
+                not CheckWeaponBC(Check_Fruit).AwakenedMoves:FindFirstChild("C") and not CheckWeaponBC(Check_Fruit).AwakenedMoves:FindFirstChild("V") then 
+                return "🔁 Z"
+            elseif not CheckWeaponBC(Check_Fruit).AwakenedMoves:FindFirstChild("Z") and not CheckWeaponBC(Check_Fruit).AwakenedMoves:FindFirstChild("X") and not CheckWeaponBC(Check_Fruit).AwakenedMoves:FindFirstChild("F") and
+                not CheckWeaponBC(Check_Fruit).AwakenedMoves:FindFirstChild("C") and not CheckWeaponBC(Check_Fruit).AwakenedMoves:FindFirstChild("V") then 
+                return "❌ Not Awakened"
+            else
+                return "❌ Not Awakened"
             end
-        -- end)
+        elseif not CheckWeaponBC(Check_Fruit):FindFirstChild("AwakenedMoves") then
+            return "❌ Not Awakened"
+        end
     end
     function CheckHaki()
         if game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("KenTalk", "Start") ~= 0 then
@@ -2659,33 +2657,22 @@
                             if SelectMonster ~= nil then
                                 StatrMagnet = false
                                 CheckLevel()
-                                repeat wait(1)
+                                if (CFrameQ.Position-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude < 10 then 
+                                    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("StartQuest", NameQuest, QuestLv)
+                                    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("SetSpawnPoint")
+                                else
                                     TP(CFrameQ)
-                                until (CFrameQ.Position-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude < 10 or not Auto_Farm or Farm_Sword_Saber or Farm_Item_Inventroy_Magma_Ore or 
-                                Farm_Item_Inventroy_Fish_Tail or Farm_Item_Inventroy_Mystic_Droplet or Farm_Item_Inventroy_Dragon_Scale or HopGoWorld3_Core_Attack or Attack_Boss_Death_Step or 
-                                Attack_Bartlio_Farm or Attack_Boss_Three_World or Raid_Fruit_Fragments or Auto_Raid or Attack_Auto_Farm_Mastery or Attack_Boss_Shakman_Karate or Attack_Boss_Electric_Claw or 
-                                Attack_Boss_Dragon_Talon or Attack_Boss_Pole or Attack_Boss_Buddy_Sword or Attack_Boss_Canvander_Sword or Attack_Boss_Spikey_Trident_Sword or Attack_Boss_Hallow_Scryte_Sword or
-                                Attack_Boss_Tushita_Sword or Attack_Boss_Yama_Sword or Attack_Quest_HakiV2 or Attack_Farm_Spikey_Trident_Sword or Attack_Boss_Serpent_Bow_Gun or Attack_Rainbow_Haki or
-                                Attack_Boss_Dark_Dagger_Sword
-
-
-                                game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("StartQuest", NameQuest, QuestLv)
-                                game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("SetSpawnPoint")
+                                end
                                 SelectMonster = nil
                             else
                                 StatrMagnet = false
                                 CheckLevel()
-                                repeat wait(1)
+                                if (CFrameQ.Position-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude < 10 then 
+                                    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("StartQuest", NameQuest, QuestLv)
+                                    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("SetSpawnPoint")
+                                else
                                     TP(CFrameQ)
-                                until (CFrameQ.Position-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude < 10 or not Auto_Farm or Farm_Sword_Saber or Farm_Item_Inventroy_Magma_Ore or 
-                                Farm_Item_Inventroy_Fish_Tail or Farm_Item_Inventroy_Mystic_Droplet or Farm_Item_Inventroy_Dragon_Scale or HopGoWorld3_Core_Attack or Attack_Boss_Death_Step or 
-                                Attack_Bartlio_Farm or Attack_Boss_Three_World or Raid_Fruit_Fragments or Auto_Raid or Attack_Auto_Farm_Mastery or Attack_Boss_Shakman_Karate or Attack_Boss_Electric_Claw or 
-                                Attack_Boss_Dragon_Talon or Attack_Boss_Pole or Attack_Boss_Buddy_Sword or Attack_Boss_Canvander_Sword or Attack_Boss_Spikey_Trident_Sword or Attack_Boss_Hallow_Scryte_Sword or 
-                                Attack_Boss_Tushita_Sword or Attack_Boss_Yama_Sword or Attack_Quest_HakiV2 or Attack_Farm_Spikey_Trident_Sword or Attack_Boss_Serpent_Bow_Gun or Attack_Rainbow_Haki or 
-                                Attack_Boss_Dark_Dagger_Sword
-
-                                game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("StartQuest", NameQuest, QuestLv)
-                                game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("SetSpawnPoint")
+                                end
                             end
                         elseif game.Players.LocalPlayer.PlayerGui.Main.Quest.Visible == true then
                             if game.Workspace.Enemies:FindFirstChild(Ms) then
@@ -2855,10 +2842,10 @@
                                 not Attack_Quest_HakiV2 and not Attack_Farm_Spikey_Trident_Sword and not Attack_Boss_Serpent_Bow_Gun and not Attack_Rainbow_Haki and not Attack_Boss_Dark_Dagger_Sword and
                                 game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyGodhuman", true) ~= 0 and game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyGodhuman", true) ~= 1 then 
                                     Farm_Item_Inventroy_Dragon_Scale = true
-                                    if (Vector3.new(6831.1171875, 441.76708984375, 446.58615112305)-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 300 then
-                                        CFrameMon = CFrame.new(6831.1171875, 441.76708984375, 446.58615112305)
+                                    if (Vector3.new(6556.38, 378.402, 155.014)-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 450 then
+                                        CFrameMon = CFrame.new(6556.38, 378.402, 155.014)
                                         for i,v in pairs(game.Workspace.Enemies:GetChildren()) do
-                                            if not string.find(v.Name,"Boss") and v.Humanoid.Health > 0 and (v.HumanoidRootPart.Position-CFrameMon.Position).Magnitude <= 300 then
+                                            if not string.find(v.Name,"Boss") and v.Humanoid.Health > 0 and (v.HumanoidRootPart.Position-CFrameMon.Position).Magnitude <= 450 then
                                                 if v.Humanoid:FindFirstChild("Animator") then
                                                     v.Humanoid.Animator:Destroy()
                                                 end
@@ -2880,7 +2867,7 @@
                                         StatrMagnet1 = false
                                         Farm_Item_Inventroy_Mystic_Droplet = false
                                     else
-                                        TP(CFrame.new(6831.1171875, 441.76708984375, 446.58615112305))
+                                        TP(CFrame.new(6556.38, 378.402, 155.014))
                                     end
                                 elseif Check_Inventory_Item("Dragon Scale", 10) and Farm_Item_Inventroy_Dragon_Scale then
                                     Farm_Item_Inventroy_Dragon_Scale = false
@@ -3140,12 +3127,10 @@
                     game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AddPoint", "Melee", 1)
                 elseif StatsMelee == 2400 and StatsDefense < 2400 then 
                     game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AddPoint", "Defense", 1)
-                elseif StatsMelee == 2400 and StatsDefense == 2400 and StatsFruit < 800 then 
+                elseif StatsMelee == 2400 and StatsDefense == 2400 and StatsFruit < 1600 then 
                     game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AddPoint", "Demon Fruit", 1)
-                elseif StatsMelee == 2400 and StatsDefense == 2400 and StatsFruit == 800 and StatsSword < 800 then 
+                elseif StatsMelee == 2400 and StatsDefense == 2400 and StatsFruit == 1600 and StatsSword < 1600 then 
                     game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AddPoint", "Sword", 1)
-                elseif StatsMelee == 2400 and StatsDefense == 2400 and StatsFruit == 800 and StatsSword == 800 and StatsGun < 800 then 
-                    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AddPoint", "Gun", 1)
                 end
             end
         end
@@ -4054,7 +4039,7 @@
                                         if v.Name == "Core" and v.Humanoid.Health > 0 then
                                             repeat wait(_G.Fast_Delay)
                                                 EquipWeapon(_G.Weapon)
-                                                TP(CFrame.new(448.46756, 199.356781, -441.389252))
+                                                TP(v.HumanoidRootPart.CFrame)
                                                 AttackNoCD()
                                             until game:GetService('Players').LocalPlayer.Character.Humanoid.Health <= 0 or v.Humanoid.Health <= 0 or not game.Workspace.Enemies:FindFirstChild("Core") or not game.ReplicatedStorage:FindFirstChild("Core") or not HopGoWorld3_Core or not HopGoWorld3_Core_Attack
                                         end
@@ -4176,32 +4161,30 @@
                     while wait(1) do
                         pcall(function()
                             if Don_Swan_Quest and not Attack_Auto_Farm_Mastery and not Auto_Raid then
-                                if New_World then
-                                    local Lv = game:GetService("Players").LocalPlayer.Data.Level.Value
-                                    if Lv >= 1200 and Check_Fruit_CBIPrice1M() then
-                                        if game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("TalkTrevor","1") ~= 0 then
-                                            local fruit = game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("getInventoryFruits")
-                                            for i,v in pairs(fruit) do
-                                                if v["Price"] >= 1000000 then
-                                                    if Auto_Farm then
-                                                        Auto_Farm = false
-                                                    end
-                                                    wait(2)
-                                                    Inventory_Fruit = false
-                                                    wait(1)
-                                                    local NameFruit = split(v["Name"], "-")[2] .. " Fruit"
-                                                    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("LoadFruit",v["Name"])
-                                                    wait(2)
-                                                    EquipWeapon(NameFruit)
-                                                    wait(2)
-                                                    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("TalkTrevor","1")
-                                                    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("TalkTrevor","2")
-                                                    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("TalkTrevor","3")
-                                                    wait(2)
-                                                    Inventory_Fruit = true
-                                                    Auto_Farm = true
-                                                    Don_Swan_Quest = false
+                                local Lv = game:GetService("Players").LocalPlayer.Data.Level.Value
+                                if Lv >= 1200 and Check_Fruit_CBIPrice1M() then
+                                    if game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("TalkTrevor","1") ~= 0 then
+                                        local fruit = game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("getInventoryFruits")
+                                        for i,v in pairs(fruit) do
+                                            if v["Price"] >= 1000000 then
+                                                if Auto_Farm then
+                                                    Auto_Farm = false
                                                 end
+                                                wait(2)
+                                                Inventory_Fruit = false
+                                                wait(1)
+                                                local NameFruit = split(v["Name"], "-")[2] .. " Fruit"
+                                                game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("LoadFruit",v["Name"])
+                                                wait(2)
+                                                EquipWeapon(NameFruit)
+                                                wait(2)
+                                                game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("TalkTrevor","1")
+                                                game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("TalkTrevor","2")
+                                                game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("TalkTrevor","3")
+                                                wait(2)
+                                                Inventory_Fruit = true
+                                                Auto_Farm = true
+                                                Don_Swan_Quest = false
                                             end
                                         end
                                     end
@@ -5194,6 +5177,178 @@
     -- StoneSword
 -- world 3rd
 
+-- BuyFruit BringFruit GetFruit
+    -- BuyFruit
+        spawn(function()
+            local CheckFruits = game.Players.localPlayer.Data.DevilFruit.Value
+            if CheckFruits ~= "" then
+                while true do
+                    if Buy_Fruit_Awakener then 
+                        local CheckLevel = game.Players.LocalPlayer.Data.Level.Value
+                        if CheckLevel >= 200 then 
+                            local CheckFruits = game.Players.localPlayer.Data.DevilFruit.Value
+                            if CheckFruits == "" then 
+                                local fruits = {
+                                    [1] = "Ice-Ice",
+                                    [2] = "Dark-Dark",
+                                    [3] = "Light-Light",
+                                    [4] = "Quake-Quake",
+                                    [5] = "String-String",
+                                    [6] = "Rumble-Rumble",
+                                    [7] = "Human-Human: Buddha"
+                                }
+                                local Check_Sell_Fruit = game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("GetFruits")
+                                for i,v in pairs(Check_Sell_Fruit) do
+                                    for _,FruitBuy in pairs(fruits) do
+                                        if v.OnSale then
+                                            if v.Name == FruitBuy then
+                                                game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("PurchaseRawFruit", v.Name)
+                                            end
+                                        end
+                                    end
+                                end
+                            else
+                                Buy_Fruit_Awakener = false
+                            end
+                        end
+                    end
+                    wait(600)
+                end
+            end
+        end)
+    -- BuyFruit
+
+    -- BringFruit GetFruit BuyFruit
+        spawn(function()
+            while wait(3) do
+                -- BringFruit
+                    if BringFruit then
+                        for i,v6 in pairs(game:GetService("Workspace"):GetChildren()) do
+                            if v6:IsA ("Tool") and (v6.Handle.Position-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude < 13000 then
+                                _G.Stop_Tween = true
+                                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v6.Handle.CFrame
+                                v6.Handle.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+                                wait(2)
+                                UnEquipweapon()
+                                _G.Stop_Tween = nil
+                            end
+                        end
+                    end
+                -- BringFruit
+
+                -- GetFruit
+                    if Inventory_Fruit then
+                        pcall(function()
+                            for u,y in pairs(game:GetService("Players").LocalPlayer.Backpack:GetChildren()) do
+                                if string.find(y.Name, "Fruit") then 
+                                    local Fruit = game:GetService("ReplicatedStorage").Remotes["CommF_"]:InvokeServer("getInventory")
+                                    for i,v in pairs(Fruit) do
+                                        if v.Type == "Blox Fruit" then
+                                            if 	   y.Name == "Human: Buddha Fruit" then
+                                                itemfruit = string.gsub(y.Name, ": Buddha Fruit","-"..string.gsub(y.Name, " Fruit",""))
+                                            elseif y.Name == "Bird: Falcon Fruit" then 
+                                                itemfruit = string.gsub(y.Name, ": Falcon Fruit","-"..string.gsub(y.Name, " Fruit",""))
+                                            elseif y.Name == "Bird: Phoenix Fruit" then 
+                                                itemfruit = string.gsub(y.Name, ": Phoenix Fruit","-"..string.gsub(y.Name, " Fruit",""))
+                                            else
+                                                itemfruit = string.gsub(y.Name, " Fruit","-"..string.gsub(y.Name, " Fruit",""))
+                                            end
+                                            
+                                            local Lv = game:GetService("Players").LocalPlayer.Data.Level.Value
+                                            if itemfruit == v.Name and Lv >= 1100 and Check_Fruit_CBI() then
+                                                
+                                                Raid_Fruit_Fragments = true
+                                                print("Raid_Fruit_Fragments : ", Raid_Fruit_Fragments, " | Inventory_Fruit")
+                                            elseif itemfruit ~= v.Name then
+                                                game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("StoreFruit", itemfruit, game:GetService("Players").LocalPlayer.Backpack:FindFirstChild(y.Name))
+                                            end
+                                        else
+                                            if 	   y.Name == "Human: Buddha Fruit" then
+                                                itemfruit = string.gsub(y.Name, ": Buddha Fruit","-"..string.gsub(y.Name, " Fruit",""))
+                                            elseif y.Name == "Bird: Falcon Fruit" then 
+                                                itemfruit = string.gsub(y.Name, ": Falcon Fruit","-"..string.gsub(y.Name, " Fruit",""))
+                                            elseif y.Name == "Bird: Phoenix Fruit" then 
+                                                itemfruit = string.gsub(y.Name, ": Phoenix Fruit","-"..string.gsub(y.Name, " Fruit",""))
+                                            else
+                                                itemfruit = string.gsub(y.Name, " Fruit","-"..string.gsub(y.Name, " Fruit",""))
+                                            end
+                                            game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("StoreFruit", itemfruit, game:GetService("Players").LocalPlayer.Backpack:FindFirstChild(y.Name))
+                                        end
+                                    end
+                                end
+                            end
+                        end)
+                    end
+                -- GetFruit
+
+                -- BuyFruit
+                    if Inventory_Fruit then
+                        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Cousin", "Buy")
+                    end
+                -- BuyFruit
+            end
+        end)
+    -- BringFruit GetFruit BuyFruit
+-- BuyFruit BringFruit GetFruit
+
+-- LegendarySword 3 and Rengoku and AutoBuyHaki
+    spawn(function()
+        while wait() do
+            -- LegendarySword
+                if New_World then 
+                    -- LegendarySword
+                        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("LegendarySwordDealer", "1")
+                        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("LegendarySwordDealer", "2")
+                        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("LegendarySwordDealer", "3")
+                    -- LegendarySword
+
+                    -- Rengoku
+                        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("OpenRengoku")
+                    -- Rengoku
+
+                    -- Ectoplasm
+                        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Ectoplasm", "Buy", 3)
+                    -- Ectoplasm
+                end
+                if New_World or Three_World then 
+                    -- LegendarySword 3 Sword
+                        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("MysteriousMan","1")
+                        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("MysteriousMan","2")
+                    -- LegendarySword 3 Sword
+                end
+            -- LegendarySword
+
+
+            -- AutoBuyHaki
+                if AutoHaki then
+                    local Lv = game:GetService("Players").LocalPlayer.Data.Level.Value
+                    local CheckBeli = game.Players.LocalPlayer.Data.Beli.Value 
+                    local FG = game:GetService("Players").LocalPlayer.Data.Fragments.Value
+                    if CheckBeli >= 10000 and game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyHaki", "Geppo") ~= 2 then
+                        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyHaki", "Geppo")
+                    end
+                    if CheckBeli >= 25000 and game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyHaki", "Buso") ~= 2 then
+                        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyHaki", "Buso")
+                    end
+                    if CheckBeli >= 100000 and game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyHaki", "Soru") ~= 2 then
+                        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyHaki", "Soru")
+                    end
+                    if Lv >= 400 and CheckBeli >= 750000 then
+                        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("KenTalk", "Start")
+                        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("KenTalk", "Buy")
+                    end
+                    
+                    if Lv >= 2400 and CheckWeapon_Remotes("BuyDeathStep") == 1 and CheckWeapon_Remotes("BuySharkmanKarate") == 1 and 
+                    CheckWeapon_Remotes("BuyElectricClaw") == 1 and CheckWeapon_Remotes("BuyDragonTalon") == 1 and CheckWeapon_Remotes("BuyGodhuman") == 1 then
+                        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("ColorsDealer", "2")
+                    end
+                end
+            -- AutoBuyHaki
+            wait(5)
+        end
+    end)
+-- LegendarySword 3 and Rengoku and AutoBuyHaki
+
 -- Hop_Tab
     Setting:Title("Server")
     Setting:Button("Hop Server",function()
@@ -5752,9 +5907,7 @@
     -- Check
 -- CheckStatus 
 
-
-
-Setting:Toggle("KaiTan", _G.KaiTun,function(vu)
+Status:Toggle("KaiTan", _G.KaiTun,function(vu)
     Auto_Farm = vu
     NoClip = vu
     Buy_Superhuman = vu
@@ -5794,7 +5947,7 @@ Setting:Toggle("KaiTan", _G.KaiTun,function(vu)
     end
 end)
 
-Setting:Toggle("KaiTan God", _G.KaiTunGod,function(vu)
+Status:Toggle("KaiTan God", _G.KaiTunGod,function(vu)
     Auto_Farm = vu
     NoClip = vu
     Buy_Superhuman = vu
