@@ -1,3 +1,8 @@
+_G.Team = "Pirates" -- Marines , Pirates
+_G.KaiTun = false
+_G.KaiTunGod = false
+_G.Fast_Delay = 0.15
+
 -- game:IsLoaded
     if not game:IsLoaded() then 
         repeat game.Loaded:Wait(5)
@@ -5530,6 +5535,7 @@
         local CheckStatus_Fragments      = Setting3:Label("💷 Fragments : " .. game:GetService("Players").LocalPlayer.Data.Fragments.Value)
         local CheckStatus_Race           = Setting3:Label("🐰 Race : " .. game:GetService("Players").LocalPlayer.Data.Race.Value)
         local CheckStatus_BloxFruit      = Setting3:Label("🍎 Fruit : ❌ NoFruit")
+        local CheckStatus_Awakened_Fruit = Setting3:Label("🍎 AwakenedFruit : ❌ NoFruit")
         Setting3:Title("Status")
         local CheckStatus_Melee       = Setting3:Label("📈 Melee : " .. game:GetService("Players").LocalPlayer.Data.Stats.Melee.Level.Value)
         local CheckStatus_Defense     = Setting3:Label("📈 Defense : " .. game:GetService("Players").LocalPlayer.Data.Stats.Defense.Level.Value)
@@ -5735,7 +5741,8 @@
                     CheckStatus_Fragments       :Set("💷 Fragments : " .. game:GetService("Players").LocalPlayer.Data.Fragments.Value)
                     CheckStatus_Race            :Set("🐰 Race : " .. game:GetService("Players").LocalPlayer.Data.Race.Value .. " | " .. CheckStatusRace())
                     if game.Players.localPlayer.Data.DevilFruit.Value ~= "" then 
-                        CheckStatus_BloxFruit       :Set("🍎 Fruit : " .. game:GetService("Players").LocalPlayer.Data.DevilFruit.Value .. " | ".. CheckWeaponBC(game.Players.LocalPlayer.Data.DevilFruit.Value).Level.Value .. " | ".. StatusFruitAwakened())
+                        CheckStatus_BloxFruit       :Set("🍎 Fruit : " .. game:GetService("Players").LocalPlayer.Data.DevilFruit.Value .. " | ".. CheckWeaponBC(game.Players.LocalPlayer.Data.DevilFruit.Value).Level.Value)
+                        CheckStatus_Awakened_Fruit  :Set("🍎 AwakenedFruit : " .. StatusFruitAwakened())
                     end
                     CheckStatus_Melee      :Set("📈 Melee : " .. game:GetService("Players").LocalPlayer.Data.Stats.Melee.Level.Value)
                     CheckStatus_Defense    :Set("📈 Defense : " .. game:GetService("Players").LocalPlayer.Data.Stats.Defense.Level.Value)
