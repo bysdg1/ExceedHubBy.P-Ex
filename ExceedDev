@@ -1,3 +1,8 @@
+_G.Team = "Pirates" -- Marines , Pirates
+_G.KaiTun = false
+_G.KaiTunGod = false
+_G.Fast_Delay = 0.15
+
 -- game:IsLoaded
     if not game:IsLoaded() then 
         repeat game.Loaded:Wait(5)
@@ -238,9 +243,9 @@
                 local RenderAverage = FrameRateManager and FrameRateManager:FindFirstChild("RenderAverage")
                 TextFPS = math.floor(1000/RenderAverage:GetValue())
                 FPS.Text = "FPS : "..TextFPS
-                if TextFPS < 10 then
+                if TextFPS < 5 then
                     FPS.TextColor3 = Color3.fromRGB(255, 0, 0)
-                    -- HopServer()
+                    HopServer()
                 else
                     FPS.TextColor3 = Color3.fromRGB(0, 255, 0)
                 end
@@ -3910,8 +3915,7 @@
                                     end
                                 end
                             elseif not game.Workspace.Enemies:FindFirstChild("Saber Expert [Lv. 200] [Boss]") and not game:GetService("ReplicatedStorage"):FindFirstChild("Saber Expert [Lv. 200] [Boss]") then
-                                wait(5)
-                                HopServer()
+                                Farm_Sword_Saber = false
                             else
                                 TP(CFrame.new(-1458.89502, 29.8870335, -50.633564)*CFrame.new(0,25,15))
                             end
@@ -4092,9 +4096,9 @@
                                             game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("StartQuest","BartiloQuest",1)
                                         end
                                     elseif game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BartiloQuestProgress","Bartilo") == 1 then
-                                        Attack_Bartlio_Farm = true
                                         _G.SelectBoss = "Jeremy [Lv. 850] [Boss]"
                                         if game.workspace.Enemies:FindFirstChild(_G.SelectBoss) or game:GetService("ReplicatedStorage"):FindFirstChild(_G.SelectBoss) then
+                                            Attack_Bartlio_Farm = true
                                             for i,v in pairs(game.workspace.Enemies:GetChildren()) do
                                                 if v.Name == _G.SelectBoss then
                                                     repeat wait(_G.Fast_Delay)
@@ -4108,7 +4112,7 @@
                                                 end
                                             end
                                         else
-                                            HopServer()
+                                            Attack_Bartlio_Farm = false
                                         end
                                     elseif game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BartiloQuestProgress","Bartilo") == 2 then
                                         Attack_Bartlio_Farm = true
@@ -4208,9 +4212,9 @@
                                 if game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("ZQuestProgress","Check") ~= 1 then
                                     if game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("TalkTrevor","1") == 0 then
                                         if Lv >= 1500 then
-                                            Attack_Boss_Three_World = true
                                             if Attack_Boss_Don_Swan then
                                                 if game.Workspace.Enemies:FindFirstChild("Don Swan [Lv. 1000] [Boss]") or game.ReplicatedStorage:FindFirstChild("Don Swan [Lv. 1000] [Boss]") then
+                                                    Attack_Boss_Three_World = true
                                                     if game.Workspace.Enemies:FindFirstChild("Don Swan [Lv. 1000] [Boss]") then
                                                         for i,v in pairs(game.Workspace.Enemies:GetChildren()) do
                                                             if v.Name == "Don Swan [Lv. 1000] [Boss]" and v.Humanoid.Health > 0 then
@@ -4228,8 +4232,7 @@
                                                     end
                                                 else
                                                     if not game.Workspace.Enemies:FindFirstChild("Don Swan [Lv. 1000] [Boss]") and not game.ReplicatedStorage:FindFirstChild("Don Swan [Lv. 1000] [Boss]") then
-                                                        HopServer()
-                                                        wait(50)
+                                                        Attack_Boss_Three_World = false
                                                     end
                                                 end
                                             end
@@ -5907,6 +5910,8 @@
     -- Check
 -- CheckStatus 
 
+LoadSword()
+
 Status:Toggle("KaiTan", _G.KaiTun,function(vu)
     Auto_Farm = vu
     NoClip = vu
@@ -5988,4 +5993,3 @@ Status:Toggle("KaiTan God", _G.KaiTunGod,function(vu)
     end
 end)
 
-LoadSword()
