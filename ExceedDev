@@ -1,3 +1,4 @@
+
 -- game:IsLoaded
     if not game:IsLoaded() then 
         repeat game.Loaded:Wait(5)
@@ -1902,7 +1903,6 @@
                 NameMon = "Shanda"
                 CFrameQ = CFrame.new(-7863.1596679688, 5545.5190429688, -378.42266845703)
                 CFrameMon = CFrame.new(-7685.1474609375, 5601.0751953125, -441.38876342773)
-                SelectMonster = "God's Guard [Lv. 450]"
                 if Auto_Farm and (CFrameMon.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude > 3000 then
                     game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("requestEntrance",Vector3.new(-7894.6176757813, 5547.1416015625, -380.29119873047))
                 end
