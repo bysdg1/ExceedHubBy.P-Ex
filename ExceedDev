@@ -1,4 +1,3 @@
-
 -- game:IsLoaded
     if not game:IsLoaded() then 
         repeat game.Loaded:Wait(5)
@@ -1510,6 +1509,7 @@
                     if v1["Type"] == "Sword" then
                         if v1["Name"] == SwordList[i] then
                             if v1["Mastery"] <= MaxMastery and not v1["Equipped"] then
+                                wait(.5)
                                 game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("LoadItem", v1["Name"])
                             end
                         end
