@@ -1572,9 +1572,11 @@
 
 -- Function 
     function CheckWeaponBC(BC)
+        print("CheckWeaponBC")
         return game.Players.LocalPlayer.Character:FindFirstChild(BC) or game.Players.LocalPlayer.Backpack:FindFirstChild(BC)
     end
     function CheckSword(Sword)
+        print("CheckSword")
         for i,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
             if v:IsA("Tool") then
                 if v.Name == Sword then 
@@ -1597,6 +1599,7 @@
         end
     end 
     function CheckLevelSword(Sword)
+        print("CheckLevelSword")
         local CheckSword = game:GetService("ReplicatedStorage").Remotes["CommF_"]:InvokeServer("getInventory")
         for i,v in pairs(CheckSword) do
             if v.Type == "Sword" then
@@ -1607,6 +1610,7 @@
         end
     end
     function CheckLevelGun(Gun)
+        print("CheckLevelGun")
         local CheckGun = game:GetService("ReplicatedStorage").Remotes["CommF_"]:InvokeServer("getInventory")
         for i,v in pairs(CheckGun) do
             if v.Type == "Gun" then
@@ -1617,10 +1621,12 @@
         end
     end
     function Check_Fruit_BackPack(FruitBP)
+        print("Check_Fruit_BackPack")
         Nameruits = game:GetService("Players").localPlayer.Data.DevilFruit.Value
         return Nameruits == FruitBP 
     end
     function Check_Fruit_CB()
+        print("Check_Fruit_CB")
         for u,y in pairs(game:GetService("Players").LocalPlayer.Backpack:GetChildren()) do
             if string.find(y.Name, "Fruit") then 
                 return true
@@ -1633,6 +1639,7 @@
         end
     end
     function Check_Fruit_CBI()
+        print("Check_Fruit_CBI")
         local fruit = game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("getInventoryFruits")
         for i,v in pairs(fruit) do
             if v["Price"] < 1000000 then
@@ -1651,6 +1658,7 @@
         end
     end
     function Check_Fruit_CBIPrice1M()
+        print("Check_Fruit_CBIPrice1M")
         local fruit = game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("getInventoryFruits")
         for i,v in pairs(fruit) do
             if v["Price"] >= 1000000 then
@@ -1659,6 +1667,7 @@
         end
     end
     function Check_Inventory_Item(CName, CNumber)
+        print("Check_Inventory_Item")
         local CheckInventory = game:GetService("ReplicatedStorage").Remotes["CommF_"]:InvokeServer("getInventory")
         for i,v in pairs(CheckInventory) do
             if v.Type == "Material" then
@@ -1671,6 +1680,7 @@
         end
     end
     function Check_Inventory_Item_Name(CName)
+        print("Check_Inventory_Item_Name")
         local CheckInventory = game:GetService("ReplicatedStorage").Remotes["CommF_"]:InvokeServer("getInventory")
         for i,v in pairs(CheckInventory) do
             if v.Type == "Material" then
@@ -1685,6 +1695,7 @@
         end
     end
     function CheckStatusRace()
+        print("CheckStatusRace")
         if game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Wenlocktoad","1") == -2 then
             return "✅ EVRS"
         elseif game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Wenlocktoad","1") ~= -2 then
@@ -1692,6 +1703,7 @@
         end
     end
     function CheckStatusColorHaki(Name)
+        print("CheckStatusColorHaki")
         CheckColorHaki = game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("getColors")
         for i,v in pairs(CheckColorHaki) do
             if v.Name == Name then --"Yellow Sunshine" then 
@@ -1700,6 +1712,7 @@
         end
     end
     function StatusFruitAwakened()
+        print("StatusFruitAwakened")
         Check_Fruit = game:GetService("Players").LocalPlayer.Data.DevilFruit.Value
         if Check_Fruit == "" then
             return "❌ Not Fruit"
@@ -1739,6 +1752,7 @@
         end
     end
     function CheckHaki()
+        print("CheckHaki")
         if game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("KenTalk", "Start") ~= 0 then
             return "0"
         else
@@ -1748,6 +1762,7 @@
         end
     end
     function CheckCakeMonster()
+        print("CheckCakeMonster")
         if Three_World then
             local test = game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("CakePrinceSpawner", true)
             local Lpp = string.match(tostring(test), "%d+")
@@ -2398,8 +2413,7 @@
                 if typeof(y) == "table" then
                     pcall(function()
                         CameraShaker:Stop()
-                        y.activeController.timeToNextAttack = (math.huge^math.huge^math.huge)
-                        y.activeController.timeToNextAttack = 0
+                        y.activeController.timeToNextAttack = (-math.huge^math.huge^math.huge)
                         y.activeController.hitboxMagnitude = 60
                         y.activeController.active = false
                         y.activeController.timeToNextBlock = 0
@@ -2424,7 +2438,7 @@
             while ret.Parent~=game.Players.LocalPlayer.Character do ret=ret.Parent end
             return ret
         end
-        function AttackNoCD() 
+        function AttackNoCD()
             local AC = CbFw2.activeController
             for i = 1, 1 do 
                 local bladehit = require(game.ReplicatedStorage.CombatFramework.RigLib).getBladeHits(
@@ -2471,6 +2485,12 @@
                 end
             end
         end
+        _G.Fast_Delay = 0.5
+        spawn(function()
+            while wait(.1) do
+                AttackNoCD()
+            end
+        end)
     -- Attack
 
     -- NoClip
@@ -2638,7 +2658,7 @@
                                         end
                                         -- TP(v.HumanoidRootPart.CFrame*CFrame.new(0,30,10))
                                         EquipWeapon(_G.Weapon)
-                                        AttackNoCD()
+                                        
                                     until v.Humanoid.Health <= 0 or not v.Parent or not Auto_Farm
                                     StatrMagnet1 = false
                                 end
@@ -2690,7 +2710,7 @@
                                             elseif game.Players.LocalPlayer.Character:FindFirstChild("Highlight") then 
                                                 TP(v.HumanoidRootPart.CFrame*CFrame.new(0,0,-5))
                                             end
-                                            AttackNoCD()
+                                            
                                         until game.Players.LocalPlayer.PlayerGui.Main.Quest.Visible == false or not string.find(game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text, NameMon) or not v.Parent or v.Humanoid.Health <= 0 or not Auto_Farm
                                         if Lv >= 100 and not string.find(game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text, NameMon) then
                                             game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AbandonQuest")
@@ -2736,7 +2756,7 @@
                                                         TP(v.HumanoidRootPart.CFrame*CFrame.new(0,0,-5))
                                                     end
                                                     EquipWeapon(_G.Weapon)
-                                                    AttackNoCD()
+                                                    
                                                 until v.Humanoid.Health <= 0 or not v.Parent or not FarmItemInventroy
                                                 StatrMagnet1 = false
                                             end
@@ -2773,7 +2793,7 @@
                                                         TP(v.HumanoidRootPart.CFrame*CFrame.new(0,0,-5))
                                                     end
                                                     EquipWeapon(_G.Weapon)
-                                                    AttackNoCD()
+                                                    
                                                 until v.Humanoid.Health <= 0 or not v.Parent or not FarmItemInventroy
                                                 StatrMagnet1 = false
                                             end
@@ -2816,7 +2836,7 @@
                                                         TP(v.HumanoidRootPart.CFrame*CFrame.new(0,0,-5))
                                                     end
                                                     EquipWeapon(_G.Weapon)
-                                                    AttackNoCD()
+                                                    
                                                 until v.Humanoid.Health <= 0 or not v.Parent or not FarmItemInventroy
                                                 StatrMagnet1 = false
                                             end
@@ -2858,7 +2878,7 @@
                                                         TP(v.HumanoidRootPart.CFrame*CFrame.new(0,0,-5))
                                                     end
                                                     EquipWeapon(_G.Weapon)
-                                                    AttackNoCD()
+                                                    
                                                 until v.Humanoid.Health <= 0 or not v.Parent or not FarmItemInventroy
                                                 StatrMagnet1 = false
                                             end
@@ -3284,6 +3304,8 @@
                             end
                         end
                     end
+
+
                 end
             end)
         end
@@ -3317,7 +3339,7 @@
                                                         repeat wait(_G.Fast_Delay)
                                                             EquipWeapon(_G.Weapon)
                                                             TP(v.HumanoidRootPart.CFrame * CFrame.new(0,25,15))
-                                                            AttackNoCD()
+                                                            
                                                         until not Attack_Boss_Death_Step or game:GetService('Players').LocalPlayer.Character.Humanoid.Health <= 0 or not game:GetService("Workspace").Enemies:FindFirstChild("Awakened Ice Admiral [Lv. 1400] [Boss]") or game:GetService("Workspace").Enemies:FindFirstChild("Awakened Ice Admiral [Lv. 1400] [Boss]").Humanoid.Health <= 0
                                                         Attack_Boss_Death_Step = false
                                                     end
@@ -3358,7 +3380,7 @@
                                                         repeat wait(_G.Fast_Delay)
                                                             EquipWeapon(_G.Weapon)
                                                             TP(v.HumanoidRootPart.CFrame * CFrame.new(0,25,15))
-                                                            AttackNoCD()
+                                                            
                                                         until game:GetService('Players').LocalPlayer.Character.Humanoid.Health <= 0 or not game:GetService("Workspace").Enemies:FindFirstChild("Tide Keeper [Lv. 1475] [Boss]") or game:GetService("Workspace").Enemies:FindFirstChild("Tide Keeper [Lv. 1475] [Boss]").Humanoid.Health <= 0
                                                         Attack_Boss_Shakman_Karate = false 
                                                     end
@@ -3874,7 +3896,7 @@
                                             EquipWeapon(_G.Weapon)
                                             v.HumanoidRootPart.Size = Vector3.new(50,50,50)
                                             TP(v.HumanoidRootPart.CFrame*CFrame.new(0,20,0))
-                                            AttackNoCD()
+                                            
                                         until not v.Parent or v.Humanoid.Health <= 0 or Mob_Boss == false
                                     end
                                 end
@@ -3903,7 +3925,7 @@
                                             EquipWeapon(_G.Weapon)
                                             v.HumanoidRootPart.Size = Vector3.new(50,50,50)
                                             TP(v.HumanoidRootPart.CFrame*CFrame.new(0,25,15))
-                                            AttackNoCD()
+                                            
                                         until not v.Parent or v.Humanoid.Health <= 0 or Saber_Kill == false
                                         Farm_Sword_Saber = false
                                         Saber_Kill = false
@@ -3937,7 +3959,7 @@
                                             repeat wait(_G.Fast_Delay)
                                                 TP(v.HumanoidRootPart.CFrame*CFrame.new(0,30,15))
                                                 EquipWeapon(_G.Weapon)
-                                                AttackNoCD()
+                                                
                                             until v.Humanoid.Health <= 0 or not v.Parent or not Farm_Boss_Pole 
                                             Attack_Boss_Pole = false
                                         end
@@ -3989,7 +4011,7 @@
                                                 EquipWeapon(_G.Weapon)
                                                 v.HumanoidRootPart.Size = Vector3.new(50,50,50)
                                                 TP(v.HumanoidRootPart.CFrame*CFrame.new(0,25,15))
-                                                AttackNoCD()
+                                                
                                             until v.Humanoid.Health <= 0 or not v.Parent or World2 == false
                                             wait(2)
                                             game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("TravelDressrosa")
@@ -4039,7 +4061,7 @@
                                             repeat wait(_G.Fast_Delay)
                                                 EquipWeapon(_G.Weapon)
                                                 TP(v.HumanoidRootPart.CFrame)
-                                                AttackNoCD()
+                                                
                                             until game:GetService('Players').LocalPlayer.Character.Humanoid.Health <= 0 or v.Humanoid.Health <= 0 or not game.Workspace.Enemies:FindFirstChild("Core") or not game.ReplicatedStorage:FindFirstChild("Core") or not HopGoWorld3_Core or not HopGoWorld3_Core_Attack
                                         end
                                     end
@@ -4079,7 +4101,7 @@
                                                         repeat wait(_G.Fast_Delay)
                                                             EquipWeapon(_G.Weapon)
                                                             TP(v.HumanoidRootPart.CFrame*CFrame.new(0,25,0))
-                                                            AttackNoCD()
+                                                            
                                                         until v.Humanoid.Health <= 0 or not v.Parent or Bartlio_Farm ==false
                                                         StatrMagnet = false
                                                     end
@@ -4100,7 +4122,7 @@
                                                         EquipWeapon(_G.Weapon)
                                                         v.HumanoidRootPart.Size = Vector3.new(50,50,50)
                                                         TP(v.HumanoidRootPart.CFrame*CFrame.new(0,25,0))
-                                                        AttackNoCD()
+                                                        
                                                     until v.Humanoid.Health <= 0 or not v.Parent or Bartlio_Farm == false
                                                 else 
                                                     TP(game:GetService("ReplicatedStorage"):FindFirstChild(_G.SelectBoss).HumanoidRootPart.CFrame*CFrame.new(0,20,0))
@@ -4216,7 +4238,7 @@
                                                                 repeat wait(_G.Fast_Delay)
                                                                     EquipWeapon(_G.Weapon)
                                                                     TP(v.HumanoidRootPart.CFrame*CFrame.new(0,20,10))
-                                                                    AttackNoCD()
+                                                                    
                                                                 until v.Humanoid.Health <= 0 or not v.Parent or not Attack_Boss_Don_Swan
                                                                 Attack_Boss_Rip_Indra = true
                                                                 Attack_Boss_Don_Swan = false
@@ -4242,7 +4264,7 @@
                                                                 EquipWeapon(_G.Weapon)
                                                                 v.HumanoidRootPart.Size = Vector3.new(50,50,50)
                                                                 TP(v.HumanoidRootPart.CFrame*CFrame.new(0,20,10))
-                                                                AttackNoCD()
+                                                                
                                                             until not Auto_Three_World or game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("ZQuestProgress","Check") == 1
                                                             Attack_Boss_Rip_Indra = false
                                                             Attack_Boss_Three_World = false
@@ -4369,7 +4391,7 @@
                                                     repeat wait(_G.Fast_Delay)
                                                         EquipWeapon(_G.Weapon)
                                                         TP(v.HumanoidRootPart.CFrame*CFrame.new(0,30,0))
-                                                        AttackNoCD()
+                                                        
                                                     until v.Humanoid.Health <= 0 or not v.Parent or Auto_Quest_HakiV2 == false
                                                 end
                                             end
@@ -4398,7 +4420,7 @@
                                                         v.HumanoidRootPart.CanCollide = false
                                                         
                                                         TP(v.HumanoidRootPart.CFrame*CFrame.new(0,30,0))
-                                                        AttackNoCD()
+                                                        
                                                     until v.Humanoid.Health <= 0 or not v.Parent or Auto_Quest_HakiV2 == false
                                                     StatrMagnet = false
                                                 end
@@ -4435,7 +4457,7 @@
                                                     v.HumanoidRootPart.CFrame = OldCFrameRainbow
                                                     v.HumanoidRootPart.Size = Vector3.new(50,50,50)
                                                     EquipWeapon(_G.Weapon)
-                                                    AttackNoCD()
+                                                    
                                                     sethiddenproperty(game:GetService("Players").LocalPlayer,"SimulationRadius",math.huge)
                                                 until not Farm_Rainbow_Haki or v.Humanoid.Health <= 0 or not v.Parent or game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == false
                                             end
@@ -4455,7 +4477,7 @@
                                                     v.HumanoidRootPart.CFrame = OldCFrameRainbow
                                                     v.HumanoidRootPart.Size = Vector3.new(50,50,50)
                                                     EquipWeapon(_G.Weapon)
-                                                    AttackNoCD()
+                                                    
                                                     sethiddenproperty(game:GetService("Players").LocalPlayer,"SimulationRadius",math.huge)
                                                 until not Farm_Rainbow_Haki or v.Humanoid.Health <= 0 or not v.Parent or game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == false
                                             end
@@ -4475,7 +4497,7 @@
                                                     v.HumanoidRootPart.Size = Vector3.new(50,50,50)
                                                     v.HumanoidRootPart.CFrame = OldCFrameRainbow
                                                     EquipWeapon(_G.Weapon)
-                                                    AttackNoCD()
+                                                    
                                                     sethiddenproperty(game:GetService("Players").LocalPlayer,"SimulationRadius",math.huge)
                                                 until not Farm_Rainbow_Haki or v.Humanoid.Health <= 0 or not v.Parent or game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == false
                                             end
@@ -4495,7 +4517,7 @@
                                                     v.HumanoidRootPart.Size = Vector3.new(50,50,50)
                                                     v.HumanoidRootPart.CFrame = OldCFrameRainbow
                                                     EquipWeapon(_G.Weapon)
-                                                    AttackNoCD()
+                                                    
                                                     sethiddenproperty(game:GetService("Players").LocalPlayer,"SimulationRadius",math.huge)
                                                 until not Farm_Rainbow_Haki or v.Humanoid.Health <= 0 or not v.Parent or game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == false
                                             end
@@ -4515,7 +4537,7 @@
                                                     v.HumanoidRootPart.Size = Vector3.new(50,50,50)
                                                     v.HumanoidRootPart.CFrame = OldCFrameRainbow
                                                     EquipWeapon(_G.Weapon)
-                                                    AttackNoCD()
+                                                    
                                                     sethiddenproperty(game:GetService("Players").LocalPlayer,"SimulationRadius",math.huge)
                                                 until not Farm_Rainbow_Haki or v.Humanoid.Health <= 0 or not v.Parent or game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == false
                                             end
@@ -4556,7 +4578,7 @@
                                                     repeat wait(_G.Fast_Delay)
                                                         TP(v.HumanoidRootPart.CFrame*CFrame.new(0,30,15))
                                                         EquipWeapon(_G.Weapon)
-                                                        AttackNoCD()
+                                                        
                                                     until not Farm_Boss_Buddy_Sword or not v.Parent or v.Humanoid.Health <= 0
                                                     Attack_Boss_Buddy_Sword = false
                                                 end
@@ -4593,7 +4615,7 @@
                                                     repeat wait(_G.Fast_Delay)
                                                         TP(v.HumanoidRootPart.CFrame*CFrame.new(0,30,15))
                                                         EquipWeapon(_G.Weapon)
-                                                        AttackNoCD()
+                                                        
                                                     until not Farm_Boss_Canvander_Sword or not v.Parent or v.Humanoid.Health <= 0
                                                     Attack_Boss_Canvander_Sword = false
                                                 end
@@ -4634,7 +4656,7 @@
                                                             repeat wait(_G.Fast_Delay)
                                                                 TP(v.HumanoidRootPart.CFrame*CFrame.new(0,-30,0))
                                                                 EquipWeapon(_G.Weapon)
-                                                                AttackNoCD()
+                                                                
                                                             until v.Humanoid.Health <= 0 or not v.Parent or not Farm_Boss_Spikey_Trident_Sword
                                                             Attack_Boss_Spikey_Trident_Sword = false
                                                         end
@@ -4664,7 +4686,7 @@
                                                                 TP(v.HumanoidRootPart.CFrame*CFrame.new(0,0,-5))
                                                             end
                                                             EquipWeapon(_G.Weapon)
-                                                            AttackNoCD()
+                                                            
                                                         until v.Humanoid.Health <= 0 or not v.Parent or not Farm_Boss_Spikey_Trident_Sword
                                                         StatrMagnet1 = false
                                                     end
@@ -4697,7 +4719,7 @@
                                             repeat wait(_G.Fast_Delay)
                                                 TP(v.HumanoidRootPart.CFrame*CFrame.new(0,30,15))
                                                 EquipWeapon(_G.Weapon)
-                                                AttackNoCD()
+                                                
                                             until v.Humanoid.Health <= 0 or not v.Parent or not Farm_Boss_Hallow_Scryte_Sword
                                             Attack_Boss_Hallow_Scryte_Sword = false
                                         end
@@ -4823,7 +4845,7 @@
                                                                     repeat wait(_G.Fast_Delay)
                                                                         EquipWeapon(_G.Weapon)
                                                                         TP(v.HumanoidRootPart.CFrame*CFrame.new(0,30,0))
-                                                                        AttackNoCD()
+                                                                        
                                                                     until v.Humanoid.Health <= 0 or not v.Parent or not Farm_Boss_Tushita_Sword
                                                                 end
                                                             end
@@ -4842,7 +4864,7 @@
                                                                     repeat wait(_G.Fast_Delay)
                                                                         EquipWeapon(_G.Weapon)
                                                                         TP(v.HumanoidRootPart.CFrame*CFrame.new(0,30,0))
-                                                                        AttackNoCD()
+                                                                        
                                                                     until v.Humanoid.Health <= 0 or not v.Parent or not Farm_Boss_Tushita_Sword
                                                                 end
                                                             end
@@ -4861,7 +4883,7 @@
                                                                     repeat wait(_G.Fast_Delay)
                                                                         EquipWeapon(_G.Weapon)
                                                                         TP(v.HumanoidRootPart.CFrame*CFrame.new(0,30,0))
-                                                                        AttackNoCD()
+                                                                        
                                                                     until v.Humanoid.Health <= 0 or not v.Parent or not Farm_Boss_Tushita_Sword
                                                                 end
                                                             end
@@ -4893,7 +4915,7 @@
                                                         repeat wait(_G.Fast_Delay)
                                                             EquipWeapon(_G.Weapon)
                                                             TP(v.HumanoidRootPart.CFrame*CFrame.new(0,30,0))
-                                                            AttackNoCD()
+                                                            
                                                         until v.Humanoid.Health <= 0 or not v.Parent or not Farm_Boss_Tushita_Sword
                                                         Attack_Boss_Tushita_Sword = false
                                                     end
@@ -4930,7 +4952,7 @@
                                                 repeat wait(_G.Fast_Delay)
                                                     EquipWeapon(_G.Weapon)
                                                     TP(v.HumanoidRootPart.CFrame*CFrame.new(0,30,10))
-                                                    AttackNoCD()
+                                                    
                                                 until v.Humanoid.Health <= 0 or not v.Parent or not Farm_Boss_Dark_Dagger_Sword
                                             end
                                         end
@@ -4939,29 +4961,31 @@
                                     end
                                 elseif not game.Workspace.Enemies:FindFirstChild("rip_indra True Form [Lv. 5000] [Raid Boss]") and not game.ReplicatedStorage:FindFirstChild("rip_indra True Form [Lv. 5000] [Raid Boss]") then
                                     if game.Players.LocalPlayer.Backpack:FindFirstChild("God's Chalice") or game.Players.LocalPlayer.Character:FindFirstChild("God's Chalice") then
-                                        Attack_Boss_Dark_Dagger_Sword = true
-                                        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("activateColor","Winter Sky")
-                                        wait(1)
-                                        repeat wait(.5) 
-                                            TP(CFrame.new(-5420.16602, 1084.9657, -2666.8208))
-                                        until not Farm_Boss_Dark_Dagger_Sword or (game.Players.LocalPlayer.Character.HumanoidRootPart.Position-Vector3.new(-5420.16602, 1084.9657, -2666.8208)).Magnitude <= 10
-                                        wait(1)
-                                        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("activateColor","Pure Red")
-                                        wait(1)
-                                        repeat wait() 
-                                            TP(CFrame.new(-5414.41357, 309.865753, -2212.45776))
-                                        until not Farm_Boss_Dark_Dagger_Sword or (game.Players.LocalPlayer.Character.HumanoidRootPart.Position-Vector3.new(-5414.41357, 309.865753, -2212.45776)).Magnitude <= 10
-                                        wait(1)
-                                        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("activateColor","Snow White")
-                                        wait(1)
-                                        repeat wait() 
-                                            TP(CFrame.new(-4971.47559, 331.565765, -3720.02954))
-                                        until not Farm_Boss_Dark_Dagger_Sword or (game.Players.LocalPlayer.Character.HumanoidRootPart.Position-Vector3.new(-4971.47559, 331.565765, -3720.02954)).Magnitude <= 10
-                                        wait(1)
-                                        repeat wait()
-                                            EquipWeapon("God's Chalice")
-                                            TP(CFrame.new(-5561.32471, 314.284546, -2663.39697, -0.391084909, 1.08295005e-07, 0.920354605, 4.10446699e-09, 1, -1.15922504e-07, -0.920354605, -4.15579748e-08, -0.391084909))
-                                        until not Farm_Boss_Dark_Dagger_Sword or not game.Players.LocalPlayer.Backpack:FindFirstChild("God's Chalicee") and not game.Players.LocalPlayer.Character:FindFirstChild("God's Chalice") or game.Workspace.Enemies:FindFirstChild("rip_indra True Form [Lv. 5000] [Raid Boss]")
+                                        if CheckStatusColorHaki("Winter Sky") and CheckStatusColorHaki("Pure Red") and CheckStatusColorHaki("Snow White") then
+                                            Attack_Boss_Dark_Dagger_Sword = true
+                                            game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("activateColor","Winter Sky")
+                                            wait(1)
+                                            repeat wait(.5) 
+                                                TP(CFrame.new(-5420.16602, 1084.9657, -2666.8208))
+                                            until not Farm_Boss_Dark_Dagger_Sword or (game.Players.LocalPlayer.Character.HumanoidRootPart.Position-Vector3.new(-5420.16602, 1084.9657, -2666.8208)).Magnitude <= 10
+                                            wait(1)
+                                            game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("activateColor","Pure Red")
+                                            wait(1)
+                                            repeat wait() 
+                                                TP(CFrame.new(-5414.41357, 309.865753, -2212.45776))
+                                            until not Farm_Boss_Dark_Dagger_Sword or (game.Players.LocalPlayer.Character.HumanoidRootPart.Position-Vector3.new(-5414.41357, 309.865753, -2212.45776)).Magnitude <= 10
+                                            wait(1)
+                                            game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("activateColor","Snow White")
+                                            wait(1)
+                                            repeat wait() 
+                                                TP(CFrame.new(-4971.47559, 331.565765, -3720.02954))
+                                            until not Farm_Boss_Dark_Dagger_Sword or (game.Players.LocalPlayer.Character.HumanoidRootPart.Position-Vector3.new(-4971.47559, 331.565765, -3720.02954)).Magnitude <= 10
+                                            wait(1)
+                                            repeat wait()
+                                                EquipWeapon("God's Chalice")
+                                                TP(CFrame.new(-5561.32471, 314.284546, -2663.39697, -0.391084909, 1.08295005e-07, 0.920354605, 4.10446699e-09, 1, -1.15922504e-07, -0.920354605, -4.15579748e-08, -0.391084909))
+                                            until not Farm_Boss_Dark_Dagger_Sword or not game.Players.LocalPlayer.Backpack:FindFirstChild("God's Chalicee") and not game.Players.LocalPlayer.Character:FindFirstChild("God's Chalice") or game.Workspace.Enemies:FindFirstChild("rip_indra True Form [Lv. 5000] [Raid Boss]")
+                                        end
                                     else
                                         if game:GetService("ReplicatedStorage"):FindFirstChild("Urban [Lv. 1750]") or game:GetService("Workspace").Enemies:FindFirstChild("Urban [Lv. 1750]") then
                                             Attack_Boss_Dark_Dagger_Sword = true
@@ -4975,7 +4999,7 @@
                                                         repeat wait(_G.Fast_Delay)
                                                             EquipWeapon(_G.Weapon)
                                                             TP(v.HumanoidRootPart.CFrame*CFrame.new(0,30,0))
-                                                            AttackNoCD()
+                                                            
                                                         until v.Humanoid.Health <= 0 or not v.Parent or not Farm_Boss_Dark_Dagger_Sword
                                                     end
                                                 end
@@ -4994,7 +5018,7 @@
                                                         repeat wait(_G.Fast_Delay)
                                                             EquipWeapon(_G.Weapon)
                                                             TP(v.HumanoidRootPart.CFrame*CFrame.new(0,30,0))
-                                                            AttackNoCD()
+                                                            
                                                         until v.Humanoid.Health <= 0 or not v.Parent or not Farm_Boss_Dark_Dagger_Sword
                                                     end
                                                 end
@@ -5013,7 +5037,7 @@
                                                         repeat wait(_G.Fast_Delay)
                                                             EquipWeapon(_G.Weapon)
                                                             TP(v.HumanoidRootPart.CFrame*CFrame.new(0,30,0))
-                                                            AttackNoCD()
+                                                            
                                                         until v.Humanoid.Health <= 0 or not v.Parent or not Farm_Boss_Dark_Dagger_Sword
                                                     end
                                                 end
@@ -5054,7 +5078,7 @@
                                                     repeat wait(_G.Fast_Delay)
                                                         EquipWeapon(_G.Weapon)
                                                         TP(v.HumanoidRootPart.CFrame*CFrame.new(0,30,0))
-                                                        AttackNoCD()
+                                                        
                                                     until v.Humanoid.Health <= 0 or not v.Parent or not Farm_Boss_Yama_Sword
                                                 end
                                             end
@@ -5073,7 +5097,7 @@
                                                     repeat wait(_G.Fast_Delay)
                                                         EquipWeapon(_G.Weapon)
                                                         TP(v.HumanoidRootPart.CFrame*CFrame.new(0,30,0))
-                                                        AttackNoCD()
+                                                        
                                                     until v.Humanoid.Health <= 0 or not v.Parent or not Farm_Boss_Yama_Sword
                                                 end
                                             end
@@ -5092,7 +5116,7 @@
                                                     repeat wait(_G.Fast_Delay)
                                                         EquipWeapon(_G.Weapon)
                                                         TP(v.HumanoidRootPart.CFrame*CFrame.new(0,30,0))
-                                                        AttackNoCD()
+                                                        
                                                     until v.Humanoid.Health <= 0 or not v.Parent or not Farm_Boss_Yama_Sword
                                                 end
                                             end
@@ -5120,7 +5144,7 @@
                                                 repeat wait(_G.Fast_Delay)
                                                     EquipWeapon(_G.Weapon)
                                                     TP(v.HumanoidRootPart.CFrame*CFrame.new(0,30,0))
-                                                    AttackNoCD()
+                                                    
                                                 until v.Humanoid.Health <= 0 or not v.Parent or not Farm_Boss_Yama_Sword
                                             end
                                         end
@@ -5151,7 +5175,7 @@
                                                 repeat wait(_G.Fast_Delay)
                                                     TP(v.HumanoidRootPart.CFrame*CFrame.new(0,30,15))
                                                     EquipWeapon(_G.Weapon)
-                                                    AttackNoCD()
+                                                    
                                                 until v.Humanoid.Health <= 0 or not v.Parent or not Farm_Boss_Serpent_Bow_Gun
                                                 Attack_Boss_Serpent_Bow_Gun = false
                                             end
@@ -5292,6 +5316,9 @@
 -- LegendarySword 3 and Rengoku and AutoBuyHaki
     spawn(function()
         while wait() do
+            local Lv = game:GetService("Players").LocalPlayer.Data.Level.Value
+            local CheckBeli = game.Players.LocalPlayer.Data.Beli.Value 
+            local FG = game:GetService("Players").LocalPlayer.Data.Fragments.Value
             -- LegendarySword
                 if New_World then 
                     -- LegendarySword
@@ -5307,6 +5334,10 @@
                     -- Ectoplasm
                         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Ectoplasm", "Buy", 3)
                     -- Ectoplasm
+
+                    -- Kabucha
+                        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BlackbeardReward", "Slingshot", "2")
+                    -- Kabucha
                 end
                 if New_World or Three_World then 
                     -- LegendarySword 3 Sword
@@ -5319,9 +5350,6 @@
 
             -- AutoBuyHaki
                 if AutoHaki then
-                    local Lv = game:GetService("Players").LocalPlayer.Data.Level.Value
-                    local CheckBeli = game.Players.LocalPlayer.Data.Beli.Value 
-                    local FG = game:GetService("Players").LocalPlayer.Data.Fragments.Value
                     if CheckBeli >= 10000 and game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyHaki", "Geppo") ~= 2 then
                         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyHaki", "Geppo")
                     end
@@ -5336,8 +5364,8 @@
                         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("KenTalk", "Buy")
                     end
                     
-                    if Lv >= 2400 and CheckWeapon_Remotes("BuyDeathStep") == 1 and CheckWeapon_Remotes("BuySharkmanKarate") == 1 and 
-                    CheckWeapon_Remotes("BuyElectricClaw") == 1 and CheckWeapon_Remotes("BuyDragonTalon") == 1 and CheckWeapon_Remotes("BuyGodhuman") == 1 then
+                    if Lv >= 2400 and game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyDeathStep", true) == 1 and game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySharkmanKarate", true) == 1 and 
+                    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyElectricClaw", true) == 1 and game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyDragonTalon", true) == 1 and game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyGodhuman", true) == 1 then
                         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("ColorsDealer", "2")
                     end
                 end
@@ -5531,6 +5559,7 @@
         local CheckStatus_Race           = Setting3:Label("🐰 Race : " .. game:GetService("Players").LocalPlayer.Data.Race.Value)
         local CheckStatus_BloxFruit      = Setting3:Label("🍎 Fruit : ❌ NoFruit")
         local CheckStatus_Awakened_Fruit = Setting3:Label("🍎 AwakenedFruit : ❌ NoFruit")
+        local CheckStatus_Haki           = Setting3:Label("👀 StatusHaki : " .. CheckHaki())
         Setting3:Title("Status")
         local CheckStatus_Melee       = Setting3:Label("📈 Melee : " .. game:GetService("Players").LocalPlayer.Data.Stats.Melee.Level.Value)
         local CheckStatus_Defense     = Setting3:Label("📈 Defense : " .. game:GetService("Players").LocalPlayer.Data.Stats.Defense.Level.Value)
@@ -5907,6 +5936,57 @@
     -- Check
 -- CheckStatus 
 
+-- FPS Boost
+    function FPSBost()
+        pcall(function()
+            game:GetService("Lighting").FantasySky:Destroy()
+            local g = game
+            local w = g.Workspace
+            local l = g.Lighting
+            local t = w.Terrain
+            t.WaterWaveSize = 0
+            t.WaterWaveSpeed = 0
+            t.WaterReflectance = 0
+            t.WaterTransparency = 0
+            l.GlobalShadows = false
+            l.FogEnd = 9e9
+            l.Brightness = 0
+            settings().Rendering.QualityLevel = "Level01"
+            for i, v in pairs(g:GetDescendants()) do
+                if v:IsA("Part") or v:IsA("Union") or v:IsA("CornerWedgePart") or v:IsA("TrussPart") then 
+                    v.Material = "Plastic"
+                    v.Reflectance = 0
+                elseif v:IsA("Decal") or v:IsA("Texture") then
+                    v.Transparency = 1
+                elseif v:IsA("ParticleEmitter") or v:IsA("Trail") then
+                    v.Lifetime = NumberRange.new(0)
+                elseif v:IsA("Explosion") then
+                    v.BlastPressure = 1
+                    v.BlastRadius = 1
+                elseif v:IsA("Fire") or v:IsA("SpotLight") or v:IsA("Smoke") or v:IsA("Sparkles") then
+                    v.Enabled = false
+                elseif v:IsA("MeshPart") then
+                    v.Material = "Plastic"
+                    v.Reflectance = 0
+                    v.TextureID = 10385902758728957
+                end
+            end
+            for i, e in pairs(l:GetChildren()) do
+                if e:IsA("BlurEffect") or e:IsA("SunRaysEffect") or e:IsA("ColorCorrectionEffect") or e:IsA("BloomEffect") or e:IsA("DepthOfFieldEffect") then
+                    e.Enabled = false
+                end
+            end
+            for i, v in pairs(game:GetService("Workspace").Camera:GetDescendants()) do
+                if v.Name == ("Water;") then
+                    v.Transparency = 1
+                    v.Material = "Plastic"
+                end
+            end
+        end)
+    end
+-- FPS Boost
+
+FPSBost()
 LoadSword()
 
 Status:Toggle("KaiTan", _G.KaiTun,function(vu)
